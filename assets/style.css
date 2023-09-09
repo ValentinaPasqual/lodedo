@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+body  {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Apply styles to the div */
+.scrollable-div {
+    max-height: 30vh; /* Set the maximum height to 5vh (5% of viewport height) */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+}
