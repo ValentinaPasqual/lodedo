@@ -170,9 +170,9 @@ def index():
                 result_cards.append({"item": item, "image": image})
 
 
-        return render_template("prova.html", facets=facets, selected_facets=selected_facets, result_cards=result_cards)
+        return render_template("index.html", facets=facets, selected_facets=selected_facets, result_cards=result_cards)
 
-    return render_template("prova.html", facets=facets, selected_facets={}, result_cards=result_cards)
+    return render_template("index.html", facets=facets, selected_facets={}, result_cards=result_cards)
 
 if __name__ == "__main__":
     app.run(debug = True, port = 8000)
