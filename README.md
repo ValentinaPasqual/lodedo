@@ -12,7 +12,7 @@ The project works with this **requirement**:
 
 - [**Python**](https://www.python.org/downloads/) v3.6.3
 - [**GraphDB**](https://graphdb.ontotext.com/)
-- [**GraphDB parser of Conjectures strong form **] - Stil under development .
+- [**GraphDB parser of Conjectures strong form**] - Stil under development .
 
 Packages can be installed by running **setup.sh**:
 ```
