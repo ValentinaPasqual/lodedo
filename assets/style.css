@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 body  {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
 }
 
 /* Apply styles to the div */
@@ -10,6 +10,5 @@ body  {
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
 }
 
-#sidebar {min-width: 20vw}
-
-#sidebar-title {font-size: 30px}
+#sidebar {min-width: 20vw; transition: width 0.3s ease-in-out; /* Smooth transition for width */}
+.accordion-body {padding:0px}

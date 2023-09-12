@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <main class="col ps-md-2 pt-2">
+        <main class="col ps-md-2 pt-2" id="catalogue">
             <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i>Filters</a>
             <div class="page-header pt-3">
                 <h2>One Houndred Views of Edo</h2>
@@ -70,7 +70,7 @@
                       <div class="card mb-4">
                         <img src="{{ card.image }}" alt="{{ card.item }}">
                           <div class="card-body">
-                              <a href={{card.item|replace("https://w3id.org/lodedo/data/","artworks/") }} class="btn btn-primary">View Details</a>
+                              <a href={{card.item|replace("https://w3id.org/lodedo/data/","artworks/") }} class="btn btn-outline-secondary">View Details</a>
                           </div>
                       </div>
                   </div>
@@ -80,19 +80,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-<script>
-function moveToTop(checkbox) {
-    // Get the parent <ul> element
-    var ul = checkbox.closest('ul');
-
-    // Get the <li> element containing the checkbox
-    var listItem = checkbox.closest('li');
-
-    // Move the <li> element to the top of the <ul>
-    ul.insertBefore(listItem, ul.firstChild);
-}
-</script>
+<script src="assets/script.js"></script>
 
 </body>
 </html>

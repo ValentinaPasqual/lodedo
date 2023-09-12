@@ -21,18 +21,16 @@ conf = Configuration()
 conf.host = "http://localhost:7200/"
 api_client = ApiClient(configuration=conf)
 api_client.set_default_header("Content-Type", "application/x-www-form-urlencoded")  # Set the content type
-repository = "edo2"
+repository = "edo3"
 api = RepositoriesApi(api_client)
 sparql_api = SparqlApi(api_client)
 
+prefixes = """prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>
+prefix icon: <https://w3id.org/icon/ontology/>
+prefix lodedo: <https://w3id.org/lodedo/data/>"""
 
 @app.route('/artworks/<artworkID>')
 def card(artworkID):
-
-    prefixes = """prefix dul: <https://dolcefaketobechanged.org/>
-    prefix icon: <https://w3id.org/icon/ontology/>
-    prefix lodedo: <https://w3id.org/lodedo/data/>"""
-
     # TO DO
     artwork_factual_result = {}
     #artwork_factual_query = """TBD"""
@@ -83,16 +81,13 @@ def card(artworkID):
     #artwork_conj_query = """prefix icon:<http://www.example.org/> SELECT ?p ?o WHERE { conj ?g {icon:""" + artworkID + """?p ?o}}"""
     #artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
-    return render_template('artworks.html', artwork_factual_result=artwork_factual_result, scholar_int_result=scholar_int_result, artwork_conj_result=artwork_conj_result)
+    return render_template('artworks.html', artworkID=artworkID, artwork_factual_result=artwork_factual_result, scholar_int_result=scholar_int_result, artwork_conj_result=artwork_conj_result)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
 
     # SELECT ALL ARTWORKS QUERY
-    sparql_query = """
-        prefix icon: <https://w3id.org/icon/ontology/>
-        prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        prefix dul: <https://dolcefaketobechanged.org/>
+    sparql_query = prefixes + """
         SELECT ?item ?image
         WHERE {
             ?item icon:image ?image.
@@ -123,11 +118,7 @@ def index():
     for facet, values in facets.items():
 
         if 'obj_class_' in facet:
-            query = """
-                prefix icon: <https://w3id.org/icon/ontology/>
-                prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                prefix dul: <https://dolcefaketobechanged.org/>
-
+            query = prefixes + """
                 SELECT DISTINCT ?class
                 WHERE {
                     ?subj """ + facet.replace('obj_class_', '') + """ ?obj .
@@ -141,11 +132,7 @@ def index():
                 values.add(res)
 
         if 'subj_class_' in facet:
-            query = """
-                prefix icon: <https://w3id.org/icon/ontology/>
-                prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                prefix dul: <https://dolcefaketobechanged.org/>
-
+            query = prefixes + """
                 SELECT DISTINCT ?class
                 WHERE {
                     ?subj """ + facet.replace('subj_class_', '') + """ ?obj .
@@ -159,11 +146,7 @@ def index():
                 values.add(res)
 
         if 'class' not in facet:
-            query = """
-                prefix icon: <https://w3id.org/icon/ontology/>
-                prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                prefix dul: <https://dolcefaketobechanged.org/>
-
+            query = prefixes + """
                 SELECT DISTINCT ?obj
                 WHERE {
                     ?subj """ + facet + """ ?obj .
@@ -179,13 +162,6 @@ def index():
         sorted_values = sorted(values)
         facets[facet] = sorted_values
 
-    # Add a filter specifically for iconographical types
-    # int_set = set()
-    # int_set.add('PreiconographicalRecognition')
-    # int_set.add('IconographicalRecognition')
-    # facets.update({'Interpretation Type': int_set})
-
-
     # Handle form submission
     if request.method == "POST":
         if "clearAllBtn" in request.form:
@@ -197,10 +173,7 @@ def index():
             }
 
             # Build and execute the SPARQL query
-            sparql_query = """
-                prefix icon: <https://w3id.org/icon/ontology/>
-                prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                prefix dul: <https://dolcefaketobechanged.org/>
+            sparql_query = prefixes + """
                 SELECT ?item ?image
                 WHERE {
                     ?item icon:image ?image.
