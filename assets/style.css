@@ -9,3 +9,7 @@ body  {
     max-height: 30vh; /* Set the maximum height to 5vh (5% of viewport height) */
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
 }
+
+#sidebar {min-width: 20vw}
+
+#sidebar-title {font-size: 30px}

@@ -17,11 +17,7 @@
 
     <div class="row">
     <div class="col-md-3">
-      {% for row in artwork_factual_result.results.bindings %}
-      {% if 'image' in row.p.value %}
-        <img src="{{ row.o.value }}" style="width:auto; height:auto">
-      {% endif %}
-      {% endfor %}
+    <!-- TBD ADD HERE THE IMAGE -->
     </div>
 
     <div class="col-md-9">
@@ -34,11 +30,7 @@
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                {% for row in artwork_factual_result.results.bindings %}
-                  {% if 'image' not in row.p.value %}
-                    <p>{{ row.p.value }} and {{row.o.value}} </p>
-                  {% endif %}
-                {% endfor %}
+              <!--  TBD DESCRIPTIVE METADATA -->
             </div>
           </div>
         </div>
@@ -51,24 +43,17 @@
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              {% for g,claims in artwork_graph_result.items() %}
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <h5 class="card-title">{{ g }}</h5>
-                    <div class="col-md-6">
-                      {% for triple in claims.assertion.results.bindings %}
-                      <p>{{triple.sLabel.value}} <a href="{{ triple.p.value }}" target="_blank">{{ triple.pLabel.value }}</span></a> {{triple.oLabel.value}} </p>
-                      {% endfor %}
-                    </div>
-                    <div class="col-md-6">
-                      {% for triple in claims.context.results.bindings %}
-                      <p>This claim <a href="{{ triple.p.value }}" target="_blank">{{ triple.pLabel.value }}</span></a> {{triple.oLabel.value}} </p>
-                      {% endfor %}
-                    </div>
-                  </div>
-                </div>
-                </div>
+              {% for author,ints in scholar_int_result.items() %}
+              {{author}}, {{ints|length}} Preiconographical recognitions
+              {% for int,triples in ints.items() %}
+                {% for triple in triples %}
+                  <p>{{triple.meaning.value}}
+                  {% if triple.quality %}
+                    <span>(with quality {{triple.quality.value}})</span>
+                  </p>
+                  {% endif %}
+                {% endfor %}
+                {% endfor %}
               {% endfor %}
             </div>
           </div>
@@ -82,9 +67,7 @@
           </h2>
           <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              {% for row in artwork_conj_result.results.bindings %}
-              <p>{{ row.p.value }} and {{row.o.value}} </p>
-              {% endfor %}
+              <!-- TBD CONJECTURES -->
             </div>
           </div>
         </div>

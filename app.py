@@ -29,33 +29,66 @@ sparql_api = SparqlApi(api_client)
 @app.route('/artworks/<artworkID>')
 def card(artworkID):
 
-    artwork_factual_query = """prefix icon:<http://www.example.org/> SELECT ?p ?o WHERE {icon:""" + artworkID + """?p ?o}"""
-    artwork_factual_result = sparql_api.execute_get_select_query(repository, query=artwork_factual_query)
+    prefixes = """prefix dul: <https://dolcefaketobechanged.org/>
+    prefix icon: <https://w3id.org/icon/ontology/>
+    prefix lodedo: <https://w3id.org/lodedo/data/>"""
 
-    artwork_graphs_query = """prefix icon:<http://www.example.org/> SELECT ?g WHERE { graph ?g {icon:""" + artworkID + """?p ?o}}"""
-    artwork_graphs_result = sparql_api.execute_get_select_query(repository, query=artwork_graphs_query)
+    # TO DO
+    artwork_factual_result = {}
+    #artwork_factual_query = """TBD"""
+    #artwork_factual_result = sparql_api.execute_get_select_query(repository, query=artwork_factual_query)
 
-    artwork_graph_result = {}
-    for g in artwork_graphs_result['results']['bindings']:
-        graph_data = {}
-        artwork_graph_query = """SELECT * WHERE { graph <""" + g["g"]["value"] + """> {?s ?p ?o} ?s rdfs:label ?sLabel. ?p rdfs:label ?pLabel. ?o rdfs:label ?oLabel. }"""
-        graph_assertion_triples = sparql_api.execute_get_select_query(repository, query=artwork_graph_query)
-        graph_data.update({'assertion':graph_assertion_triples})
+    scholar_ints_query = prefixes + """SELECT DISTINCT ?interpretation ?author WHERE {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; dul:includesAgent ?author}"""
+    scholar_ints_result = sparql_api.execute_get_select_query(repository, query=scholar_ints_query)
 
-        graph_context_query = """SELECT * WHERE { <""" + g["g"]["value"] + """> ?p ?o. ?p rdfs:label ?pLabel. ?o rdfs:label ?oLabel. }"""
-        graph_context_triples = sparql_api.execute_get_select_query(repository, query=graph_context_query)
-        graph_data.update({'context':graph_context_triples})
+    authors_list = []
+    for el in scholar_ints_result['results']['bindings']:
+        authors_list.append(el['author']['value'])
 
-        artwork_graph_result.update({g["g"]["value"]:graph_data})
+    authors_list = list(set(authors_list))
 
-    artwork_conj_query = """prefix icon:<http://www.example.org/> SELECT ?p ?o WHERE { conj ?g {icon:""" + artworkID + """?p ?o}}"""
-    artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
+    scholar_int_result = {}
+    for author in authors_list:
 
-    return render_template('artworks.html', artwork_factual_result=artwork_factual_result, artwork_graph_result=artwork_graph_result, artwork_conj_result=artwork_conj_result)
+        # PREICONOGRAPHICAL SIMPLE ELEMENTS
+        temp = {}
+        for g in scholar_ints_result['results']['bindings']:
+            scholar_int_query = prefixes + """SELECT DISTINCT * WHERE { <""" + g['interpretation']['value'] + """> icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?meaning. OPTIONAL {?motif dul:hasQuality ?quality}}"""
+            scholar_int_triples = sparql_api.execute_get_select_query(repository, query=scholar_int_query)
+            temp.update({g['interpretation']['value']:scholar_int_triples['results']['bindings']})
+        scholar_int_result.update({author:temp})
+
+        # DO THE SAME FOR COMPOSITIONS
+
+    # scholar_int_result = {}
+    # for g in scholar_ints_result['results']['bindings']:
+    #     scholar_int_query = """SELECT * WHERE { <""" + g['interpretation']['value'] + """> ?p ?o. ?p rdfs:label ?pLabel. OPTIONAL {?o rdfs:label ?oLabel.}}"""
+    #     scholar_int_triples = sparql_api.execute_get_select_query(repository, query=scholar_int_query)
+    #     scholar_int_result.update({g['interpretation']['value']:scholar_int_triples})
+    #
+    #     scholar_class_query = """SELECT * WHERE { <""" + g['interpretation']['value'] + """> a ?o. ?o rdfs:label ?oLabel.}"""
+    #     scholar_class_triples = sparql_api.execute_get_select_query(repository, query=scholar_class_query)
+    #     scholar_int_result[g['interpretation']['value']].update({'classes':scholar_class_triples})
+    #
+    # for int,claims in scholar_int_result.items():
+    #      for claim in claims['results']['bindings']:
+    #         if 'Recognized Artistic Motif'in claim['pLabel']['value'] or 'Recognized Composition' in claim['pLabel']['value']:
+    #             adds_query = """SELECT * WHERE { <""" + claim['o']['value'] + """> ?p ?o. OPTIONAL {?o rdfs:label ?oLabel.}}"""
+    #             adds_triples = sparql_api.execute_get_select_query(repository, query=adds_query)
+    #             claim['o'].update({'others':adds_triples})
+
+
+    # TO DO
+    artwork_conj_result = {}
+    #artwork_conj_query = """prefix icon:<http://www.example.org/> SELECT ?p ?o WHERE { conj ?g {icon:""" + artworkID + """?p ?o}}"""
+    #artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
+
+    return render_template('artworks.html', artwork_factual_result=artwork_factual_result, scholar_int_result=scholar_int_result, artwork_conj_result=artwork_conj_result)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
 
+    # SELECT ALL ARTWORKS QUERY
     sparql_query = """
         prefix icon: <https://w3id.org/icon/ontology/>
         prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -80,95 +113,139 @@ def index():
     # Define the facets and their values
     facets = {
         "icon:hasFactualMeaning" : set(),
+        "obj_class_icon:hasFactualMeaning":set(),
         "dul:hasQuality" : set(),
         "dul:includesAgent" : set(),
+        "subj_class_icon:aboutWorkOfArt": set(),
     }
 
     # Collect facet values from the RDF data
     for facet, values in facets.items():
-        query = """
-            prefix icon: <https://w3id.org/icon/ontology/>
-            prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            prefix dul: <https://dolcefaketobechanged.org/>
 
-            SELECT DISTINCT ?obj
-            WHERE {
-                ?subj """ + facet + """ ?obj .
-            }"""
+        if 'obj_class_' in facet:
+            query = """
+                prefix icon: <https://w3id.org/icon/ontology/>
+                prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                prefix dul: <https://dolcefaketobechanged.org/>
 
-        results = sparql_api.execute_get_select_query(repository, query=query)
+                SELECT DISTINCT ?class
+                WHERE {
+                    ?subj """ + facet.replace('obj_class_', '') + """ ?obj .
+                    ?obj a ?class
+                }"""
 
-        for row in results['results']['bindings']:
-            res = row['obj']['value'].replace('file:/uploaded/generated/', '')
-            values.add(res)
+            results = sparql_api.execute_get_select_query(repository, query=query)
+
+            for row in results['results']['bindings']:
+                res = row['class']['value'].replace('file:/uploaded/generated/', '')
+                values.add(res)
+
+        if 'subj_class_' in facet:
+            query = """
+                prefix icon: <https://w3id.org/icon/ontology/>
+                prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                prefix dul: <https://dolcefaketobechanged.org/>
+
+                SELECT DISTINCT ?class
+                WHERE {
+                    ?subj """ + facet.replace('subj_class_', '') + """ ?obj .
+                    ?subj a ?class
+                }"""
+
+            results = sparql_api.execute_get_select_query(repository, query=query)
+
+            for row in results['results']['bindings']:
+                res = row['class']['value'].replace('file:/uploaded/generated/', '')
+                values.add(res)
+
+        if 'class' not in facet:
+            query = """
+                prefix icon: <https://w3id.org/icon/ontology/>
+                prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                prefix dul: <https://dolcefaketobechanged.org/>
+
+                SELECT DISTINCT ?obj
+                WHERE {
+                    ?subj """ + facet + """ ?obj .
+                }"""
+
+            results = sparql_api.execute_get_select_query(repository, query=query)
+
+            for row in results['results']['bindings']:
+                res = row['obj']['value'].replace('file:/uploaded/generated/', '')
+                values.add(res)
 
     for facet, values in facets.items():
         sorted_values = sorted(values)
         facets[facet] = sorted_values
 
-    int_set = set()
-    int_set.add('PreiconographicalRecognition')
-    int_set.add('IconographicalRecognition')
-    facets.update({'Interpretation Type': int_set})
+    # Add a filter specifically for iconographical types
+    # int_set = set()
+    # int_set.add('PreiconographicalRecognition')
+    # int_set.add('IconographicalRecognition')
+    # facets.update({'Interpretation Type': int_set})
+
 
     # Handle form submission
     if request.method == "POST":
-        selected_facets = {
-            facet: request.form.getlist(facet) for facet in facets.keys()
-        }
+        if "clearAllBtn" in request.form:
+            # Clear all selected facets
+            selected_facets = {}
+        else:
+            selected_facets = {
+                facet: request.form.getlist(facet) for facet in facets.keys()
+            }
 
-        # Build and execute the SPARQL query
+            # Build and execute the SPARQL query
+            sparql_query = """
+                prefix icon: <https://w3id.org/icon/ontology/>
+                prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                prefix dul: <https://dolcefaketobechanged.org/>
+                SELECT ?item ?image
+                WHERE {
+                    ?item icon:image ?image.
+                    ?interpretation icon:aboutWorkOfArt ?item.
+            """
 
-        sparql_query = """
-            prefix icon: <https://w3id.org/icon/ontology/>
-            prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            prefix dul: <https://dolcefaketobechanged.org/>
-            SELECT ?item ?image
-            WHERE {
-                ?item icon:image ?image.
-                ?interpretation icon:aboutWorkOfArt ?item.
-        """
+            filter_clauses = []
 
-        filter_clauses = []
+            for facet, values in selected_facets.items():
+                if values:
+                    filter_clause = ''
+                    if facet == "icon:hasFactualMeaning":
+                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?hasFactualMeaning ."
+                    if facet == "dul:hasQuality":
+                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?hasFactualMeaning . ?motif dul:hasQuality ?hasQuality."
+                    if facet == "dul:includesAgent":
+                        filter_clause += "?interpretation dul:includesAgent ?includesAgent."
+                    if facet == "subj_class_icon:aboutWorkOfArt":
+                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?interpretation a ?subj_class_aboutWorkOfArt."
+                    if facet == "obj_class_icon:hasFactualMeaning":
+                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif.  ?motif icon:hasFactualMeaning ?hasFactualMeaning. ?hasFactualMeaning a ?obj_class_hasFactualMeaning."
 
-        for facet, values in selected_facets.items():
-            print(facet)
-            if values:
-                filter_clause = ''
-                if facet == "icon:hasFactualMeaning":
-                    filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?hasFactualMeaning ."
-                if facet == "dul:hasQuality":
-                    filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?hasFactualMeaning . ?motif dul:hasQuality ?hasQuality."
-                if facet == "dul:includesAgent":
-                    filter_clause += "?interpretation dul:includesAgent ?includesAgent."
-                if facet == "Interpretation Type":
-                    filter_clause += "?interpretation a ?InterpretationType."
-
-                # adds selected filters
-                if facet != "Interpretation Type":
+                    # adds selected filters
                     filters_list = ', '.join(['<' + value + '>' for value in values])
-                else:
-                    filters_list = ', '.join(['icon:' + value for value in values])
-                filter_clause += f"FILTER (?{facet.replace('icon:', '').replace('dul:', '').replace(' ', '')} IN ({filters_list}))."
-                filter_clauses.append(filter_clause)
+                    filter_clause += f"FILTER (?{facet.replace('icon:', '').replace('dul:', '').replace(' ', '')} IN ({filters_list}))."
+                    filter_clauses.append(filter_clause)
 
-        if filter_clauses:
-            sparql_query += ' '.join(filter_clauses)
+            if filter_clauses:
+                sparql_query += ' '.join(filter_clauses)
 
-        sparql_query += "}"
+            sparql_query += "}"
 
-        results = sparql_api.execute_get_select_query(repository, query=sparql_query)
+            print(sparql_query)
 
-        result_cards = []
+            results = sparql_api.execute_get_select_query(repository, query=sparql_query)
 
-        unique_items = set()
-        for row in results['results']['bindings']:
-            item = row['item']['value']
-            image = row['image']['value']
-            if item not in unique_items:
-                unique_items.add(item)
-                result_cards.append({"item": item, "image": image})
+            result_cards = []
 
+            unique_items = set()
+            for row in results['results']['bindings']:
+                item = row['item']['value']
+                image = row['image']['value']
+                if item not in unique_items:
+                    unique_items.add(item)
+                    result_cards.append({"item": item, "image": image})
 
         return render_template("index.html", facets=facets, selected_facets=selected_facets, result_cards=result_cards)
 
