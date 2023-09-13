@@ -1,9 +1,6 @@
 #from __future__ import print_function
 from flask import Flask
 from flask import Blueprint, render_template, send_from_directory, request,  url_for, redirect, session, Response, jsonify
-#import time
-#from graphdb.graphdb_workbench.rest import ApiException
-#from pprint import pprint
 
 from rdflib import Graph
 from rdflib.plugins.sparql import prepareQuery
@@ -18,16 +15,17 @@ app = Flask(__name__, static_folder="assets")
 
 
 conf = Configuration()
-conf.host = "http://localhost:7200/"
+conf.host = "https://localhost:7200/"
 api_client = ApiClient(configuration=conf)
 api_client.set_default_header("Content-Type", "application/x-www-form-urlencoded")  # Set the content type
-repository = "edo3"
+repository = "edo4"
 api = RepositoriesApi(api_client)
 sparql_api = SparqlApi(api_client)
 
-prefixes = """prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>
+prefixes = """prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl>
 prefix icon: <https://w3id.org/icon/ontology/>
-prefix lodedo: <https://w3id.org/lodedo/data/>"""
+prefix lodedo: <https://w3id.org/lodedo/data/>
+prefix sim: <https://w3id.org/simulation/ontology/>"""
 
 @app.route('/artworks/<artworkID>')
 def card(artworkID):
@@ -45,7 +43,7 @@ def card(artworkID):
 
     authors_list = list(set(authors_list))
 
-    scholar_int_result = {}
+    scholar_int_result, scholar_comp_result = {}, {}
     for author in authors_list:
 
         # PREICONOGRAPHICAL SIMPLE ELEMENTS
@@ -55,6 +53,14 @@ def card(artworkID):
             scholar_int_triples = sparql_api.execute_get_select_query(repository, query=scholar_int_query)
             temp.update({g['interpretation']['value']:scholar_int_triples['results']['bindings']})
         scholar_int_result.update({author:temp})
+
+        # COMPOSITIONS
+        temp = {}
+        for g in scholar_ints_result['results']['bindings']:
+            scholar_comp_query = prefixes + """SELECT DISTINCT * WHERE { <""" + g['interpretation']['value'] + """> icon:recognisedComposition ?composition. ?composition dul:hasPart ?motif.}"""
+            scholar_comp_triples = sparql_api.execute_get_select_query(repository, query=scholar_comp_query)
+            temp.update({g['interpretation']['value']:scholar_comp_triples['results']['bindings']})
+        scholar_comp_result.update({author:temp})
 
         # DO THE SAME FOR COMPOSITIONS
 
@@ -81,7 +87,7 @@ def card(artworkID):
     #artwork_conj_query = """prefix icon:<http://www.example.org/> SELECT ?p ?o WHERE { conj ?g {icon:""" + artworkID + """?p ?o}}"""
     #artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
-    return render_template('artworks.html', artworkID=artworkID, artwork_factual_result=artwork_factual_result, scholar_int_result=scholar_int_result, artwork_conj_result=artwork_conj_result)
+    return render_template('artworks.html', artworkID=artworkID, artwork_factual_result=artwork_factual_result, scholar_int_result=scholar_int_result, scholar_comp_result=scholar_comp_result, artwork_conj_result=artwork_conj_result)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -107,60 +113,50 @@ def index():
 
     # Define the facets and their values
     facets = {
-        "icon:hasFactualMeaning" : set(),
-        "obj_class_icon:hasFactualMeaning":set(),
-        "dul:hasQuality" : set(),
-        "dul:includesAgent" : set(),
-        "subj_class_icon:aboutWorkOfArt": set(),
+        "icon:recognizedArtisticMotif": dict() ,
+        "icon:recognizedImage": dict(),
+        "sim:preventedRealityCounterpart":dict(),
+        "sim:hasSimulacrum":dict(),
+        "sim:hasContext":dict(),
+        "dul:includesAgent":dict(),
     }
 
     # Collect facet values from the RDF data
     for facet, values in facets.items():
 
-        if 'obj_class_' in facet:
-            query = prefixes + """
-                SELECT DISTINCT ?class
-                WHERE {
-                    ?subj """ + facet.replace('obj_class_', '') + """ ?obj .
-                    ?obj a ?class
-                }"""
+        if 'icon:recognizedArtisticMotif' in facet or 'icon:recognizedImage' in facet:
+            if 'icon:recognizedImage' in facet:
+                query = prefixes + """ SELECT DISTINCT * WHERE { ?subj """ + facet + """ ?image . ?image ?pred ?obj. ?obj a ?class; rdfs:label ?label. ?class rdfs:label ?classLabel }"""
+
+            if 'icon:recognizedArtisticMotif' in facet:
+                query = prefixes + """ SELECT DISTINCT * WHERE { ?subj """ + facet + """ ?motif . ?motif icon:hasFactualMeaning ?obj. ?obj a ?class; rdfs:label ?label. ?class rdfs:label ?classLabel }"""
 
             results = sparql_api.execute_get_select_query(repository, query=query)
 
+            temp = {}
             for row in results['results']['bindings']:
-                res = row['class']['value'].replace('file:/uploaded/generated/', '')
-                values.add(res)
+                res= {}
+                res.update({'class':row['classLabel']['value']})
+                res.update({'classLabel':row['classLabel']['value']})
+                res.update({'label':row['label']['value']})
+                temp.update({row['obj']['value']:res})
 
-        if 'subj_class_' in facet:
-            query = prefixes + """
-                SELECT DISTINCT ?class
-                WHERE {
-                    ?subj """ + facet.replace('subj_class_', '') + """ ?obj .
-                    ?subj a ?class
-                }"""
+            sorted_dict = dict(sorted(temp.items(), key=lambda item: item[1]['label']))
+            values.update(sorted_dict)
+
+        if 'sim:hasContext' in facet or 'sim:preventedRealityCounterpart' in facet or 'sim:hasSimulacrum' in facet or 'dul:includesAgent' in facet:
+            query = prefixes + """ SELECT DISTINCT * WHERE { ?subj """ + facet + """ ?obj . ?obj rdfs:label ?label. }"""
 
             results = sparql_api.execute_get_select_query(repository, query=query)
 
+            temp = {}
             for row in results['results']['bindings']:
-                res = row['class']['value'].replace('file:/uploaded/generated/', '')
-                values.add(res)
+                res= {}
+                res.update({'label':row['label']['value']})
+                temp.update({row['obj']['value']:res})
 
-        if 'class' not in facet:
-            query = prefixes + """
-                SELECT DISTINCT ?obj
-                WHERE {
-                    ?subj """ + facet + """ ?obj .
-                }"""
-
-            results = sparql_api.execute_get_select_query(repository, query=query)
-
-            for row in results['results']['bindings']:
-                res = row['obj']['value'].replace('file:/uploaded/generated/', '')
-                values.add(res)
-
-    for facet, values in facets.items():
-        sorted_values = sorted(values)
-        facets[facet] = sorted_values
+            sorted_dict = dict(sorted(temp.items(), key=lambda item: item[1]['label']))
+            values.update(sorted_dict)
 
     # Handle form submission
     if request.method == "POST":
@@ -185,20 +181,26 @@ def index():
             for facet, values in selected_facets.items():
                 if values:
                     filter_clause = ''
-                    if facet == "icon:hasFactualMeaning":
-                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?hasFactualMeaning ."
-                    if facet == "dul:hasQuality":
-                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?hasFactualMeaning . ?motif dul:hasQuality ?hasQuality."
+                    if facet == "icon:recognizedArtisticMotif":
+                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?recognizedArtisticMotif ."
+                    if facet == "icon:recognizedImage":
+                        filter_clause += "?interpretation icon:recognizedImage ?img. ?img ?pred ?recognizedImage ."
+                    if "sim:hasContext" in facet or "sim:preventedRealityCounterpart" in facet or "sim:hasSimulacrum" in facet:
+                        filter_clause += '?interpretation icon:recognizedImage ?recognizedImage. ?recognizedImage icon:hasSymbol ?symbol .'
+                        if facet == "sim:hasContext":
+                            filter_clause += "?symbol sim:hasContext ?hasContext . "
+                        if facet == "sim:preventedRealityCounterpart":
+                            filter_clause += "?symbol sim:preventedRealityCounterpart ?preventedRealityCounterpart . "
+                        if facet == "sim:hasSimulacrum":
+                            filter_clause += "?symbol sim:hasSimulacrum ?hasSimulacrum . "
+
+                    # TO ADD AT THE BEGINNING
                     if facet == "dul:includesAgent":
                         filter_clause += "?interpretation dul:includesAgent ?includesAgent."
-                    if facet == "subj_class_icon:aboutWorkOfArt":
-                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif. ?interpretation a ?subj_class_aboutWorkOfArt."
-                    if facet == "obj_class_icon:hasFactualMeaning":
-                        filter_clause += "?interpretation icon:recognizedArtisticMotif ?motif.  ?motif icon:hasFactualMeaning ?hasFactualMeaning. ?hasFactualMeaning a ?obj_class_hasFactualMeaning."
 
                     # adds selected filters
                     filters_list = ', '.join(['<' + value + '>' for value in values])
-                    filter_clause += f"FILTER (?{facet.replace('icon:', '').replace('dul:', '').replace(' ', '')} IN ({filters_list}))."
+                    filter_clause += f"FILTER (?{facet.replace('icon:', '').replace('dul:', '').replace(' ', '').replace('sim:', '')} IN ({filters_list}))."
                     filter_clauses.append(filter_clause)
 
             if filter_clauses:

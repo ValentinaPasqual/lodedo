@@ -27,18 +27,21 @@
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-{{ facet|replace(':','')|replace(' ','') }}">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ facet|replace(':','')|replace(' ','') }}" aria-expanded="false" aria-controls="flush-collapse{{ facet|replace(':','')|replace(' ','') }}">
-                            {{ facet|replace('obj_class_icon:hasFactualMeaning', 'Motif Type')|replace("icon:hasFactualMeaning","Recognised Motif")|replace("dul:hasQuality","Motif Quality")|replace("dul:includesAgent","Interpretation author")|replace('subj_class_icon:aboutWorkOfArt', 'Interpretation Type')}}
+                            {{ facet }}
                           </button>
                         </h2>
                         <div id="flush-collapse{{ facet|replace(':','')|replace(' ','') }}" class="accordion-collapse collapse" aria-labelledby="flush-{{ facet|replace(':','')|replace(' ','') }}}" data-bs-parent="#accordionFlushExample">
                           <div class="accordion-body">
                             <ul class="scrollable-div p-0 m-0">
-                                {% for value in values %}
+                                {% for value,info in values.items() %}
                                     <li class="list-group-item border-end-0">
                                         <label>
                                             <input type="checkbox" name={{ facet }} value={{ value }}
                                                    {% if selected_facets.get(facet) and value in selected_facets[facet] %}checked{% endif %} onclick="moveToTop(this)">
-                                             {{ value|replace('https://w3id.org/lodedo/data/', 'lodedo:')|replace('http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#', 'dul:')|replace('https://w3id.org/arco/ontology/context-description/','arco:')|replace('https://w3id.org/icon/ontology/','icon:')|replace('http://purl.org/emmedi/hico/', 'hico:')}}
+                                             {{info.label}}
+                                             {% if 'class' in info%}
+                                             <span class="badge badge-{{info.class|replace('https://w3id.org/icon/ontology/', '')}} text-dark">{{info.classLabel}}</span>
+                                             {% endif %}
                                         </label>
                                     </li>
                                 {% endfor %}

@@ -1,6 +1,7 @@
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix icon: <https://w3id.org/icon/ontology/> .
 @prefix lodedo: <https://w3id.org/lodedo/data/> .
+@prefix rdfs:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
 
 lodedo:ART48PREICO0 icon:recognizedArtisticMotif lodedo:windsock ;
     dul:includesAgent lodedo:hiroshigeMuseumOfArt ;
