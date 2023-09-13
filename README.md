@@ -19,7 +19,7 @@ Packages can be installed by running **setup.sh**:
 sh setup.sh
 ```
 
-Setup GraphDB instance and upload data by running **backend-setup.py**
+Setup a GraphDB enviroment, repository and upload data by running **backend-setup.py**
 ```
 python backend-setup.py
 ```
