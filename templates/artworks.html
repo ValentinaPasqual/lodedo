@@ -18,7 +18,7 @@
 
     <div class="row">
     <div class="col-md-3">
-    <!-- TBD ADD HERE THE IMAGE -->
+    <img src={{artwork_image}}>
     </div>
 
     <div class="col-md-9">
@@ -47,21 +47,28 @@
               <div class="ints-per-author">
                 {% for author,ints_types in scholars_ints.items() %}
                 <div class="card">
-                <div class="card-body">
+                <div class="card-header">
                   <h5 class="card-title">{{author}}</h5>
+                </div>
+                  <div class="card-body">
                 {% for int_type, ints in ints_types.items() %}
-                <h6 class="card-subtitle mb-2 text-muted">{{int_type}}</h6>
+                {% if ints %}
                 <hr>
+                <h6 class="card-subtitle mb-2 text-muted">{{int_type}}</h6>
                 {% for int_id, int_vals in ints.items() %}
                 <p id={{int_id}}>{{int_vals.meaningLabel}} <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}} text-dark">{{int_vals.classLabel}}</span>
                   {% if int_vals.quality %}
                     (with quality {{int_vals.qualityLabel}})
+                  {% endif %}
+                  {% if int_vals.composition %}
+                    (is part of composition {{int_vals.composition|replace('https://w3id.org/lodedo/data/', '')}})
                   {% endif %}
                   {% if int_type == 'symbol' %}
                     In this artwork, the scholar indicates {{int_vals.simulacrum}} (the simulacrum) which symbolises {{int_vals.realityCounterpartLabel}} (realityCounterpartLabel) in the {{int_vals.contextLabel}} context
                   {% endif %}
                 </p>
                 {% endfor %}
+                {% endif %}
                 {% endfor %}
                 {% endfor %}
               </div>

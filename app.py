@@ -47,8 +47,10 @@ def interpretations_data_builder(scholar_ints_result, part_query_string):
 def card(artworkID):
     # TO DO
     artwork_factual_result = {}
-    #artwork_factual_query = """TBD"""
-    #artwork_factual_result = sparql_api.execute_get_select_query(repository, query=artwork_factual_query)
+    artwork_factual_query = prefixes + "SELECT ?image WHERE { lodedo:"+ artworkID +" icon:image ?image. } "
+    artwork_factual_result = sparql_api.execute_get_select_query(repository, query=artwork_factual_query)
+
+    artwork_image = artwork_factual_result['results']['bindings'][0]['image']['value']
 
     scholar_ints_query = prefixes + """SELECT DISTINCT ?interpretation ?author WHERE {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; dul:includesAgent ?author. ?author rdfs:label ?authorLabel}"""
     scholar_ints_result = sparql_api.execute_get_select_query(repository, query=scholar_ints_query)
@@ -63,12 +65,12 @@ def card(artworkID):
     for author in authors_list:
         single_scholar_interpretations = {}
         # PREICONOGRAPHICAL INTERPRETATIONS
-        ints_part_query_string = """icon:recognizedArtisticMotif ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. OPTIONAL {?recog dul:hasQuality ?quality. ?quality rdfs:label ?qualityLabel}}"""
+        ints_part_query_string = """icon:recognizedArtisticMotif ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. OPTIONAL {?recog dul:hasQuality ?quality. ?quality rdfs:label ?qualityLabel} OPTIONAL {?recog icon:isPartOf ?composition} } """
         single_scholar_interpretations.update({'preiconographic':interpretations_data_builder(scholar_ints_result, ints_part_query_string)})
 
         # COMPOSITIONS RECOGNITIONS
-        comps_part_query_string = """icon:recognizedComposition ?composition. ?composition icon:hasPart ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. }"""
-        single_scholar_interpretations.update({'composition': interpretations_data_builder(scholar_ints_result, comps_part_query_string)})
+        # comps_part_query_string = """icon:recognizedComposition ?composition. ?composition icon:hasPart ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. }"""
+        # single_scholar_interpretations.update({'composition': interpretations_data_builder(scholar_ints_result, comps_part_query_string)})
 
         # ICONOGRAPHICAL INTERPRETATIONS
         icon_part_query_string = """icon:recognizedImage ?recog. ?recog ?pred ?meaning . ?meaning a ?class. ?meaning rdfs:label ?meaningLabel. ?class rdfs:label ?classLabel } """
@@ -78,6 +80,8 @@ def card(artworkID):
         icon_part_query_string = """icon:recognizedImage ?recog. ?recog icon:hasSymbol ?meaning . ?meaning sim:hasContext ?context . ?context rdfs:label ?contextLabel. ?meaning sim:preventedRealityCounterpart ?realityCounterpart . ?realityCounterpart rdfs:label ?realityCounterpartLabel. ?meaning sim:hasSimulacrum ?simulacrum . OPTIONAL{?simulacrum rdfs:label ?simulacrumLabel}} """
         single_scholar_interpretations.update({'symbol': interpretations_data_builder(scholar_ints_result, icon_part_query_string)})
 
+        # CONTEXTUAL INFORMATION TO BE DONE
+
         scholars_ints.update({author:single_scholar_interpretations})
 
     # TO DO
@@ -85,7 +89,7 @@ def card(artworkID):
     #artwork_conj_query = """prefix icon:<http://www.example.org/> SELECT ?p ?o WHERE { conj ?g {icon:""" + artworkID + """?p ?o}}"""
     #artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
-    return render_template('artworks.html', artworkID=artworkID, artwork_factual_result=artwork_factual_result, scholars_ints=scholars_ints, artwork_conj_result=artwork_conj_result)
+    return render_template('artworks.html', artworkID=artworkID, artwork_image=artwork_image, artwork_factual_result=artwork_factual_result, scholars_ints=scholars_ints, artwork_conj_result=artwork_conj_result)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
