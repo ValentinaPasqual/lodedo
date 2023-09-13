@@ -67,7 +67,7 @@ def card(artworkID):
         single_scholar_interpretations.update({'preiconographic':interpretations_data_builder(scholar_ints_result, ints_part_query_string)})
 
         # COMPOSITIONS RECOGNITIONS
-        comps_part_query_string = """icon:recognizedComposition ?composition. ?composition dul:hasPart ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. }"""
+        comps_part_query_string = """icon:recognizedComposition ?composition. ?composition icon:hasPart ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. }"""
         single_scholar_interpretations.update({'composition': interpretations_data_builder(scholar_ints_result, comps_part_query_string)})
 
         # ICONOGRAPHICAL INTERPRETATIONS
