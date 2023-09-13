@@ -71,7 +71,10 @@
                   {% for card in result_cards %}
                   <div class="col-md-3">
                       <div class="card mb-4">
-                        <img src="{{ card.image }}" alt="{{ card.item }}">
+                        {% if image in card %}
+                        <img src="{{ card.image }}" alt="{{ card.item }}">-->
+                        {% endif %}
+                        {{card.item}}
                           <div class="card-body">
                               <a href={{card.item|replace("https://w3id.org/lodedo/data/","artworks/") }} class="btn btn-outline-secondary">View Details</a>
                           </div>

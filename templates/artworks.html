@@ -15,7 +15,7 @@
 
   <div class="container mt-5">
       <h2>{{ artworkID }}, TBD ARTWORK TITLE</h2>
-{{artwork_image}}
+
     <div class="row">
 
 
@@ -48,13 +48,19 @@
                 {% endfor %}
                 {% endif %}
                 {% endfor %}
+                </div>
+                </div>
                 {% endfor %}
-              </div>
-            </div>
+
+
         </div>
 
 
       </div>
+
+      {% for int in auto_ints %}
+        <p><a href={{int.g|replace('conj-https://w3id.org/lodedo/data/', '../conjectures/')}}>Automatic Interpretation</a></p>
+      {% endfor %}
 
 </div>
 
