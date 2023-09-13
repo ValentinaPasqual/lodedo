@@ -19,9 +19,10 @@ Packages can be installed by running **setup.sh**:
 sh setup.sh
 ```
 
-After installing the required packages:
-- Run GraphDB
-- Add the dataset via GraphDB workbench (**http://localhost:7200/**)
+Setup GraphDB instance and upload data by running **backend-setup.py**
+```
+python backend-setup.py
+```
 
 ```
 - Run **app.py**
