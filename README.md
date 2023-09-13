@@ -23,7 +23,7 @@ Setup GraphDB instance and upload data by running **backend-setup.py**
 ```
 python backend-setup.py
 ```
-
+Run the web-app
 ```
 - Run **app.py**
 - Open the application in your browser: **http://localhost:8000/**
