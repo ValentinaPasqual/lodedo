@@ -14,7 +14,7 @@ body  {
 .accordion-body {padding:0px}
 
 .badge-Event {background-color:#A1CCD1}
-.badge-Symbol, .badge-Natural {background-color:#F4F2DE}
+.badge-Symbol, .badge-NaturalElement {background-color:#F4F2DE}
 .badge-Place, .badge-Action {background-color:#E9B384}
 
 /* Custom style for the checked checkbox label */

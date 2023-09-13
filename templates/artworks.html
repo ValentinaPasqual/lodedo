@@ -44,35 +44,29 @@
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              {{author}}
-              <div id="preiconographical-ints">
-              {% for author,ints in scholar_int_result.items() %}
-               {{ints|length}} Preiconographical recognitions
-              {% for int,triples in ints.items() %}
-                {% for triple in triples %}
-                  <p>{{triple.meaning.value}}
-                  {% if triple.quality %}
-                    <span>(with quality {{triple.quality.value}})</span>
-                  </p>
+              <div class="ints-per-author">
+                {% for author,ints_types in scholars_ints.items() %}
+                <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{author}}</h5>
+                {% for int_type, ints in ints_types.items() %}
+                <h6 class="card-subtitle mb-2 text-muted">{{int_type}}</h6>
+                <hr>
+                {% for int_id, int_vals in ints.items() %}
+                <p id={{int_id}}>{{int_vals.meaningLabel}} <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}} text-dark">{{int_vals.classLabel}}</span>
+                  {% if int_vals.quality %}
+                    (with quality {{int_vals.qualityLabel}})
                   {% endif %}
-                {% endfor %}
-                {% endfor %}
-              {% endfor %}
-            </div>
-            <div id='compositions'>
-              {% for author,comps in scholar_comp_result.items() %}
-               {{comps|length}} Composition recognitions
-              {% for comp,triples in comps.items() %}
-                {% for triple in triples %}
-                  <p>{{triple.composition.value}}
-                  {% if triple.motif %}
-                    <span>(with quality {{triple.motif.value}})</span>
-                  </p>
+                  {% if int_type == 'symbol' %}
+                    In this artwork, the scholar indicates {{int_vals.simulacrum}} (the simulacrum) which symbolises {{int_vals.realityCounterpartLabel}} (realityCounterpartLabel) in the {{int_vals.contextLabel}} context
                   {% endif %}
+                </p>
                 {% endfor %}
                 {% endfor %}
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
+        </div>
             </div>
           </div>
         </div>

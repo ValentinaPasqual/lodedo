@@ -27,6 +27,22 @@ prefix icon: <https://w3id.org/icon/ontology/>
 prefix lodedo: <https://w3id.org/lodedo/data/>
 prefix sim: <https://w3id.org/simulation/ontology/>"""
 
+def interpretations_data_builder(scholar_ints_result, part_query_string):
+    result = {}
+    for g in scholar_ints_result['results']['bindings']:
+        scholar_int_query = prefixes + """SELECT DISTINCT * WHERE { <""" + g['interpretation']['value'] + "> " + part_query_string
+        scholar_int_triples = sparql_api.execute_get_select_query(repository, query=scholar_int_query)
+
+        temp = {}
+        for row in scholar_int_triples['results']['bindings']:
+            for k,v in row.items():
+                temp.update({k:v['value']})
+
+        if len(temp) > 0:
+            result.update({g['interpretation']['value']:temp})
+
+    return result
+
 @app.route('/artworks/<artworkID>')
 def card(artworkID):
     # TO DO
@@ -34,7 +50,7 @@ def card(artworkID):
     #artwork_factual_query = """TBD"""
     #artwork_factual_result = sparql_api.execute_get_select_query(repository, query=artwork_factual_query)
 
-    scholar_ints_query = prefixes + """SELECT DISTINCT ?interpretation ?author WHERE {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; dul:includesAgent ?author}"""
+    scholar_ints_query = prefixes + """SELECT DISTINCT ?interpretation ?author WHERE {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; dul:includesAgent ?author. ?author rdfs:label ?authorLabel}"""
     scholar_ints_result = sparql_api.execute_get_select_query(repository, query=scholar_ints_query)
 
     authors_list = []
@@ -43,51 +59,33 @@ def card(artworkID):
 
     authors_list = list(set(authors_list))
 
-    scholar_int_result, scholar_comp_result = {}, {}
+    scholars_ints = {}
     for author in authors_list:
+        single_scholar_interpretations = {}
+        # PREICONOGRAPHICAL INTERPRETATIONS
+        ints_part_query_string = """icon:recognizedArtisticMotif ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. OPTIONAL {?recog dul:hasQuality ?quality. ?quality rdfs:label ?qualityLabel}}"""
+        single_scholar_interpretations.update({'preiconographic':interpretations_data_builder(scholar_ints_result, ints_part_query_string)})
 
-        # PREICONOGRAPHICAL SIMPLE ELEMENTS
-        temp = {}
-        for g in scholar_ints_result['results']['bindings']:
-            scholar_int_query = prefixes + """SELECT DISTINCT * WHERE { <""" + g['interpretation']['value'] + """> icon:recognizedArtisticMotif ?motif. ?motif icon:hasFactualMeaning ?meaning. OPTIONAL {?motif dul:hasQuality ?quality}}"""
-            scholar_int_triples = sparql_api.execute_get_select_query(repository, query=scholar_int_query)
-            temp.update({g['interpretation']['value']:scholar_int_triples['results']['bindings']})
-        scholar_int_result.update({author:temp})
+        # COMPOSITIONS RECOGNITIONS
+        comps_part_query_string = """icon:recognizedComposition ?composition. ?composition dul:hasPart ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. }"""
+        single_scholar_interpretations.update({'composition': interpretations_data_builder(scholar_ints_result, comps_part_query_string)})
 
-        # COMPOSITIONS
-        temp = {}
-        for g in scholar_ints_result['results']['bindings']:
-            scholar_comp_query = prefixes + """SELECT DISTINCT * WHERE { <""" + g['interpretation']['value'] + """> icon:recognisedComposition ?composition. ?composition dul:hasPart ?motif.}"""
-            scholar_comp_triples = sparql_api.execute_get_select_query(repository, query=scholar_comp_query)
-            temp.update({g['interpretation']['value']:scholar_comp_triples['results']['bindings']})
-        scholar_comp_result.update({author:temp})
+        # ICONOGRAPHICAL INTERPRETATIONS
+        icon_part_query_string = """icon:recognizedImage ?recog. ?recog ?pred ?meaning . ?meaning a ?class. ?meaning rdfs:label ?meaningLabel. ?class rdfs:label ?classLabel } """
+        single_scholar_interpretations.update({'iconographical': interpretations_data_builder(scholar_ints_result, icon_part_query_string)})
 
-        # DO THE SAME FOR COMPOSITIONS
+        # SYMBOLS RECOGNITIONS
+        icon_part_query_string = """icon:recognizedImage ?recog. ?recog icon:hasSymbol ?meaning . ?meaning sim:hasContext ?context . ?context rdfs:label ?contextLabel. ?meaning sim:preventedRealityCounterpart ?realityCounterpart . ?realityCounterpart rdfs:label ?realityCounterpartLabel. ?meaning sim:hasSimulacrum ?simulacrum . OPTIONAL{?simulacrum rdfs:label ?simulacrumLabel}} """
+        single_scholar_interpretations.update({'symbol': interpretations_data_builder(scholar_ints_result, icon_part_query_string)})
 
-    # scholar_int_result = {}
-    # for g in scholar_ints_result['results']['bindings']:
-    #     scholar_int_query = """SELECT * WHERE { <""" + g['interpretation']['value'] + """> ?p ?o. ?p rdfs:label ?pLabel. OPTIONAL {?o rdfs:label ?oLabel.}}"""
-    #     scholar_int_triples = sparql_api.execute_get_select_query(repository, query=scholar_int_query)
-    #     scholar_int_result.update({g['interpretation']['value']:scholar_int_triples})
-    #
-    #     scholar_class_query = """SELECT * WHERE { <""" + g['interpretation']['value'] + """> a ?o. ?o rdfs:label ?oLabel.}"""
-    #     scholar_class_triples = sparql_api.execute_get_select_query(repository, query=scholar_class_query)
-    #     scholar_int_result[g['interpretation']['value']].update({'classes':scholar_class_triples})
-    #
-    # for int,claims in scholar_int_result.items():
-    #      for claim in claims['results']['bindings']:
-    #         if 'Recognized Artistic Motif'in claim['pLabel']['value'] or 'Recognized Composition' in claim['pLabel']['value']:
-    #             adds_query = """SELECT * WHERE { <""" + claim['o']['value'] + """> ?p ?o. OPTIONAL {?o rdfs:label ?oLabel.}}"""
-    #             adds_triples = sparql_api.execute_get_select_query(repository, query=adds_query)
-    #             claim['o'].update({'others':adds_triples})
-
+        scholars_ints.update({author:single_scholar_interpretations})
 
     # TO DO
     artwork_conj_result = {}
     #artwork_conj_query = """prefix icon:<http://www.example.org/> SELECT ?p ?o WHERE { conj ?g {icon:""" + artworkID + """?p ?o}}"""
     #artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
-    return render_template('artworks.html', artworkID=artworkID, artwork_factual_result=artwork_factual_result, scholar_int_result=scholar_int_result, scholar_comp_result=scholar_comp_result, artwork_conj_result=artwork_conj_result)
+    return render_template('artworks.html', artworkID=artworkID, artwork_factual_result=artwork_factual_result, scholars_ints=scholars_ints, artwork_conj_result=artwork_conj_result)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -136,7 +134,7 @@ def index():
             temp = {}
             for row in results['results']['bindings']:
                 res= {}
-                res.update({'class':row['classLabel']['value']})
+                res.update({'class':row['class']['value']})
                 res.update({'classLabel':row['classLabel']['value']})
                 res.update({'label':row['label']['value']})
                 temp.update({row['obj']['value']:res})
