@@ -51,8 +51,9 @@ def card(artworkID):
     artwork_factual_result = sparql_api.execute_get_select_query(repository, query=artwork_factual_query)
 
     artwork_image = artwork_factual_result['results']['bindings'][0]['image']['value']
+    #artwork_image = ''
 
-    scholar_ints_query = prefixes + """SELECT DISTINCT ?interpretation ?author WHERE {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; dul:includesAgent ?author. ?author rdfs:label ?authorLabel}"""
+    scholar_ints_query = prefixes + """SELECT DISTINCT ?interpretation ?author WHERE {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; dul:includesAgent ?author.}"""
     scholar_ints_result = sparql_api.execute_get_select_query(repository, query=scholar_ints_query)
 
     authors_list = []
@@ -81,7 +82,6 @@ def card(artworkID):
         single_scholar_interpretations.update({'symbol': interpretations_data_builder(scholar_ints_result, icon_part_query_string)})
 
         # CONTEXTUAL INFORMATION TO BE DONE
-
         scholars_ints.update({author:single_scholar_interpretations})
 
     # TO DO
