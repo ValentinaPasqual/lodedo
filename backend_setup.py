@@ -8,8 +8,6 @@ from rdflib import Graph
 from graphdb.mime_types import RDFTypes
 from graphdb.rdf4j.api.repositories_api import RepositoriesApi
 
-
-
 # Configure the access controller
 conf = Configuration()
 conf.host = "http://localhost:7200/"  # Replace with your GraphDB endpoint
