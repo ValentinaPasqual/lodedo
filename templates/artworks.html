@@ -13,54 +13,74 @@
 
 <body>
 
-  <div class="container mt-5">
-      <h2>{{ artworkID }}, TBD ARTWORK TITLE</h2>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">LODEdo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catalogue</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacts</a>
+          </li>
+          <li class="nav-item">
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <div class="row">
+  <!-- MAIN SECTION -->
+  <div class="container m-md-5 p-md-5">
+      <h1>{{ artworkID }}, TBD ARTWORK TITLE</h1>
 
+      <div class="scholars-ints m-md-5 p-md-5">
 
-          <h2>
-              Asserted interpretations
-          </h2>
-              <div class="ints-per-author">
-                {% for author,ints_types in scholars_ints.items() %}
-                <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">{{author}}</h5>
-                </div>
-                  <div class="card-body">
-                {% for int_type, ints in ints_types.items() %}
-                {% if ints %}
-                <hr>
-                <h6 class="card-subtitle mb-2 text-muted">{{int_type}}</h6>
-                {% for int_id, int_vals in ints.items() %}
-                <p id={{int_id}}>{{int_vals.meaningLabel}} <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}} text-dark">{{int_vals.classLabel}}</span>
-                  {% if int_vals.quality %}
-                    (with quality {{int_vals.qualityLabel}})
-                  {% endif %}
-                  {% if int_vals.composition %}
-                    (is part of composition {{int_vals.composition|replace('https://w3id.org/lodedo/data/', '')}})
-                  {% endif %}
-                  {% if int_type == 'symbol' %}
-                    In this artwork, the scholar indicates {{int_vals.simulacrum}} (the simulacrum) which symbolises {{int_vals.realityCounterpartLabel}} (realityCounterpartLabel) in the {{int_vals.contextLabel}} context
-                  {% endif %}
-                </p>
-                {% endfor %}
-                {% endif %}
-                {% endfor %}
-                </div>
-                </div>
-                {% endfor %}
+        <h3 class="fw-bold"><span class="badge bg-warning text-dark">{{scholars_ints|length}}</span> available scholarly interpretations for this item</h3>
+        <h6 class="fw-bold">Discover the interpretations of this artwork by different scholars and institutions</h6>
 
+              <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+        {% for int,author in scholars_ints.items() %}
 
-        </div>
-
+        <div class="col">
+      <div class="card">
+         <div class="card-body">
+           <h5 class="card-title fw-bold">{{author}}</h5>
+        <p class="card-text"><a href={{int|replace('https://w3id.org/lodedo/data/', '../scholarlyInterpretations/')}} class="btn-outline-dark float-end d-1">>></a></p>
+      </div>
+      </div>
+      </div>
+      {% endfor %}
 
       </div>
+    </div>
 
-      {% for int in auto_ints %}
-        <p><a href={{int.g|replace('conj-https://w3id.org/lodedo/data/', '../conjectures/')}}>Automatic Interpretation</a></p>
+
+      <div class="auto-ints m-md-5 p-md-5">
+      <h3 class="fw-bolder">Automatically generated interpretations available from <span class="badge bg-warning text-dark">{{auto_ints|length}}</span> context</h3>
+      <h6 class="fw-bolder">Discover the symbolic meaning of the artwork in different cultures</h6>
+
+      <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+
+      {% for int,context in auto_ints.items() %}
+        <div class="col">
+      <div class="card">
+         <div class="card-body">
+           <h5 class="card-title fw-bold">{{context}} context</h5>
+        <p class="card-text"><a href={{int|replace('conj-https://w3id.org/lodedo/data/', '../conjectures/')}} class="btn-outline-dark float-end d-1">>></a></p>
+      </div>
+      </div>
+      </div>
       {% endfor %}
+    </div>
+  </div>
+
 
 </div>
 

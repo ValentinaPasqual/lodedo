@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="Bruno Sartini, Pasqual Valentina">
-  <title>LODEdo artwork {{artworkID}}</title>
+  <title>LODEdo conjecture {{conjID}}</title>
   <link rel="stylesheet" href="../assets/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -14,16 +14,21 @@
 <body>
 
   <div class="container mt-5">
-      {% for row in conj_triples_result.results.bindings %}
-        <p>{{row.meaningLabel.value}}, {{row.meaningClassLabel.value}}</p>
+
+
+
+      {% for int,list in auto_int_res.items() %}
+      {% for row in list %}
+      <div class="card">
+        <div class="card-body">
+          <p>Recognized Motif: {{row.meaningLabel.value}} <span class="badge badge-danger text-dark">{{row.meaningClassLabel.value}}</span></p>
+          <p>Symulacrum: {{row.simulacrumLabel.value}}</p>
+          <p>Reality Counterpart: {{row.realityCounterpartLabel.value}}</p>
+          <p>This is a {{row.symbolClass.value}}</p>
+        </div>
+      </div>
       {% endfor %}
-
-      {{symbol_result}}
-
-      {% for row in symbol_result.results.bindings %}
-        {{row.symbolLabel.values}}, {{row.symbolClass.values}}
       {% endfor %}
-
 </div>
 
 

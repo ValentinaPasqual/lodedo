@@ -8,6 +8,8 @@ from rdflib import Graph
 from graphdb.mime_types import RDFTypes
 from graphdb.rdf4j.api.repositories_api import RepositoriesApi
 import os
+import unicodedata
+import codecs
 
 
 # Configure the access controller
@@ -34,24 +36,45 @@ try:
 except Exception as e:
     print("Error:", str(e))
 
+# The repository name
+repository = "LODEdo_endpoint"
 
-# Directory containing the Turtle files
-directory_path = "graphDB/data"
+# Directory containing the RDF files
+directory_path = "graphDB/data/"
+
+# Create a session
+session = requests.Session()
+
+# Define the upload URL
+upload_url = f'http://localhost:7200/repositories/{repository}/statements'
 
 # Iterate through all files in the directory
 for filename in os.listdir(directory_path):
-    file_path = os.path.join(directory_path, filename)
-    with open(file_path, 'r', encoding='utf-8') as file:
-        rdf_data = file.read()
-        print(rdf_data)
-    if filename.endswith(".ttl"):  # Process only Turtle files
-        api_client.set_default_header("Content-Type", RDFTypes.TURTLE)
-    if filename.endswith(".rdf"):  # Process only Turtle files
-        api_client.set_default_header("Content-Type", RDFTypes.RDF_XML)
+    # Check if the file has a valid RDF extension (e.g., .ttl, .trig, .owl)
+    if filename.endswith(('.ttl', '.trig', '.owl')):
+        # Determine the appropriate Content-Type header based on the file extension
+        if filename.endswith('.ttl'):
+            content_type = 'application/x-turtle; charset=utf-8'
+        elif filename.endswith('.trig'):
+            content_type = 'application/trig; charset=utf-8'
+        elif filename.endswith('.owl'):
+            content_type = 'application/rdf+xml; charset=utf-8'
 
-    # Encode the RDF data as UTF-8 before sending
-    rdf_data_encoded = rdf_data.encode('utf-8')
+        # Construct the full path to the RDF file
+        rdf_file = os.path.join(directory_path, filename)
 
-    repository = "provacheballe"
-    api = RepositoriesApi(api_client)
-    api.put_statements(repository, rdf_data=rdf_data_encoded)
+        # Set headers for the request
+        headers = {
+            'Content-Type': content_type,
+        }
+
+        # Open and read the RDF file
+        with open(rdf_file, 'rb') as rdf_data:
+            # Send the RDF data to GraphDB
+            response = session.post(upload_url, data=rdf_data, headers=headers)
+
+        # Check the response
+        if response.status_code == 200:
+            print(f'RDF data from {filename} uploaded successfully to repository {repository}')
+        else:
+            print(f'Error uploading RDF data from {filename}: {response.status_code} - {response.text}')
