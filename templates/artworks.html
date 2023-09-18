@@ -14,7 +14,7 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,16 +22,20 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">LODEdo</a>
+            <a class="nav-link active fw-bolder" aria-current="page" href="#">LODEdo</a>
           </li>
+        </ul>
+        <div class="d-flex">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Catalogue</a>
+            <a class="nav-link fw-bold" href="../">Catalogue</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contacts</a>
+          <li class="nav-item d-flex">
+            <a class="nav-link fw-bold" href="../assets/contacts.html">Contacts</a>
           </li>
           <li class="nav-item">
         </ul>
+      </div>
       </div>
     </div>
   </nav>
@@ -62,17 +66,27 @@
     </div>
 
 
+
       <div class="auto-ints m-md-5 p-md-5">
-      <h3 class="fw-bolder">Automatically generated interpretations available from <span class="badge bg-warning text-dark">{{auto_ints|length}}</span> context</h3>
+      <h3 class="fw-bolder">Automatically generated interpretations available from <span class="badge bg-warning text-dark">{{auto_ints|length}}</span> contexts</h3>
       <h6 class="fw-bolder">Discover the symbolic meaning of the artwork in different cultures</h6>
+
+      {% for tup in preico_interpretations %}
+        {% if tup[1] == None %}
+          <button class="btn-outline-disabled d-1-disabled preico-filter">{{tup[0]}}</button>
+        {% else %}
+          <button class="btn-outline-dark d-1 preico-filter" data-filter-uri="{{ tup[1] }}">{{tup[0]}}</button>
+        {% endif %}
+      {% endfor %}
 
       <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
 
       {% for int,context in auto_ints.items() %}
-        <div class="col">
-      <div class="card">
+        <div class="col symbol-interpretations">
+      <div class="card symbol-interpretation card-enabled" data-catalog-uris="{{ context[2] }}">
          <div class="card-body">
-           <h5 class="card-title fw-bold">{{context}} context</h5>
+           <h5 class="card-title fw-bold">{{context[0]}} context</h5>
+           <p><span class="badge bg-warning text-dark">{{context[1]}}</span> symbolic meanings for this artwork</p>
         <p class="card-text"><a href={{int|replace('conj-https://w3id.org/lodedo/data/', '../conjectures/')}} class="btn-outline-dark float-end d-1">>></a></p>
       </div>
       </div>
@@ -88,6 +102,7 @@
 
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="../assets/script.js"></script>
 
 
 </body>

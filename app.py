@@ -48,39 +48,64 @@ def artwork(artworkID):
     for el in scholar_ints_result['results']['bindings']:
         scholars_ints.update({el['g']['value']: el['authorLabel']['value']})
 
+    # preiconographical interpretations
+    preico_interpretations = []
+    preico_query = prefixes + """SELECT ?motifHR ?motifLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; icon:recognizedArtisticMotif ?int} ?int icon:hasFactualMeaning ?motif. ?motif rdfs:label ?motifLabel. OPTIONAL{?motif owl:sameAs ?motifHR}}"""
+    preico_result = sparql_api.execute_get_select_query(repository, query=preico_query)
+
+    for row in preico_result['results']['bindings']:
+        if 'motifHR' in row:
+            preico_interpretations.append((row['motifLabel']['value'], row['motifHR']['value']))
+        else:
+            preico_interpretations.append((row['motifLabel']['value'], None))
+
+    preico_interpretations = list(set(preico_interpretations))
+
     # AUTHOMATIC INTERPRETATIONS
     artwork_conj_result = {}
-    artwork_conj_query = prefixes + """SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; icon:recognizedImage ?reconImage. ?reconImage icon:hasSymbol ?symbol.} ?symbol sim:hasContext ?context. ?context rdfs:label ?contextLabel}"""
+    artwork_conj_query = prefixes + """SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; icon:recognizedImage ?reconImage. ?reconImage icon:hasSymbol ?symbol.} ?symbol sim:hasContext ?context; sim:hasSimulacrum ?simulacrum. ?context rdfs:label ?contextLabel}"""
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
     auto_ints = {}
+    i=1
     for row in artwork_conj_result['results']['bindings']:
-        auto_ints.update({row['g']['value']:row['contextLabel']['value']})
+        if row['g']['value'] not in auto_ints:
+            i = 1
+            symb_list = [row['simulacrum']['value']]
+            auto_ints.update({row['g']['value']:[row['contextLabel']['value'], i, symb_list]})
+        else:
+            i+=1
+            symb_list.append(row['simulacrum']['value'])
+            auto_ints.update({row['g']['value']:[row['contextLabel']['value'], i, symb_list]})
 
-    return render_template('artworks.html', artworkID=artworkID, auto_ints=auto_ints, scholars_ints=scholars_ints, artwork_conj_result=artwork_conj_result)
 
+
+    return render_template('artworks.html', artworkID=artworkID, auto_ints=auto_ints, scholars_ints=scholars_ints, preico_interpretations=preico_interpretations, artwork_conj_result=artwork_conj_result)
 
 @app.route('/conjectures/<conjID>')
 def conj(conjID):
 
     # gets the set of automatic interpretations
     artwork_conj_result, auto_int_res = {}, {}
-    artwork_conj_query = prefixes + "SELECT * WHERE {CONJ ?g {?interpretation icon:aboutWorkOfArt ?art} FILTER regex(str(?g),\"" + conjID + "\")}"
+    artwork_conj_query = prefixes + "SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt ?art} FILTER regex(str(?g),\"" + conjID + "\")}"
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
     # gets the image recognition data
     for row in artwork_conj_result['results']['bindings']:
         conj_triples_result = {}
-        conj_triples_query = prefixes + "SELECT ?meaningLabel ?meaningClassLabel ?symbol WHERE {CONJ ?g {<" + row['interpretation']['value'] + "> icon:recognizedImage ?reconImage; icon:refersToArtisticMotif ?motif} ?reconImage icon:hasSymbol ?symbol. ?motif icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel; a ?meaningClass. ?meaningClass rdfs:label ?meaningClassLabel. FILTER regex(str(?g),\"" + conjID + "\")}"
+        conj_triples_query = prefixes + "SELECT ?meaningLabel ?meaningClassLabel ?symbol ?qualityLabel WHERE {CONJ ?g {<" + row['interpretation']['value'] + "> icon:recognizedImage ?reconImage; icon:refersToArtisticMotif ?motif} ?reconImage icon:hasSymbol ?symbol. ?motif icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel; a ?meaningClass. ?meaningClass rdfs:label ?meaningClassLabel. OPTIONAL {?motif dul:hasQuality ?quality. ?quality rdfs:label ?qualityLabel} FILTER regex(str(?g),\"" + conjID + "\")}"
         conj_triples_result = sparql_api.execute_get_select_query(repository, query=conj_triples_query)
         auto_int_res.update({row['interpretation']['value']:conj_triples_result['results']['bindings']})
 
         # for each interpretation gets the symbol
         for row2 in conj_triples_result['results']['bindings']:
             if 'symbol' in row2:
-                symbol_query = prefixes + "SELECT ?symbolLabel ?symbolClass ?simulacrumLabel ?realityCounterpartLabel ?symbolClass WHERE {<" + row2['symbol']['value'] + "> sim:hasContext ?context; rdfs:label ?symbolLabel; a ?symbolClass; sim:hasRealityCounterpart ?realityCounterpart; sim:hasSimulacrum ?simulacrum. ?realityCounterpart rdfs:label ?realityCounterpartLabel. ?simulacrum rdfs:label ?simulacrumLabel. FILTER (?symbolClass != icon:Symbol)}"
+                symbol_query = prefixes + "SELECT DISTINCT ?symbolLabel ?symbolClass ?simulacrumLabel ?realityCounterpartLabel ?symbolClass WHERE {<" + row2['symbol']['value'] + "> sim:hasContext ?context; rdfs:label ?symbolLabel; a ?symbolClass; sim:hasRealityCounterpart ?realityCounterpart; sim:hasSimulacrum ?simulacrum. ?realityCounterpart rdfs:label ?realityCounterpartLabel. OPTIONAL {?simulacrum rdfs:label ?simulacrumLabel}. OPTIONAL {?simulacrum owl:sameAs ?simulacrumHR. ?simulacrumHR rdfs:label ?simulacrumLabel} FILTER (?symbolClass != icon:Symbol)}"
                 symbol_result = sparql_api.execute_get_select_query(repository, query=symbol_query)
-                auto_int_res[row['interpretation']['value']][0].update(symbol_result['results']['bindings'][0])
+                try:
+                    auto_int_res[row['interpretation']['value']][0].update(symbol_result['results']['bindings'][0])
+                except:
+                    None
 
     return render_template('conjectures.html', conjID=conjID, artwork_conj_result=artwork_conj_result, auto_int_res=auto_int_res)
 
@@ -89,7 +114,7 @@ def graph(graphID):
 
     def interpretations_data_builder(graphID, part_query_string):
         result, scholar_int_triples = {}, {}
-        scholar_int_query = prefixes + "SELECT DISTINCT * WHERE {GRAPH lodedo:" + graphID+ " {" + part_query_string
+        scholar_int_query = prefixes + "SELECT DISTINCT * WHERE {graph lodedo:" + graphID+ " {" + part_query_string
         scholar_int_triples = sparql_api.execute_get_select_query(repository, query=scholar_int_query)
 
         for row in scholar_int_triples['results']['bindings']:
@@ -100,7 +125,12 @@ def graph(graphID):
 
         return result
 
-    scholar_ints = {}
+    int_metadata_query = prefixes + "SELECT DISTINCT ?artwork ?agentLabel WHERE {graph lodedo:" + graphID+ " {?interpretation icon:aboutWorkOfArt ?artwork; dul:includesAgent ?agent.} ?agent rdfs:label ?agentLabel}"
+    int_metadata_result = sparql_api.execute_get_select_query(repository, query=int_metadata_query)
+
+    scholar_ints, symbol_ints = {}, {}
+    # get all symbols
+    query = "SELECT ?symbol ?simulacrum ?realityCounterpart ?context ?g WHERE {conj ?g {?symbol a sim:Symbol.}}"
 
     # PREICONOGRAPHICAL INTERPRETATIONS
     ints_part_query_string = """?interpretation icon:recognizedArtisticMotif ?recog.} ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. OPTIONAL {?recog dul:hasQuality ?quality. ?quality rdfs:label ?qualityLabel} OPTIONAL {?recog icon:isPartOf ?composition} } """
@@ -115,11 +145,10 @@ def graph(graphID):
     scholar_ints.update({'iconographical':interpretations_data_builder(graphID, icon_part_query_string)})
 
     # SYMBOLS RECOGNITIONS
-    icon_part_query_string = """?interpretation icon:recognizedImage ?recog. ?recog icon:hasSymbol ?meaning .} ?meaning sim:hasContext ?context . ?context rdfs:label ?contextLabel. ?meaning sim:RealityCounterpart ?realityCounterpart . ?realityCounterpart rdfs:label ?realityCounterpartLabel. ?meaning sim:hasSimulacrum ?simulacrum . OPTIONAL{?simulacrum rdfs:label ?simulacrumLabel}} """
-    scholar_ints.update({'symbol': interpretations_data_builder(graphID, icon_part_query_string)})
+    symbol_part_query_string = """?interpretation icon:recognizedImage ?recog. ?recog icon:hasSymbol ?meaning .} ?meaning sim:hasContext ?context . ?meaning sim:hasRealityCounterpart ?realityCounterpart . ?realityCounterpart rdfs:label ?realityCounterpartLabel. ?meaning sim:hasSimulacrum ?simulacrum . ?context rdfs:label ?contextLabel. ?simulacrum rdfs:label ?simulacrumLabel}"""
+    symbol_ints = interpretations_data_builder(graphID, symbol_part_query_string)
 
-
-    return render_template('graphs.html', graphID=graphID, scholar_ints=scholar_ints)
+    return render_template('graphs.html', int_metadata_result=int_metadata_result, graphID=graphID, scholar_ints=scholar_ints, symbol_ints=symbol_ints)
 
 def start():
     # SELECT ALL ARTWORKS QUERY
@@ -177,7 +206,7 @@ def index():
             query = prefixes + """SELECT * WHERE {graph ?g {?subj icon:hasSymbol ?symbol } ?symbol sim:preventedRealityCounterpart | sim:hasRealityCounterpart  ?obj. ?obj rdfs:label ?label.}"""
 
         if 'sim:hasContext' in facet:
-            query = prefixes + """SELECT DISTINCT * WHERE {graph ?g {?subj icon:hasSymbol ?symbol } ?symbol sim:hasContext  ?obj. ?obj a ?class; rdfs:label ?label. ?class rdfs:label ?classLabel }"""
+            query = prefixes + """SELECT DISTINCT * WHERE {graph ?g {?subj icon:hasSymbol ?symbol } ?symbol sim:hasContext ?obj. ?obj rdfs:label ?label}"""
 
         if 'dul:includesAgent' in facet:
             query = prefixes + """SELECT * WHERE {graph ?g {?subj dul:includesAgent ?obj } ?obj rdfs:label ?label }"""
@@ -195,21 +224,6 @@ def index():
 
         sorted_dict = dict(sorted(temp.items(), key=lambda item: item[1]['label']))
         values.update(sorted_dict)
-
-
-        # if 'sim:hasContext' in facet or 'sim:RealityCounterpart' in facet or 'sim:hasSimulacrum' in facet or 'dul:includesAgent' in facet:
-        #     query = prefixes + """ SELECT DISTINCT * WHERE { ?subj """ + facet + """ ?obj . ?obj rdfs:label ?label. }"""
-        #
-        #     results = sparql_api.execute_get_select_query(repository, query=query)
-        #
-        #     temp = {}
-        #     for row in results['results']['bindings']:
-        #         res= {}
-        #         res.update({'label':row['label']['value']})
-        #         temp.update({row['obj']['value']:res})
-        #
-        #     sorted_dict = dict(sorted(temp.items(), key=lambda item: item[1]['label']))
-        #     values.update(sorted_dict)
 
     # initialise selected_facets as empty
     selected_facets = {}
@@ -247,12 +261,12 @@ def index():
                         filter_clause += "?interpretation icon:recognizedImage ?img. ?img ?pred ?recognizedImage ."
                     if facet == "icon:recognizedComposition":
                         filter_clause += "?interpretation icon:recognizedComposition ?recognizedComposition. "
-                    if "sim:hasContext" in facet or "sim:RealityCounterpart" in facet or "sim:hasSimulacrum" in facet:
+                    if "sim:hasContext" in facet or "sim:hasRealityCounterpart" in facet or "sim:hasSimulacrum" in facet:
                         filter_clause += '?interpretation icon:recognizedImage ?recognizedImage. ?recognizedImage icon:hasSymbol ?symbol .'
                         if facet == "sim:hasContext":
                             filter_clause += "?symbol sim:hasContext ?hasContext . "
-                        if facet == "sim:RealityCounterpart":
-                            filter_clause += "?symbol sim:preventedRealityCounterpart | sim:hasRealityCounterpart ?RealityCounterpart . "
+                        if facet == "sim:hasRealityCounterpart":
+                            filter_clause += "?symbol sim:preventedRealityCounterpart | sim:hasRealityCounterpart ?hasRealityCounterpart . "
                         if facet == "sim:hasSimulacrum":
                             filter_clause += "?symbol sim:hasSimulacrum ?hasSimulacrum . "
 

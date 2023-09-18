@@ -57430,6 +57430,7 @@ GRAPH <https://w3id.org/lodedo/data/GART101SCHOLtredeBichler2010> {
 
 GRAPH <https://w3id.org/lodedo/data/factual_data> {
 
+
   lodedo:tredeBichler2010	rdfs:label "Trede and Bichler (2010)".
   lodedo:tokyoNationalMuseum rdfs:label "Tokyo National Museum".
   lodedo:hiroshigeMuseumOfArtEna rdfs:label "Hiroshige Museum Of Art, Ena".
@@ -78522,7 +78523,9 @@ GRAPH <https://w3id.org/lodedo/data/factual_data> {
     lodedo:ART101AG6AM4 a icon:ArtisticMotif ;
         icon:hasFactualMeaning lodedo:cat .
 
-    lodedo:japanese a sim:Context .
+    lodedo:japanese a sim:Context ;
+      rdfs:label "Japanese" ;
+      owl:sameAs sim:japanese .
 
     lodedo:ART48AG12AM3 a icon:ArtisticMotif ;
         icon:hasFactualMeaning lodedo:fish .
