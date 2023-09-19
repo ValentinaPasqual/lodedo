@@ -74,7 +74,7 @@ for filename in os.listdir(directory_path):
             response = session.post(upload_url, data=rdf_data, headers=headers)
 
         # Check the response
-        if response.status_code == 200:
+        if response.status_code == 204 or response.status_code == 200:
             print(f'RDF data from {filename} uploaded successfully to repository {repository}')
         else:
             print(f'Error uploading RDF data from {filename}: {response.status_code} - {response.text}')

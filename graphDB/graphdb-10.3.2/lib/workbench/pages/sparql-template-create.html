@@ -1,0 +1,71 @@
+<link href="css/lib/angular-xeditable/xeditable.min.css?v=2.3.1" rel="stylesheet">
+
+<link href="css/lib/yasqe.min.css?v=2.3.1" rel="stylesheet"/>
+
+<link href="css/new-sparql.css?v=2.3.1" rel="stylesheet"/>
+
+<link href="css/graphs-config.css?v=2.3.1" rel="stylesheet"/>
+
+<link href="css/jdbc.css?v=2.3.1" rel="stylesheet"/>
+
+<div class="container-fluid fit-content-on-mobile">
+    <h1>
+        {{title}}
+        <span class="btn btn-link"
+              uib-popover-template="'js/angular/templates/titlePopoverTemplate.html'"
+              popover-trigger="mouseenter"
+              popover-placement="bottom-right"
+              popover-append-to-body="true"><span class="icon-info"></span></span>
+    </h1>
+    <div core-errors></div>
+    <div system-repo-warning></div>
+    <div class="alert alert-danger" ng-show="repositoryError">
+        <p>{{'not.usable.active.repo.error' | translate}}</p>
+
+        <p>{{repositoryError}}</p>
+    </div>
+
+    <div class="card mb-2 sql-table-config">
+        <div class="card-block pt-1">
+            <p class="lead">{{'template.iri.header' | translate}}</p>
+            <div class="table-group table-group-lg">
+                <input required class="form-control sparql-template-name" type="text" ng-mousedown="isInvalidTemplateId = false" placeholder="http://exampleuri.com/examplepath ({{'required' | translate}})"
+                       ng-model="currentQuery.templateID" ng-disabled="!currentQuery.isNewTemplate">
+                <div style="margin-top: 5px" ng-if="isInvalidTemplateId" class="idError alert alert-danger"
+                    translate="not.valid.iri"
+                    translate-value-value="{{currentQuery.templateID}}">
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <br/>
+                <query-editor nostorage notabs notoolbar-saved notoolbar-copy nostatus nocount norun
+                              notoolbar-inference
+                              notoolbar-same-as callback-on-change="updateDirty">
+                </query-editor>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-lg btn-primary save-query-btn" ng-click="saveTemplate()"
+            uib-popover="{{'save.sparql.template.tooltip' | translate}}"
+            popover-placement="top"
+            popover-trigger="mouseenter"
+            ng-if="canWriteActiveRepo()">
+        {{'common.save.btn' | translate}}
+    </button>
+    <a ng-href="sparql-templates" class="btn btn-lg btn-secondary cancel-query-btn"
+       uib-popover="{{'cancel.sparql.template.creation.tooltip' | translate}}"
+       popover-placement="top"
+       popover-trigger="mouseenter"
+       ng-if="canWriteActiveRepo()">
+        {{'common.cancel.btn' | translate}}
+    </a>
+    <a ng-href="sparql-templates" class="btn btn-lg btn-secondary"
+       uib-popover="{{'cancel.sparql.template.creation.tooltip' | translate}}"
+       popover-placement="top"
+       popover-trigger="mouseenter"
+       ng-if="!canWriteActiveRepo()">
+        {{'common.close' | translate}}
+    </a>
+    <br/><br/><br/>
+</div>

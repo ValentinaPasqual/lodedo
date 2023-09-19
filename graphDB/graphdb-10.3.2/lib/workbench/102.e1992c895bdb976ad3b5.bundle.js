@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[102],{144:function(o,e){PluginRegistry.add("route",{url:"/",module:"graphdb.workbench",chunk:"home",path:"controllers",controller:"homeCtrl",templateUrl:"pages/home.html"})}}]);

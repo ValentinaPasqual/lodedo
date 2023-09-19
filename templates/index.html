@@ -12,7 +12,7 @@
 <body>
 
 <div class="container-fluid">
-  
+
     <div class="row flex-nowrap">
         <div class="col-auto px-0">
             <div id="sidebar" class="collapse collapse-horizontal show sticky-top">
@@ -25,17 +25,17 @@
                     <form method="POST">
 
                       <div class="accordion accordion-flush" id="accordionFlushExample">
-
                       {% for facet, values in facets.items() %}
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-{{ facet|replace(':','')|replace(' ','') }}">
                           <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ facet|replace(':','')|replace(' ','') }}" aria-expanded="false" aria-controls="flush-collapse{{ facet|replace(':','')|replace(' ','') }}">
-                            {{ facet }}
+                            {{ facet|replace('icon:recognizedArtisticMotif','Artistic motifs')|replace('icon:recognizedComposition','Compositions')|replace('icon:recognizedImage','Images')|replace('sim:hasRealityCounterpart', 'Symbolic meanings')|replace('sim:hasContext', 'Symbol contexts')|replace('dul:includesAgent', 'Interpretation authors') }}
                           </button>
                         </h2>
                         <div id="flush-collapse{{ facet|replace(':','')|replace(' ','') }}" class="accordion-collapse collapse" aria-labelledby="flush-{{ facet|replace(':','')|replace(' ','') }}}" data-bs-parent="#accordionFlushExample">
                           <div class="accordion-body">
-                            <ul class="scrollable-div p-0 m-0">
+                            <input type="text" class="search-input form-control me-2" placeholder="Search..." onkeyup="searchFilterFunction(this)">
+                            <ul class="scrollable-div p-0 m-0 facet-ul" id=id="ul-{{ facet|replace(':','')|replace(' ','') }}">
                                 {% for value,info in values.items() %}
                                     <li class="list-group-item border-end-0 fw-bold">
                                         <label>
@@ -63,6 +63,7 @@
                 </div>
             </div>
         </div>
+
         <main class="col ps-md-2 pt-2" id="catalogue">
             <!-- <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i>Filters</a> -->
             <div class="page-header pt-3">
@@ -70,17 +71,17 @@
             </div>
             <p class="lead fw-bold">Browse the collection by their scholarly interpretations</p>
             <div class="row p-5">
+              <p class="float-end text-end fw-bold"><span class="badge bg-warning text-dark">{{result_cards|length}}</span> results</p>
                   {% for card in result_cards %}
                   <div class="col-md-4">
                       <div class="card mb-4">
-                        {% if image in card %}
-                        <img src="{{ card.img_src }}" alt="{{ card.img_src }}">-->
-                        {% endif %}
-                        {{card.item}}
-                          <div class="card-body">
-                              <a href={{card.item|replace("https://w3id.org/lodedo/data/","artworks/") }} class="btn-outline-dark d-1">View Details</a>
-                          </div>
+                        <div class="card-body mb-3">
+                        <img class="img-fluid" src="{{ card.img_src }}" alt="{{ card.img_src }}">
+                        <h5 class="fw-bold pt-3">{{card.title}}</h5>
+                        <p class="fw-bold">Creation date: {{card.date}}</p>
+                        <a href={{card.item|replace("https://w3id.org/lodedo/data/","artworks/") }} class="btn-outline-dark d-1">View Details</a>
                       </div>
+                    </div>
                   </div>
                   {% endfor %}
             </div>

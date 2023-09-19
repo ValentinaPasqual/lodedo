@@ -42,14 +42,27 @@
 
   <!-- MAIN SECTION -->
   <div class="container m-md-5 p-md-5">
-      <h1>{{ artworkID }}, TBD ARTWORK TITLE</h1>
 
-      <div class="scholars-ints m-md-5 p-md-5">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="{{artwork_factual_result[0].img_src}}" style="width:100%;height:auto">
+        </div>
 
+        <div class="col-md-1"></div>
+
+        <div class="col-md-7">
+
+          <div class="factual-metadata">
+            <h3 class="fw-bold">Factual metadata about this item</h3>
+            <p class="fw-bold">{{artwork_factual_result[0].title}}</p>
+            <p class="fw-bold">{{artwork_factual_result[0].date}}</p>
+          </div>
+
+      <div class="scholars-ints mt-5 pt-5">
         <h3 class="fw-bold"><span class="badge bg-warning text-dark">{{scholars_ints|length}}</span> available scholarly interpretations for this item</h3>
         <h6 class="fw-bold">Discover the interpretations of this artwork by different scholars and institutions</h6>
 
-              <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+              <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
         {% for int,author in scholars_ints.items() %}
 
         <div class="col">
@@ -64,12 +77,18 @@
 
       </div>
     </div>
+    </div>
+    </div>
 
 
 
-      <div class="auto-ints m-md-5 p-md-5">
-      <h3 class="fw-bolder">Automatically generated interpretations available from <span class="badge bg-warning text-dark">{{auto_ints|length}}</span> contexts</h3>
-      <h6 class="fw-bolder">Discover the symbolic meaning of the artwork in different cultures</h6>
+      <div class="auto-ints pt-5 mt-5">
+        <div class="row">
+          <div class="col-md-3 yellow-back">
+      <h3 class="fw-bolder"><span class="badge bg-warning text-dark">{{preico_interpretations|length}}</span> Artistic motifs recognized by scholars for this artwork</h3>
+    </div>
+      <div class="col-md-9">
+        <h6 class="fw-bolder">Discover the symbolic meaning of the artwork in different cultures</h6>
 
       {% for tup in preico_interpretations %}
         {% if tup[1] == None %}
@@ -78,8 +97,12 @@
           <button class="btn-outline-dark d-1 preico-filter" data-filter-uri="{{ tup[1] }}">{{tup[0]}}</button>
         {% endif %}
       {% endfor %}
+    </div>
+    </div>
 
       <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+      <h3 class="fw-bolder">Automatically generated interpretations available from <span class="badge bg-warning text-dark">{{auto_ints|length}}</span> contexts for this artwork</h3>
+
 
       {% for int,context in auto_ints.items() %}
         <div class="col symbol-interpretations">

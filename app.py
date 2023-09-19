@@ -28,17 +28,48 @@ prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>
 prefix icon: <https://w3id.org/icon/ontology/>
 prefix lodedo: <https://w3id.org/lodedo/data/>
 prefix sim: <https://w3id.org/simulation/ontology/>
+prefix schema:<http://schema.org/>
+prefix dcterms: <http://purl.org/dc/terms/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 """
+
+def start(artworkID=None):
+
+    if artworkID == None:
+        # SELECT ALL ARTWORKS QUERY
+        sparql_query = prefixes + """
+            SELECT DISTINCT *
+            WHERE {
+                ?item schema:image ?img_src;
+                    dcterms:title ?title ;
+                    dcterms:created ?date.
+                }
+        """
+    else:
+        sparql_query = prefixes + """
+            SELECT DISTINCT *
+            WHERE {
+                lodedo:""" + artworkID + """ schema:image ?img_src;
+                    dcterms:title ?title ;
+                    dcterms:created ?date.
+                }
+        """
+    results = sparql_api.execute_get_select_query(repository, query=sparql_query)
+
+    result_cards = []
+    for row in results['results']['bindings']:
+        temp = {}
+        for k,v in row.items():
+            temp.update({k:v['value']})
+        result_cards.append(temp)
+
+    return result_cards
 
 @app.route('/artworks/<artworkID>')
 def artwork(artworkID):
 
-    # TO DO
-    #artwork_factual_result = {}
-    #artwork_factual_query = prefixes + "SELECT ?image WHERE { lodedo:"+ artworkID +" icon:image ?image. } "
-    #artwork_factual_result = sparql_api.execute_get_select_query(repository, query=artwork_factual_query)
-    #artwork_image = artwork_factual_result['results']['bindings'][0]['image']['value']
-    #artwork_image = ''
+    # FACTUAL METADATA
+    artwork_factual_result = start(artworkID)
 
     # SCHOLARS INTERPRETATIONS
     scholar_ints_query = prefixes + """SELECT ?g ?authorLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; dul:includesAgent ?author.} ?author rdfs:label ?authorLabel}"""
@@ -66,8 +97,10 @@ def artwork(artworkID):
     artwork_conj_query = prefixes + """SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; icon:recognizedImage ?reconImage. ?reconImage icon:hasSymbol ?symbol.} ?symbol sim:hasContext ?context; sim:hasSimulacrum ?simulacrum. ?context rdfs:label ?contextLabel}"""
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
+    for row in artwork_conj_result['results']['bindings']:
+        print(row)
+
     auto_ints = {}
-    i=1
     for row in artwork_conj_result['results']['bindings']:
         if row['g']['value'] not in auto_ints:
             i = 1
@@ -75,12 +108,11 @@ def artwork(artworkID):
             auto_ints.update({row['g']['value']:[row['contextLabel']['value'], i, symb_list]})
         else:
             i+=1
-            symb_list.append(row['simulacrum']['value'])
-            auto_ints.update({row['g']['value']:[row['contextLabel']['value'], i, symb_list]})
+            if row['simulacrum']['value'] not in symb_list:
+                symb_list.append(row['simulacrum']['value'])
+                auto_ints.update({row['g']['value']:[row['contextLabel']['value'], i, symb_list]})
 
-
-
-    return render_template('artworks.html', artworkID=artworkID, auto_ints=auto_ints, scholars_ints=scholars_ints, preico_interpretations=preico_interpretations, artwork_conj_result=artwork_conj_result)
+    return render_template('artworks.html', artworkID=artworkID, artwork_factual_result=artwork_factual_result, auto_ints=auto_ints, scholars_ints=scholars_ints, preico_interpretations=preico_interpretations, artwork_conj_result=artwork_conj_result)
 
 @app.route('/conjectures/<conjID>')
 def conj(conjID):
@@ -109,7 +141,7 @@ def conj(conjID):
 
     return render_template('conjectures.html', conjID=conjID, artwork_conj_result=artwork_conj_result, auto_int_res=auto_int_res)
 
-@app.route('/scholarlyInterpretations/<graphID>')
+@app.route('/scholarlyInterpretations/<graphID>', methods=["GET", "POST"])
 def graph(graphID):
 
     def interpretations_data_builder(graphID, part_query_string):
@@ -128,50 +160,46 @@ def graph(graphID):
     int_metadata_query = prefixes + "SELECT DISTINCT ?artwork ?agentLabel WHERE {graph lodedo:" + graphID+ " {?interpretation icon:aboutWorkOfArt ?artwork; dul:includesAgent ?agent.} ?agent rdfs:label ?agentLabel}"
     int_metadata_result = sparql_api.execute_get_select_query(repository, query=int_metadata_query)
 
+    other_ints_to_compare = {}
+    for row in int_metadata_result['results']['bindings']:
+        comp_graphs_query = prefixes + "SELECT DISTINCT ?g ?agentLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt <"+row['artwork']['value']+">; dul:includesAgent ?agent} ?agent rdfs:label ?agentLabel. FILTER(?g != lodedo:"+graphID+")}"
+        other_ints_to_compare = sparql_api.execute_get_select_query(repository, query=comp_graphs_query)
+
+    def scholars_interpretations_builder(graphID):
+        scholar_ints, symbol_ints = {}, {}
+
+        # get all symbols
+        query = "SELECT ?symbol ?simulacrum ?realityCounterpart ?context ?g WHERE {conj ?g {?symbol a sim:Symbol.}}"
+
+        # PREICONOGRAPHICAL INTERPRETATIONS
+        ints_part_query_string = """?interpretation icon:recognizedArtisticMotif ?recog.} ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. OPTIONAL {?recog dul:hasQuality ?quality. ?quality rdfs:label ?qualityLabel} OPTIONAL {?recog icon:isPartOf ?composition} } """
+        scholar_ints.update({'preiconographic': interpretations_data_builder(graphID, ints_part_query_string)})
+
+        #COMPOSITIONS RECOGNITIONS
+        comps_part_query_string = """?interpretation icon:recognizedComposition ?composition. } ?composition icon:hasPart ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. }"""
+        scholar_ints.update({'composition': interpretations_data_builder(graphID, comps_part_query_string)})
+
+        #ICONOGRAPHICAL INTERPRETATIONS
+        icon_part_query_string = """?interpretation icon:recognizedImage ?recog. ?recog ?pred ?meaning . } ?meaning a ?class. ?meaning rdfs:label ?meaningLabel. ?class rdfs:label ?classLabel } """
+        scholar_ints.update({'iconographical':interpretations_data_builder(graphID, icon_part_query_string)})
+
+        # SYMBOLS RECOGNITIONS
+        symbol_part_query_string = """?interpretation icon:recognizedImage ?recog. ?recog icon:hasSymbol ?meaning .} ?meaning sim:hasContext ?context . ?meaning sim:hasRealityCounterpart ?realityCounterpart . ?realityCounterpart rdfs:label ?realityCounterpartLabel. ?meaning sim:hasSimulacrum ?simulacrum . ?context rdfs:label ?contextLabel. ?simulacrum rdfs:label ?simulacrumLabel}"""
+        symbol_ints = interpretations_data_builder(graphID, symbol_part_query_string)
+
+        return scholar_ints, symbol_ints
+
     scholar_ints, symbol_ints = {}, {}
-    # get all symbols
-    query = "SELECT ?symbol ?simulacrum ?realityCounterpart ?context ?g WHERE {conj ?g {?symbol a sim:Symbol.}}"
+    scholar_ints, symbol_ints = scholars_interpretations_builder(graphID)
 
-    # PREICONOGRAPHICAL INTERPRETATIONS
-    ints_part_query_string = """?interpretation icon:recognizedArtisticMotif ?recog.} ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. OPTIONAL {?recog dul:hasQuality ?quality. ?quality rdfs:label ?qualityLabel} OPTIONAL {?recog icon:isPartOf ?composition} } """
-    scholar_ints.update({'preiconographic': interpretations_data_builder(graphID, ints_part_query_string)})
+    comp_scholar_ints, comp_symbol_ints = {}, {}
+    if request.method == 'POST':
+        selected_value = request.form.get('dropdown')
+        comp_scholar_ints, comp_symbol_ints = scholars_interpretations_builder(selected_value)
+    else:
+        comp_scholar_ints, comp_symbol_ints = {},{}
 
-    #COMPOSITIONS RECOGNITIONS
-    comps_part_query_string = """?interpretation icon:recognizedComposition ?composition. } ?composition icon:hasPart ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. }"""
-    scholar_ints.update({'composition': interpretations_data_builder(graphID, comps_part_query_string)})
-
-    #ICONOGRAPHICAL INTERPRETATIONS
-    icon_part_query_string = """?interpretation icon:recognizedImage ?recog. ?recog ?pred ?meaning . } ?meaning a ?class. ?meaning rdfs:label ?meaningLabel. ?class rdfs:label ?classLabel } """
-    scholar_ints.update({'iconographical':interpretations_data_builder(graphID, icon_part_query_string)})
-
-    # SYMBOLS RECOGNITIONS
-    symbol_part_query_string = """?interpretation icon:recognizedImage ?recog. ?recog icon:hasSymbol ?meaning .} ?meaning sim:hasContext ?context . ?meaning sim:hasRealityCounterpart ?realityCounterpart . ?realityCounterpart rdfs:label ?realityCounterpartLabel. ?meaning sim:hasSimulacrum ?simulacrum . ?context rdfs:label ?contextLabel. ?simulacrum rdfs:label ?simulacrumLabel}"""
-    symbol_ints = interpretations_data_builder(graphID, symbol_part_query_string)
-
-    return render_template('graphs.html', int_metadata_result=int_metadata_result, graphID=graphID, scholar_ints=scholar_ints, symbol_ints=symbol_ints)
-
-def start():
-    # SELECT ALL ARTWORKS QUERY
-    sparql_query = prefixes + """
-        SELECT ?item ?image
-        WHERE {
-            optional {?item icon:image ?image.}
-            ?interpretation icon:aboutWorkOfArt ?item.
-            }
-    """
-    results = sparql_api.execute_get_select_query(repository, query=sparql_query)
-
-    result_cards = []
-    unique_items = set()
-    for row in results['results']['bindings']:
-        item = row['item']['value']
-        #image = row['image']['value']
-        if item not in unique_items:
-            unique_items.add(item)
-            #result_cards.append({"item": item, "image": image})
-            result_cards.append({"item": item})
-
-    return result_cards
+    return render_template('graphs.html', int_metadata_result=int_metadata_result, graphID=graphID, other_ints_to_compare=other_ints_to_compare, scholar_ints=scholar_ints, symbol_ints=symbol_ints, comp_scholar_ints=comp_scholar_ints, comp_symbol_ints=comp_symbol_ints)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -244,10 +272,12 @@ def index():
         if "Search" in request.form:
             # Build and execute the SPARQL query
             sparql_query = prefixes + """
-                SELECT ?item ?image
+                SELECT *
                 WHERE {
-                    OPTIONAL {?item icon:image ?image.}
-                    GRAPH ?g {?interpretation icon:aboutWorkOfArt ?item.}
+                        ?item schema:image ?img_src;
+                            dcterms:title ?title ;
+                            dcterms:created ?date.
+                    graph ?g {?interpretation icon:aboutWorkOfArt ?item.}
             """
 
             filter_clauses = []
@@ -284,20 +314,19 @@ def index():
 
             sparql_query += "}"
 
-            print(sparql_query)
-
             results = sparql_api.execute_get_select_query(repository, query=sparql_query)
 
             result_cards = []
-
             unique_items = set()
             for row in results['results']['bindings']:
                 item = row['item']['value']
-                #image = row['image']['value']
+                image = row['img_src']['value']
+                date = row['date']['value']
+                title = row['title']['value']
                 if item not in unique_items:
                     unique_items.add(item)
-                    #result_cards.append({"item": item, "image": image})
-                    result_cards.append({"item": item})
+                    result_cards.append({"item": item, "img_src": image, "date" : date, "title" : title})
+
 
         return render_template("index.html", facets=facets, selected_facets=selected_facets, result_cards=result_cards)
 

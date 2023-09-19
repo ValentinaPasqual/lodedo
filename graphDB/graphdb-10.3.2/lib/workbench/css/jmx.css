@@ -1,0 +1,55 @@
+.nvtooltip h3{
+	font-size: 20px !important;
+}
+#ot-loader {
+	margin: 200px auto;
+	display: block;
+}
+.onto-loader-performGC {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+
+.pause-bar {
+    height: 3rem;
+}
+
+.query-table {
+    width: 100%;
+}
+
+.query-table .query-string {
+    clear: both;
+    white-space: pre-wrap;
+}
+
+.query-table td {
+    vertical-align: top;
+}
+
+.query-table td:nth-child(5) {
+    min-width: 30vw;
+}
+
+.chart-header {
+  margin-left: 100px;
+  text-align: center;
+}
+
+.chart-additional-info {
+  text-align: right !important;
+  margin-right: 80px;
+  min-height: 24px;
+  font-weight: 400;
+  overflow-wrap: break-word;
+}
+
+.chart-additional-info .info-element {
+  white-space: nowrap;
+  margin: 0 4px;
+}
+
+.nv-multiBarHorizontalChart .nv-bar {
+  fill-opacity: 0.5;
+}

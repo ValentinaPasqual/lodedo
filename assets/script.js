@@ -1,3 +1,4 @@
+// MOVE TO TOP THE SELECTED ITEMS IN THE FACETS
 function moveToTop(checkbox) {
     // Get the parent <ul> element
     var ul = checkbox.closest('ul');
@@ -20,8 +21,8 @@ dropdowns.forEach(function(dropdown) {
      }
  });
 
- //
- // Function to filter content
+
+ // Function to filter content in the artwork page - auto interpretations
  function filterContent(filterURI) {
      const catalogItems = document.querySelectorAll('.symbol-interpretation');
 
@@ -64,3 +65,27 @@ dropdowns.forEach(function(dropdown) {
          filterContent(filterURI);
      });
  });
+
+
+// FORM FOR COMPARING SCHOLARLY interpretations
+function submitForm() {
+            document.getElementById("compare-form").submit();
+        }
+
+// SEARCH FILTER IN facets
+function searchFilterFunction(inputField) {
+  var filter, ul, ul_id, li, i, txtValue;
+  filter = inputField.value.toUpperCase();
+  ul = inputField.nextElementSibling;
+  ul_id = ul.id
+  li = ul.querySelectorAll("li");
+
+  for (i = 0; i < li.length; i++) {
+    txtValue = li[i].textContent || li[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}

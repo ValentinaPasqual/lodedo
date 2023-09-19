@@ -11582,16 +11582,7 @@ CONJ lodedo:GART102AUTObuddhist {
         icon:recognizedImage lodedo:ART102AG11AG0IMG4 ;
         icon:refersToArtisticMotif lodedo:ART102AG11AM1 .
 
-    lodedo:ART102AG1AG0ICG4 a icon:IconographicalRecognition ;
-        dul:includesAgent lodedo:automaticInterpreter ;
-        icon:aboutWorkOfArt lodedo:ART102 ;
-        icon:recognizedImage lodedo:ART102AG1AG0IMG4 ;
-        icon:refersToArtisticMotif lodedo:ART102AG1AM1 .
-
     lodedo:ART102AG11AG0IMG4 a icon:Image ;
-        icon:hasSymbol lodedo:craneBird-carriesSoulsToTheWesternParadise .
-
-    lodedo:ART102AG1AG0IMG4 a icon:Image ;
         icon:hasSymbol lodedo:craneBird-carriesSoulsToTheWesternParadise .
 }
 

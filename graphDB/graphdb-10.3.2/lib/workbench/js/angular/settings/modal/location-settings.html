@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <button ng-click="cancel();" class="close" aria-hidden="true"></button>
+    <h3 class="modal-title">{{'view.settings.title' | translate}}</h3>
+</div>
+
+<div class="modal-body">
+	<form id="settingsForm" class="form-horizontal" novalidate name="settingsForm">
+		<div ng-hide="supportsStatistics" class="alert alert-info">
+			{{'active.location.version.not.support.settings.warning' | translate}}
+		</div>
+		<div ng-show="supportsStatistics" class="container" ng-init="moreInfo = false">
+
+			<div class="form-check">
+				<label gdb-tooltip="{{'click.to' | translate}} {{settings.statistics ? 'disable' : 'enable' | translate}} {{'this.setting' | translate}}"
+					   tooltip-placement="top" class="form-check-label">
+					<input type="checkbox" ng-model="settings.statistics" class="form-check-input">
+					{{'send.anonymous.statistics' | translate}}
+				</label>
+			</div>
+
+			<div class="clearfix">
+				<button ng-click="moreInfo = !moreInfo" class="btn btn-link btn-sm pull-right" ng-show="!moreInfo">{{'more.info' | translate}} <span class="icon-caret-down"></span></button>
+				<button ng-click="moreInfo = !moreInfo" class="btn btn-link btn-sm pull-right" ng-show="moreInfo">{{'less.info' | translate}} <span class="icon-caret-up"></span></button>
+			</div>
+
+			<div id="statisticsInfo" ng-if="moreInfo">
+				<h4>{{'why.send.statistics' | translate}}</h4>
+				<p>{{'why.send.statistics.explanation' | translate}}</p>
+				<h4>{{'what.statistics.include' | translate}}</h4>
+				<p>{{'for.each.repo.header' | translate}}</p>
+				<ul>
+					<li>
+						{{'absolute.values' | translate}}
+						<ul>
+							<li>{{'gdb.edition.and.version' | translate}}</li>
+							<li>{{'number.explicit.implicit.triples' | translate}}</li>
+							<li>{{'entities.number' | translate}}</li>
+							<li>{{'predicates.number' | translate}}</li>
+							<li>{{'repo.size.on.disk' | translate}}</li>
+							<li>{{'is.given.plugin.used' | translate}}</li>
+							<li>{{'used.ruleset' | translate}}</li>
+							<li>{{'os.type' | translate}}</li>
+						</ul>
+					</li>
+					<li>
+						{{'aggregated.values.header' | translate}}
+						<ul>
+							<li>{{'queries.per.day' | translate}}</li>
+							<li>{{'average.time.per.query' | translate}}</li>
+							<li>{{'updates.per.day' | translate}}</li>
+							<li>{{'average.time.per.updates' | translate}}</li>
+						</ul>
+					</li>
+				</ul>
+				<p>{{'data.send.to.msg' | translate}}
+					http://statistics.graphdb.ontotext.com.</p>
+				<p>{{'data.encryption.msg' | translate}}</p>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" ng-click="cancel();" class="btn btn-secondary" data-dismiss="modal">{{'common.cancel.btn' | translate}}</button>
+	<button ng-click="submitForm();" form="settingsForm" class="btn btn-primary">{{'save.settings.btn' | translate}}</button>
+</div>

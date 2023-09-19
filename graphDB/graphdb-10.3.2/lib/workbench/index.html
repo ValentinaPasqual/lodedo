@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html ng-controller="mainCtrl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        GraphDB Workbench
+    </title>
+
+    <base href="/" target="_blank"/>
+
+    <meta content="width=device-width" name="viewport">
+
+    <link rel="apple-touch-icon-precomposed" href="icon.png">
+
+    <script src="plugin-registry.js?v=2.3.1"></script>
+    <script src="plugins.js?v=2.3.1"></script>
+<link rel="shortcut icon" href="icon.png"><link href="vendor.a43cfebcaaba38dfc77d.css" rel="stylesheet"><link href="main.7b7930d01538072be711.css" rel="stylesheet"></head>
+
+<body>
+
+<div class="status-bar" ng-hide="isSecurityEnabled() && !isUserLoggedIn() && !isFreeAccessEnabled()" ng-cloak>
+    <div class="btn-group btn-group-lg" role="group" aria-label="Button group with nested dropdown">
+        <div class="btn alert alert-warning no-icon" ng-if="!getLicense().valid && showLicense()"
+             gdb-tooltip="{{getLicense().message}}" tooltip-placement="bottom">
+            <span class="icon-warning"></span> {{'no.valid.license.warning' | translate}}
+            <a ng-show="!isLicenseHardcoded()" href="license/register" class="btn btn-secondary btn-sm" style="margin: -5px 0 -5px 0">{{'set.label' | translate}}</a>
+        </div>
+        <div class="btn btn-info imports-queries"
+                ng-if="queryCount > 0 || numberOfActiveImports > 0">
+            <span class="icon-reload text-primary loader"></span>
+            <span class="dot-separator" ng-if="queryCount > 0">
+                <a class="btn btn-link" href="./monitor/queries" rel="noopener" target="_blank">
+                    <strong>{{queryCount}}</strong>
+                    <ng-pluralize count="queryCount"
+                                  when="{'one': 'query/update',
+                                         'other': 'queries/updates'}">
+                    </ng-pluralize>
+                </a>
+            </span>
+            <span class="dot-separator" ng-if="numberOfActiveImports > 0">
+                <a class="btn btn-link" href="./import" rel="noopener" target="_blank">
+                    <strong>{{numberOfActiveImports}}</strong>
+                    <ng-pluralize count="numberOfActiveImports"
+                                  when="{'one': 'import',
+                                         'other': 'imports'}">
+                    </ng-pluralize>
+                </a>
+            </span>
+        </div>
+        <div id="guideResume" class="btn-group" role="group" ng-if="guidePaused" gdb-tooltip="{{'guide.button.guide-resume' | translate}}" tooltip-placement="bottom">
+            <a class="btn btn-lg btn-secondary" ng-click="resumeGuide()"><span class="icon-play text-primary"></span> {{'guide.button.guide-paused' | translate}}</a>
+        </div>
+        <rdf-resource-search class="float-xs-left p-0"></rdf-resource-search>
+        <div id="repositorySelectDropdown" class="btn-group" role="group" ng-show="!embedded">
+            <button id="btnReposGroup" type="button" class="btn btn-lg btn-secondary dropdown-toggle"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" guide-selector="repositoriesGroupButton">
+                <span ng-mouseover="setPopoverRepo(getActiveRepositoryObject())" popover-popup-delay="1000" popover-trigger="mouseenter" popover-placement="left-bottom"
+                      uib-popover-template="popoverTemplate" popover-title="{{'security.repository.title' | translate}} {{getActiveRepositoryObject().id}}" ng-if="getActiveRepository()"
+                      guide-selector="repository-{{getActiveRepositoryObject().id}}-button"
+                      class="active-repository">
+                    <em ng-class="'icon-repo-' + getActiveRepositoryObject().type" class="icon-1-5x"></em>
+                    {{getActiveRepository()}}{{ getActiveRepositoryShortLocation() }}
+                </span>
+                <span class="no-selected-repository" ng-if="!getActiveRepository() && getReadableRepositories().length">{{'choose.repo' | translate}}</span>
+                <span class="no-repositories" ng-if="!getActiveRepository() && !getReadableRepositories().length">{{'no.accessible.repos.warning' | translate}}</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right pre-scrollable" aria-labelledby="dropdownMenuButton">
+                <li ng-repeat="repository in getReadableRepositories() | orderBy: ['location', 'id']"
+                    ng-if="!isRepoActive(repository)"
+                    ng-mouseover="setPopoverRepo(repository)" popover-popup-delay="500"
+                    popover-trigger="mouseenter" popover-placement="left"
+                    uib-popover-template="popoverTemplate" popover-title="{{'security.repository.title' | translate}} {{repository.id}}">
+                    <a class="dropdown-item" ng-click="setRepository(repository)" guide-selector="repository-{{repository.id}}-button">
+                        <em ng-class="'icon-repo-' + repository.type" class="icon-1-5x"></em>
+                        <span class="multiline-text">
+						    {{repository.id}} <br/>
+						    <small ng-show="!isLoadingLocation() && hasActiveLocation() && (!isSecurityEnabled() || isUserLoggedIn() || isFreeAccessEnabled())">{{repository.location ? repository.location : 'Local'}}</small>
+					    </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group" role="group" ng-if="isSecurityEnabled() && isUserLoggedIn()">
+            <button id="btnGroupDrop2" type="button" class="btn btn-lg btn-secondary dropdown-toggle"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon-user text-primary"></span>
+                {{principal.username}}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnUserGroup">
+                <a class="dropdown-item" href="settings">{{'menu.my.settings.label' | translate}}</a>
+                <a class="dropdown-item" ng-click="logout()" title="{{'sign.out.label' | translate}}" ng-href="./login" ng-if="!hasExternalAuthUser()">{{'logout.label' | translate}}</a>
+            </div>
+        </div>
+        <div class="btn-group" ng-show="isSecurityEnabled() && !isUserLoggedIn() && !isCurrentPath('login')">
+            <a class="btn btn-lg btn-secondary" href="./login" ng-href="./login">
+                <span class="icon-arrow-right text-primary"></span> {{'view.login.title' | translate}}
+            </a>
+        </div>
+        <language-selector></language-selector>
+    </div>
+</div>
+
+<ul class="main-menu" ng-cloak ng-show="!embedded">
+    <li class="brand">
+        <span class="toggle-menu" title="{{'collapse.menu.title' | translate}}" ng-click="toggleNavigation()">
+            <em class="icon-caret-left"></em>
+        </span>
+        <a class="menu-element-root" ng-href="./" href="./" ng-click="selected = -1">
+            <img class="big-logo" src="img/graphdb-logo.9ab420f9c6aa15ec68948e14c054a9df.svg" alt="GraphDB logo" width="181" height="45">
+            <img class="small-logo" src="img/graphdb-logo-sq.c868fdcaf0b1430c4f27ab196b8c4f53.svg" alt="GraphDB logo" ng-href="./" href="./" width="58"
+                 height="58">
+        </a>
+    </li>
+    <li ng-repeat="item in menu track by $index" ng-if="hasRole(item.role)"
+        ng-class="{open: $index === selected, clicked: clicked && $index === selected}"
+        class="menu-element" ng-click="checkSubMenuPosition($index)" guide-selector="{{item.guideSelector}}">
+        <div class="menu-element-root" ng-if="item.children.length" ng-click="select($index, $event, clicked);">
+            <span ng-class=item.icon class="menu-item-icon"></span>
+            <span class="menu-item">{{item.label}}</span>
+        </div>
+        <a class="menu-element-root" ng-href="{{::item.hrefFun ? item.hrefFun(productInfo) : item.href}}" ng-if="!item.children.length"
+           ng-click="select($index, $event, clicked)">
+            <span ng-class=item.icon class="menu-item-icon"></span>
+            <span class="menu-item" ng-if="!checkMenu()">{{item.label}}</span>
+        </a>
+        <ul ng-if="item.children.length" class="sub-menu">
+            <li class="submenu-title">{{item.label}}</li>
+            <li ng-repeat="submenu in item.children track by $index"
+                class="sub-menu-item"
+                ng-class="{ active: (isCurrentPath(submenu.href) || isCurrentSubmenuChildPath(submenu)) }"
+                ng-if="checkForWrite(submenu.role, getActiveRepositoryObject()) && checkEdition(submenu.editions)"
+                guide-selector="{{submenu.guideSelector}}">
+                <a ng-href="{{::submenu.hrefFun ? submenu.hrefFun(productInfo) : submenu.href}}">{{submenu.label}}
+                  <span ng-if="submenu.icon" title="{{'open.external.page' | translate}}" ng-class=submenu.icon class="text-muted"></span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<div ng-cloak >
+    <div class="container-fluid main-container" ng-if="!hasPermission()">
+        <p class="alert alert-danger">
+            {{'no.access.permission.to.functionality.error' | translate}}
+            <br>
+            {{'change.menu.or.user.warning' | translate}}
+        </p>
+    </div>
+
+        <div class="container-fluid main-container" ng-show="hasPermission()" ng-view role="main"
+             ng-class="checkMenu() ? 'expanded':''">
+
+        </div>
+
+    <footer ng-show="showFooter" class="footer">
+        <div class="container-fluid main-container">
+            <p>
+                <a href="http://graphdb.ontotext.com" target="_blank" rel="noopener noreferrer">GraphDB</a> {{graphdbVersion}} &bull; <a
+                    href="http://rdf4j.org" target="_blank" rel="noopener noreferrer">RDF4J</a>
+                {{sesameVersion}} &bull; Connectors {{connectorsVersion}} &bull; Workbench {{workbenchVersion}} &bull; &copy; {{previousYear}}&ndash;{{currentYear}} <a href="http://ontotext.com" target="_blank" rel="noopener noreferrer">Ontotext AD</a>. {{'all.rights.reserved.label' | translate}}
+            </p>
+        </div>
+    </footer>
+</div>
+<div class="show-ng-cloak ot-splash" style="display: none;">
+    <object data="img/graphdb-splash.1ef2940889acddc03c7defb3f9f41f8d.svg"></object>
+    <div>GraphDB Workbench is loading...</div>
+</div>
+<script type="text/javascript" src="vendor.224241bf9d8f844fca28.bundle.js"></script><script type="text/javascript" src="main.5022644187abf4bf19e7.bundle.js"></script><script type="text/javascript" src="bundle.0d5ad692ba3eccb16214.bundle.js"></script></body>
+
+</html>

@@ -1,0 +1,787 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix lodedo: <https://w3id.org/lodedo/data/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+lodedo:factual_data {
+  lodedo:ART1 dcterms:created "5th month of 1856" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "Mount Fuji",
+          "boats",
+          "bridge",
+          "castle",
+          "hiroshige",
+          "japanese",
+          "volcano",
+          "water",
+          "woodblock" ;
+      dcterms:title "Nihonbashi, Clearing After Snow, No. 1 in One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.1_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART101 dcterms:created "11th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "Meditative",
+          "birds",
+          "brothel",
+          "calmness",
+          "cat",
+          "domestic",
+          "edo",
+          "fauna",
+          "festival",
+          "fields",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "japanese bobtail",
+          "meisho-e",
+          "minimal",
+          "mountain",
+          "nature",
+          "neko",
+          "prositution",
+          "tokyo",
+          "ukiyo-e",
+          "window",
+          "winter",
+          "woodblock",
+          "woodblock print" ;
+      dcterms:title "Asakusa Ricefields and Torinomachi Festival, No. 101 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.101_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART102 dcterms:created "5th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "5th month of 1857",
+          "Edo Period, Ansei Era",
+          "Japanese",
+          "animal",
+          "birds",
+          "calmness",
+          "crane",
+          "edo",
+          "fauna",
+          "flora",
+          "harmony",
+          "herons",
+          "hiroshige",
+          "landscape",
+          "meditative",
+          "minimal",
+          "nature",
+          "print",
+          "sky",
+          "trees",
+          "winter",
+          "woodblock" ;
+      dcterms:title "Minowa, Kanasugi, Mikawashima, No. 102 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.102_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART103 dcterms:created "2nd month of 1856" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "boats",
+          "bridge",
+          "calmness",
+          "edo",
+          "fauna",
+          "flora",
+          "green",
+          "harmony",
+          "hiroshige",
+          "landscape",
+          "meditative",
+          "minimal",
+          "mountains",
+          "nature",
+          "river",
+          "tokyo",
+          "trees",
+          "water",
+          "woodblock print" ;
+      dcterms:title "Senju Great Bridge, No. 103 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.103_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART107 dcterms:created "5th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "Kacho-e",
+          "Mt. Tsukuba",
+          "animal",
+          "bird",
+          "calmness",
+          "eagle",
+          "edo",
+          "fauna",
+          "flora",
+          "harmony",
+          "hawk",
+          "hiroshige",
+          "japanese",
+          "landscape",
+          "meditative",
+          "minimal",
+          "mountain",
+          "nature",
+          "night",
+          "nishiki-e",
+          "raptor",
+          "snow",
+          "water",
+          "wing",
+          "winter",
+          "woodblock" ;
+      dcterms:title "Fukagawa Susaki and Jumantsubo, No. 107 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.107_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART112 dcterms:created "12th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "ASAKUSA",
+          "Edo Period, Ansei Era",
+          "Japan",
+          "Mt. Atago",
+          "TEMPLE",
+          "bamboo",
+          "birds",
+          "calmness",
+          "city",
+          "fauna",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "ice",
+          "japanese",
+          "landscape",
+          "meditative",
+          "minimal",
+          "nature",
+          "river",
+          "snow",
+          "tokyo",
+          "walking",
+          "winter",
+          "woodblock print" ;
+      dcterms:title "Atagoshita and Yabu Lane, No. 112 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.112_large_SL1.jpg"^^xsd:anyURI .
+
+  lodedo:ART117 dcterms:created "4th month of 1856" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "Edo Period, Ansei Era",
+          "Woodblock print",
+          "edo",
+          "hiroshige",
+          "japanese",
+          "lake",
+          "landscape",
+          "lantern",
+          "print",
+          "shrine",
+          "snow",
+          "walking",
+          "water",
+          "winter",
+          "woodblock" ;
+      dcterms:title "Hilltop View, Yushima Tenjin Shrine, No. 117 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.117_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART118 dcterms:created "9th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th century",
+          "19thC",
+          "Hiroshige",
+          "Japanese",
+          "animal",
+          "darkness",
+          "edo",
+          "fire",
+          "fox",
+          "inari",
+          "landscape",
+          "mythological",
+          "night",
+          "print",
+          "stars",
+          "tokyo",
+          "trees",
+          "winter",
+          "woodblock",
+          "woodblock print",
+          "woodcut" ;
+      dcterms:title "New Year's Eve Foxfires at the Changing Tree, Oji, No. 118 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.118_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART12 dcterms:created "10th month of 1858" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "10th month of 1858",
+          "19th Century",
+          "19thC",
+          "Edo Period, Ansei Era",
+          "Woodblock print",
+          "calmness",
+          "city",
+          "clouds",
+          "crows",
+          "fauna",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "meditative",
+          "minimal",
+          "nature",
+          "people",
+          "shrine",
+          "woodblock" ;
+      dcterms:title "Ueno Yamashita, No. 12 in One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.12_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART13 dcterms:created "9th month of 1856" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "Edo",
+          "Japanese",
+          "Tokyo",
+          "buildings",
+          "city",
+          "clouds",
+          "hiroshige",
+          "street",
+          "woodblock",
+          "woodblock print" ;
+      dcterms:title "Shitaya Hirokoji, No. 13 in One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.13_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART2 dcterms:created "1st month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "Japanese",
+          "Tokyo",
+          "calmness",
+          "edo",
+          "fauna",
+          "festival",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "kites",
+          "meditative",
+          "minimal",
+          "nature",
+          "street",
+          "water",
+          "woodblock" ;
+      dcterms:title "Kasumigaseki, No. 2 in One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.2_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART21 dcterms:created "8th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "8th month of 1857",
+          "Edo",
+          "Edo Period, Ansei Era",
+          "Mt. Atago",
+          "Woodblock print",
+          "boats",
+          "ceremony",
+          "costume",
+          "hiroshige",
+          "mountain",
+          "paddle",
+          "religion",
+          "temple",
+          "water" ;
+      dcterms:title "Mount Atago, Shiba, No. 21 in One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.21_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART30 dcterms:created "11th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "1857",
+          "19th Century",
+          "19thC",
+          "Blossom",
+          "Edo",
+          "Hiroshige",
+          "IMLS",
+          "Japanese",
+          "Japanese Art",
+          "Japanese print",
+          "No. 30 from One Hundred Famous Views of Edo",
+          "Print",
+          "Tokyo",
+          "Tree",
+          "Woodblock",
+          "blossoms",
+          "calmness",
+          "composition",
+          "cut-off",
+          "famous",
+          "fauna",
+          "flora",
+          "flowering",
+          "flowers",
+          "harmony",
+          "japan",
+          "landscape",
+          "meditative",
+          "minimal",
+          "nature",
+          "orchard",
+          "plum",
+          "plum blossom",
+          "red",
+          "red sky",
+          "spring",
+          "trees",
+          "woodblock print" ;
+      dcterms:title "Plum Estate, Kameido (Kameido Umeyashiki), No. 30 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.30_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART39 dcterms:created "8th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "Hiroshige",
+          "Mt. Fuji",
+          "Nature",
+          "animals",
+          "aquatic",
+          "birds",
+          "boat",
+          "bridge",
+          "calm",
+          "earthy",
+          "fauna",
+          "flora",
+          "fukei-ga",
+          "grass",
+          "green",
+          "harmony",
+          "meditative",
+          "meisho-e",
+          "minimal",
+          "nishiki-e",
+          "plant",
+          "river",
+          "season",
+          "temple",
+          "water",
+          "woman",
+          "woodblock print." ;
+      dcterms:title "Distant View of Kinryuzan Temple and Azuma Bridge (Azumabashi Kinryuzan Enbo), No. 39 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.39_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART46 dcterms:created "10th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "Edo",
+          "Hiroshige",
+          "Japanese",
+          "Tokyo",
+          "birds",
+          "blue water",
+          "boat",
+          "ferry",
+          "perspective",
+          "print",
+          "river",
+          "summer",
+          "water",
+          "woodblock",
+          "yellow-sky" ;
+      dcterms:title "Yoroi Ferry, Koami-cho (Yoroi no Watashi Koami-cho), No. 46 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.46_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART48 dcterms:created "5th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "5th month of 1857",
+          "Edo",
+          "Edo Period, Ansei Era",
+          "Hiroshige",
+          "Japanese",
+          "Tokyo",
+          "Utagawa",
+          "Woodblock print",
+          "animal",
+          "bridge",
+          "calmness",
+          "city",
+          "fauna",
+          "festival",
+          "fish",
+          "flora",
+          "harmony",
+          "koi",
+          "landscape",
+          "meditative",
+          "minimal",
+          "nature",
+          "summer",
+          "windcatcher" ;
+      dcterms:title "Suido Bridge and Surugadai (Suidobashi Surugadai), No. 48 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.48_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART58 dcterms:created "9th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "9th month of 1857",
+          "Boat",
+          "Edo",
+          "Hiroshige",
+          "Meditative",
+          "Tokyo",
+          "Utagawa",
+          "Woodblock print",
+          "barge",
+          "boats",
+          "bridge",
+          "calmness",
+          "harmony",
+          "landscape",
+          "meisho-e",
+          "minimal",
+          "nature",
+          "rain",
+          "river",
+          "showers",
+          "summer",
+          "ukiyo-e",
+          "umbrella",
+          "woodblock" ;
+      dcterms:title "Sudden Shower Over Shin-Ohashi Bridge and Atake (Ohashi Atake no Yudachi), No. 58 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.58_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART62 dcterms:created "1st month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "Edo",
+          "Hiroshige",
+          "Nature",
+          "Tokyo",
+          "Utagawa",
+          "animals",
+          "aquatic",
+          "bird",
+          "birds",
+          "boats",
+          "bridge",
+          "calm",
+          "clouds",
+          "earthy",
+          "fauna",
+          "flora",
+          "fukei-ga",
+          "grass",
+          "green",
+          "harmony",
+          "landscape",
+          "meditative",
+          "minimal",
+          "nishiki-e",
+          "plant",
+          "rain",
+          "season",
+          "sky",
+          "water",
+          "woodblock" ;
+      dcterms:title "Komakata Hall and Azuma Bridge, No. 62 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.62_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART64 dcterms:created "5th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "5th month of 1857",
+          "Edo",
+          "Edo Period, Ansei Era",
+          "Hiroshige",
+          "Nature",
+          "Tokyo",
+          "Utagawa",
+          "Woodblock print",
+          "earth tones",
+          "earthy",
+          "fauna",
+          "flora",
+          "flowers",
+          "fukei-ga",
+          "garden",
+          "grass",
+          "green",
+          "iris",
+          "japanese",
+          "kacho-e",
+          "landscape",
+          "marsh",
+          "meditative",
+          "nishiki-e",
+          "reeds",
+          "sky",
+          "summer",
+          "ukiyo-e",
+          "water" ;
+      dcterms:title "Horikiri Iris Garden (Horikiri no Hanashobu), No. 64 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.64_large_SL1.jpg"^^xsd:anyURI .
+
+  lodedo:ART75 dcterms:created "11th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "Meditative",
+          "Mt. Fuji",
+          "Tokyo",
+          "autumn",
+          "calmness",
+          "edo",
+          "fabric",
+          "fauna",
+          "flora",
+          "hanging",
+          "harmony",
+          "hiroshige",
+          "japanese",
+          "landscape",
+          "meisho-e",
+          "minimal",
+          "mountain",
+          "nature",
+          "print",
+          "ukiyo-e",
+          "utagawa",
+          "wind",
+          "woodblock" ;
+      dcterms:title "Dyers' Quarter, Kanda, No. 75 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.75_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART76 dcterms:created "12th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "12th month of 1857",
+          "19th Century",
+          "19thC",
+          "Edo Period, Ansei Era",
+          "Japan",
+          "Tokyo",
+          "Woodblock print",
+          "bamboo",
+          "boat",
+          "boatman",
+          "bridge",
+          "calmness",
+          "city",
+          "edo",
+          "fauna",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "japanese",
+          "meditative",
+          "meisho-e",
+          "minimal",
+          "moon",
+          "nature",
+          "night",
+          "transport",
+          "transportation",
+          "ukiyo-e",
+          "walking",
+          "water" ;
+      dcterms:title "Bamboo Yards, Kyobashi Bridge, No. 76 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.76_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART8 dcterms:created "9th month of 1856" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "Edo",
+          "Tokyo",
+          "city",
+          "clouds",
+          "fuji",
+          "hiroshige",
+          "mount",
+          "street",
+          "woodblock",
+          "woodblock print" ;
+      dcterms:title "Suruga-cho, No. 8 in One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.8_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART81 dcterms:created "4th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "Komagata",
+          "Meditative",
+          "Tokyo",
+          "autumn",
+          "boats",
+          "calmness",
+          "cart",
+          "edo",
+          "fauna",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "japanese",
+          "landscape",
+          "meisho-e",
+          "minimal",
+          "nature",
+          "pig",
+          "print",
+          "rainbow",
+          "ukiyo-e",
+          "water",
+          "wheel",
+          "woodblock" ;
+      dcterms:title "Ushimachi, Takanawa, No. 81 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.81_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART86 dcterms:created "11th month of 1857" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "11th month of 1857",
+          "19th Century",
+          "Edo Period, Ansei Era",
+          "Meditative",
+          "Tokyo",
+          "Woodblock print",
+          "animal",
+          "autumn",
+          "buildings",
+          "calmness",
+          "edo",
+          "fauna",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "horse",
+          "japanese",
+          "meisho-e",
+          "minimal",
+          "nature",
+          "perspective",
+          "print",
+          "shoes",
+          "ukiyo-e",
+          "utagawa",
+          "woodblock" ;
+      dcterms:title "Naito Shinjuku, Yotsuya, No. 86 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.86_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART89 dcterms:created "7th month of 1856" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "19thC",
+          "7th month of 1856",
+          "Edo Period, Ansei Era",
+          "Meditative",
+          "Tokyo",
+          "bent",
+          "bent branch",
+          "branch",
+          "calmness",
+          "circle",
+          "edo",
+          "fauna",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "japanese",
+          "landscape",
+          "leaves",
+          "meisho-e",
+          "minimal",
+          "nature",
+          "print",
+          "sky",
+          "tree",
+          "ukiyo-e",
+          "water",
+          "woodblock",
+          "woodblock print" ;
+      dcterms:title "Moon Pine, Ueno, No. 89 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.89_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART90 dcterms:created "9th month of 1856" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "Nature",
+          "animals",
+          "aquatic",
+          "autumn",
+          "birds",
+          "building",
+          "calm",
+          "city",
+          "dark",
+          "earthy",
+          "edo",
+          "fauna",
+          "flora",
+          "grass",
+          "green",
+          "harmony",
+          "hiroshige",
+          "japanese",
+          "meditative",
+          "meisho-e",
+          "minimal",
+          "moon",
+          "night",
+          "nishiki-e",
+          "plant",
+          "print",
+          "promenade",
+          "season",
+          "sky",
+          "tokyo",
+          "viewing",
+          "water",
+          "woodblock" ;
+      dcterms:title "Night View of Saruwaka-machi (Saruwaka-machi Yoru no Kei), No. 90 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.90_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART98 dcterms:created "8th month of 1858" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:subject "19th Century",
+          "IMLS",
+          "Meditative",
+          "action",
+          "autumn",
+          "boat",
+          "bridge",
+          "calmness",
+          "dock",
+          "edo",
+          "fauna",
+          "fireworks",
+          "flora",
+          "harmony",
+          "hiroshige",
+          "meisho-e",
+          "minimal",
+          "nature",
+          "night",
+          "pregnant moment",
+          "print",
+          "river",
+          "ukiyo-e",
+          "watching",
+          "woodblock",
+          "woodblock print" ;
+      dcterms:title "Fireworks at Ryogoku (Ryogoku Hanabi), No. 98 from One Hundred Famous Views of Edo" ;
+      schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.98_PS1.jpg"^^xsd:anyURI .
+
+  lodedo:ART99 dcterms:created "1856" ;
+      dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
+      dcterms:title "Kinryūsan Temple at Asakusa, No. 99 from One Hundred Famous Views of Edo" ;
+      schema:image "https://images.metmuseum.org/CRDImages/as/original/DP121552.jpg"^^xsd:anyURI .
+
+}

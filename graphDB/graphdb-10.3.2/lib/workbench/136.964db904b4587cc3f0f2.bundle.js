@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[136],{58:function(n,t,i){"use strict";i.r(t),i.d(t,"YasrUtils",(function(){return o}));const o=function(){const n=function(){return{enableColumnResizingOnWindowWidth:768}};return{getYasrConfiguration:function(t){const i={table:n()};return angular.extend({},i,t)},getDefaultTablePluginConfiguration:n}}()}}]);
