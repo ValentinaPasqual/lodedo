@@ -26,8 +26,9 @@ sh setup.sh
 ```
 python backend-setup.py
 ```
-
 - Run the web-app
 ```
-- Run **app.py**
+python app.py
+```
 - Open the application in your browser: **http://localhost:8000/**
+
