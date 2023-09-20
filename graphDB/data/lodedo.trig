@@ -57432,7 +57432,6 @@ GRAPH <https://w3id.org/lodedo/data/factual_data> {
   lodedo:smith1987AndTredeBichler2010	rdfs:label "Smith (1987) and Trede and Bichler (2010)".
   lodedo:nationalMuseumOfScotland	rdfs:label "National Museum of Scotland".
   lodedo:universityOfMichigamLibraryDigitalCollections rdfs:label "Digital Collections of the University Of Michigam Library".
-  lodedo:universityOfMichigamLibraryDigitalCollections	rdfs:label "University Of Michigam Library Digital Collections".
   lodedo:satō2009 rdfs:label "Satō (2009)".
   lodedo:fahrBecker2007 rdfs:label "Fahr and Becker (2007)".
   lodedo:automaticInterpreter rdfs:label "Automatic Interpreter".

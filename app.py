@@ -97,9 +97,6 @@ def artwork(artworkID):
     artwork_conj_query = prefixes + """SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; icon:recognizedImage ?reconImage. ?reconImage icon:hasSymbol ?symbol.} ?symbol sim:hasContext ?context; sim:hasSimulacrum ?simulacrum. ?context rdfs:label ?contextLabel}"""
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
-    for row in artwork_conj_result['results']['bindings']:
-        print(row)
-
     auto_ints = {}
     for row in artwork_conj_result['results']['bindings']:
         if row['g']['value'] not in auto_ints:
@@ -157,14 +154,6 @@ def graph(graphID):
 
         return result
 
-    int_metadata_query = prefixes + "SELECT DISTINCT ?artwork ?agentLabel WHERE {graph lodedo:" + graphID+ " {?interpretation icon:aboutWorkOfArt ?artwork; dul:includesAgent ?agent.} ?agent rdfs:label ?agentLabel}"
-    int_metadata_result = sparql_api.execute_get_select_query(repository, query=int_metadata_query)
-
-    other_ints_to_compare = {}
-    for row in int_metadata_result['results']['bindings']:
-        comp_graphs_query = prefixes + "SELECT DISTINCT ?g ?agentLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt <"+row['artwork']['value']+">; dul:includesAgent ?agent} ?agent rdfs:label ?agentLabel. FILTER(?g != lodedo:"+graphID+")}"
-        other_ints_to_compare = sparql_api.execute_get_select_query(repository, query=comp_graphs_query)
-
     def scholars_interpretations_builder(graphID):
         scholar_ints, symbol_ints = {}, {}
 
@@ -189,17 +178,20 @@ def graph(graphID):
 
         return scholar_ints, symbol_ints
 
+    int_metadata_result = {}
+    int_metadata_query = prefixes + "SELECT DISTINCT ?artwork ?agentLabel ?title WHERE {graph lodedo:" + graphID+ " {?interpretation icon:aboutWorkOfArt ?artwork; dul:includesAgent ?agent.} ?agent rdfs:label ?agentLabel. ?artwork dcterms:title ?title}"
+    int_metadata_result = sparql_api.execute_get_select_query(repository, query=int_metadata_query)
+
+    other_ints_to_compare = {}
+    for row in int_metadata_result['results']['bindings']:
+        comp_graphs_query = prefixes + "SELECT DISTINCT ?g ?agentLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt <"+row['artwork']['value']+">; dul:includesAgent ?agent} ?agent rdfs:label ?agentLabel. FILTER(?g != lodedo:"+graphID+")}"
+        other_ints_to_compare = sparql_api.execute_get_select_query(repository, query=comp_graphs_query)
+
     scholar_ints, symbol_ints = {}, {}
     scholar_ints, symbol_ints = scholars_interpretations_builder(graphID)
+    comp_scholar_ints, comp_symbol_ints = {},{}
 
-    comp_scholar_ints, comp_symbol_ints = {}, {}
-    if request.method == 'POST':
-        selected_value = request.form.get('dropdown')
-        comp_scholar_ints, comp_symbol_ints = scholars_interpretations_builder(selected_value)
-    else:
-        comp_scholar_ints, comp_symbol_ints = {},{}
-
-    return render_template('graphs.html', int_metadata_result=int_metadata_result, graphID=graphID, other_ints_to_compare=other_ints_to_compare, scholar_ints=scholar_ints, symbol_ints=symbol_ints, comp_scholar_ints=comp_scholar_ints, comp_symbol_ints=comp_symbol_ints)
+    return render_template('graphs.html', int_metadata_result=int_metadata_result, graphID=graphID, other_ints_to_compare=other_ints_to_compare, scholar_ints=scholar_ints, symbol_ints=symbol_ints, comp_scholar_ints={}, comp_symbol_ints={})
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -222,7 +214,11 @@ def index():
 
 
         if 'icon:recognizedImage' in facet:
-            query = prefixes + """SELECT * WHERE {graph ?g { ?subj """ + facet + """ ?image }. ?image ?pred ?obj. ?obj a ?class; rdfs:label ?label. ?class rdfs:label ?classLabel }"""
+            query = prefixes + """
+            SELECT (count(?obj) as ?n) ?obj ?class ?label ?classLabel
+            WHERE {graph ?g { ?subj """+ facet +""" ?image }. ?image ?pred ?obj. ?obj a ?class; rdfs:label ?label. ?class rdfs:label ?classLabel }
+            GROUP BY ?obj ?class ?label ?classLabel ORDER BY DESC (?n)
+            """
 
         if 'icon:recognizedArtisticMotif' in facet:
             query = prefixes + """SELECT * WHERE {graph ?g { ?subj """ + facet + """ ?motif } ?motif icon:hasFactualMeaning ?obj. ?obj a ?class; rdfs:label ?label. ?class rdfs:label ?classLabel }"""

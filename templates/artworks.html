@@ -62,19 +62,18 @@
         <h3 class="fw-bold"><span class="badge bg-warning text-dark">{{scholars_ints|length}}</span> available scholarly interpretations for this item</h3>
         <h6 class="fw-bold">Discover the interpretations of this artwork by different scholars and institutions</h6>
 
-              <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-        {% for int,author in scholars_ints.items() %}
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+          {% for int,author in scholars_ints.items() %}
 
-        <div class="col">
-      <div class="card">
-         <div class="card-body">
-           <h5 class="card-title fw-bold">{{author}}</h5>
-        <p class="card-text"><a href={{int|replace('https://w3id.org/lodedo/data/', '../scholarlyInterpretations/')}} class="btn-outline-dark float-end d-1">>></a></p>
-      </div>
-      </div>
-      </div>
-      {% endfor %}
-
+            <div class="col">
+              <div class="card">
+                 <div class="card-body">
+                   <h5 class="card-title fw-bold">{{author}}</h5>
+                <p class="card-text"><a href={{int|replace('https://w3id.org/lodedo/data/', '../scholarlyInterpretations/')}} class="btn-outline-dark float-end d-1">>></a></p>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
       </div>
     </div>
     </div>

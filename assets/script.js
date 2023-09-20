@@ -67,11 +67,6 @@ dropdowns.forEach(function(dropdown) {
  });
 
 
-// FORM FOR COMPARING SCHOLARLY interpretations
-function submitForm() {
-            document.getElementById("compare-form").submit();
-        }
-
 // SEARCH FILTER IN facets
 function searchFilterFunction(inputField) {
   var filter, ul, ul_id, li, i, txtValue;

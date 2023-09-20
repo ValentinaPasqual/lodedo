@@ -13,9 +13,10 @@ body  {
 #sidebar {min-width: 20vw; transition: width 0.3s ease-in-out; /* Smooth transition for width */}
 .accordion-body {padding:0px}
 
-.badge-Event {background-color:#A1CCD1}
-.badge-Symbol, .badge-NaturalElement {background-color:#F4F2DE}
-.badge-Place, .badge-Action {background-color:#E9B384}
+.badge-Event {background-color:#97BB30}
+.badge-Symbol, .badge-NaturalElement {background-color:#00897A}
+.badge-Place, .badge-Action {background-color:#006877}
+.badge-NamedObject {background-color:#2F4858}
 
 /* Custom style for the checked checkbox label */
 input[type="checkbox"]:checked {
@@ -256,3 +257,6 @@ h1 h2 h3 h4 h5 h6 {color:black !important}
 nav {color:black !important}
 
 .bg-warning-disabled {background-color:color:#21252924 !important}
+
+#breadcrumbs {background: #ffc107}
+div#breadcrumbs a {color:black}
