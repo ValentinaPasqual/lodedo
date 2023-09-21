@@ -100,13 +100,13 @@ def artwork(artworkID):
     auto_ints = {}
     for row in artwork_conj_result['results']['bindings']:
         if row['g']['value'] not in auto_ints:
-            i = 1
             symb_list = [row['simulacrum']['value']]
-            auto_ints.update({row['g']['value']:[row['contextLabel']['value'], i, symb_list]})
+            auto_ints.update({row['g']['value']:[row['contextLabel']['value'], 1, symb_list]})
         else:
-            i+=1
             if row['simulacrum']['value'] not in symb_list:
                 symb_list.append(row['simulacrum']['value'])
+                i = auto_ints[row['g']['value']][1]
+                i+=1
                 auto_ints.update({row['g']['value']:[row['contextLabel']['value'], i, symb_list]})
 
     return render_template('artworks.html', artworkID=artworkID, artwork_factual_result=artwork_factual_result, auto_ints=auto_ints, scholars_ints=scholars_ints, preico_interpretations=preico_interpretations, artwork_conj_result=artwork_conj_result)
@@ -115,7 +115,7 @@ def artwork(artworkID):
 def conj(conjID):
 
     # gets the set of automatic interpretations
-    artwork_conj_result, auto_int_res = {}, {}
+    artwork_conj_result, auto_int_res, motifs_list = {}, {}, []
     artwork_conj_query = prefixes + "SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt ?art} FILTER regex(str(?g),\"" + conjID + "\")}"
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
@@ -128,6 +128,7 @@ def conj(conjID):
 
         # for each interpretation gets the symbol
         for row2 in conj_triples_result['results']['bindings']:
+            motifs_list.append(row2['meaningLabel']['value'])
             if 'symbol' in row2:
                 symbol_query = prefixes + "SELECT DISTINCT ?symbolLabel ?symbolClass ?simulacrumLabel ?realityCounterpartLabel ?symbolClass WHERE {<" + row2['symbol']['value'] + "> sim:hasContext ?context; rdfs:label ?symbolLabel; a ?symbolClass; sim:hasRealityCounterpart ?realityCounterpart; sim:hasSimulacrum ?simulacrum. ?realityCounterpart rdfs:label ?realityCounterpartLabel. OPTIONAL {?simulacrum rdfs:label ?simulacrumLabel}. OPTIONAL {?simulacrum owl:sameAs ?simulacrumHR. ?simulacrumHR rdfs:label ?simulacrumLabel} FILTER (?symbolClass != icon:Symbol)}"
                 symbol_result = sparql_api.execute_get_select_query(repository, query=symbol_query)
@@ -136,7 +137,9 @@ def conj(conjID):
                 except:
                     None
 
-    return render_template('conjectures.html', conjID=conjID, artwork_conj_result=artwork_conj_result, auto_int_res=auto_int_res)
+        motifs_list = list(set(motifs_list))
+
+    return render_template('conjectures.html', conjID=conjID, artwork_conj_result=artwork_conj_result, auto_int_res=auto_int_res, motifs_list=motifs_list)
 
 @app.route('/scholarlyInterpretations/<graphID>', methods=["GET", "POST"])
 def graph(graphID):

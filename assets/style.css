@@ -17,10 +17,11 @@ body  {
 .badge-Symbol, .badge-NaturalElement {background-color:#00897A}
 .badge-Place, .badge-Action {background-color:#006877}
 .badge-NamedObject {background-color:#2F4858}
+.badge-Character {background-color:#7C9D96}
 
 /* Custom style for the checked checkbox label */
 input[type="checkbox"]:checked {
-    accent-color: #7C9D96;
+    accent-color: #006877;
 }
 
 
@@ -260,3 +261,52 @@ nav {color:black !important}
 
 #breadcrumbs {background: #ffc107}
 div#breadcrumbs a {color:black}
+
+/* HORIZONTAL ACCORDION */
+
+.container-horizontal-accordion {
+     display: flex;
+     width: 100%;
+     padding: 0;
+     height: 80vh !important;
+}
+ .choice{
+     height: 80vh !important;
+     box-sizing: border-box;
+     padding: 0;
+     overflow: hidden;
+     float: left;
+     transition: width 0.2s;
+     border-radius:3px;
+}
+ .expand{
+     width: 65%;
+     height: 80vh !important;
+     overflow-y: auto !important;
+}
+ .unset{
+      height: 80vh !important;
+     width: 16%;
+     color: black !important;
+     background-color: black !important;
+}
+ .small{
+     width: 5%;
+     background-color: black !important;
+     height: 80vh !important;
+}
+ .small>div{
+     opacity: 0;
+     height: 80vh !important;
+}
+ .unset > div > p{
+     opacity: 0;
+}
+ .expand > div {
+     transition-delay: 200ms;
+     opacity: 1;
+     height: 80vh !important;
+}
+
+.card-body-horizontal-accordion {height: 80vh !important;}
+.containter-horizontal-accordion {height: 80vh !important;}

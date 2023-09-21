@@ -108,7 +108,11 @@
       <div class="card symbol-interpretation card-enabled" data-catalog-uris="{{ context[2] }}">
          <div class="card-body">
            <h5 class="card-title fw-bold">{{context[0]}} context</h5>
-           <p><span class="badge bg-warning text-dark">{{context[1]}}</span> symbolic meanings for this artwork</p>
+           {% if context[1] == 1 %}
+           <p><span class="badge bg-warning text-dark">{{context[1]}}</span> artistic motif recognized for this artwork</p>
+           {%else%}
+           <p><span class="badge bg-warning text-dark">{{context[1]}}</span> artistic motifs recognized for this artwork</p>
+           {% endif %}
         <p class="card-text"><a href={{int|replace('conj-https://w3id.org/lodedo/data/', '../conjectures/')}} class="btn-outline-dark float-end d-1">>></a></p>
       </div>
       </div>
