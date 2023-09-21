@@ -10,7 +10,7 @@ body  {
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
 }
 
-#sidebar {min-width: 20vw; transition: width 0.3s ease-in-out; /* Smooth transition for width */}
+#sidebar {min-width: 20vw; transition: width 0.3s ease-in-out; max-height:90vh !important/* Smooth transition for width */}
 .accordion-body {padding:0px}
 
 .badge-Event {background-color:#97BB30}
