@@ -42,6 +42,10 @@
 
   <div class="container containter-horizontal-accordion mt-5">
 
+    <div id="breadcrumbs" class="text-end badge btn-outline-dark d-2 mb-3">
+      <a href={{ artwork_conj_result.results.bindings[0].artwork.value|replace('https://w3id.org/lodedo/data/', '../artworks/')}}><< Go back to the artwork</a>
+    </div>
+
 
     <div class="container-horizontal-accordion horizontal-accordion">
       {% for motif in motifs_list %}

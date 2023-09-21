@@ -116,7 +116,7 @@ def conj(conjID):
 
     # gets the set of automatic interpretations
     artwork_conj_result, auto_int_res, motifs_list = {}, {}, []
-    artwork_conj_query = prefixes + "SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt ?art} FILTER regex(str(?g),\"" + conjID + "\")}"
+    artwork_conj_query = prefixes + "SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt ?artwork} FILTER regex(str(?g),\"" + conjID + "\")}"
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
     # gets the image recognition data
