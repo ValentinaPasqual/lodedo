@@ -26,10 +26,10 @@
         <div class="d-flex">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link fw-bold" href="../">Catalogue</a>
+            <a class="nav-link fw-bold" href="#">Catalogue</a>
           </li>
           <li class="nav-item d-flex">
-            <a class="nav-link fw-bold" href="../assets/contacts.html">Contacts</a>
+            <a class="nav-link fw-bold" href="assets/contacts.html">Contacts</a>
           </li>
           <li class="nav-item">
         </ul>
@@ -106,7 +106,7 @@
                         <img class="img-fluid" src="{{ card.img_src }}" alt="{{ card.img_src }}">
                         <h5 class="fw-bold pt-3">{{card.title}}</h5>
                         <p class="fw-bold">Creation date: {{card.date}}</p>
-                        <a href={{card.item|replace("https://w3id.org/lodedo/data/","artworks/") }} class="btn-outline-dark d-1">View Details</a>
+                        <a href={{card.item|replace("https://w3id.org/lodedo/data/", "") }} class="btn-outline-dark d-1">View Details</a>
                       </div>
                     </div>
                   </div>
@@ -117,6 +117,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="assets/script.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-73SQ61K2RE"></script>
 
 </body>
 </html>

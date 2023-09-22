@@ -2,9 +2,12 @@
 @prefix lodedo: <https://w3id.org/lodedo/data/> .
 @prefix schema: <http://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix lodedo-conj: <https://w3id.org/lodedo/data/conjectures/> .
+@prefix lodedo-graph: <https://w3id.org/lodedo/data/graphs/> .
+@prefix lodedo-art: <https://w3id.org/lodedo/data/artworks/> .
 
 lodedo:factual_data {
-  lodedo:ART1 dcterms:created "5th month of 1856" ;
+  lodedo-art:ART1 dcterms:created "5th month of 1856" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "Mount Fuji",
@@ -19,7 +22,7 @@ lodedo:factual_data {
       dcterms:title "Nihonbashi, Clearing After Snow, No. 1 in One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.1_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART101 dcterms:created "11th month of 1857" ;
+  lodedo-art:ART101 dcterms:created "11th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "Meditative",
@@ -51,7 +54,7 @@ lodedo:factual_data {
       dcterms:title "Asakusa Ricefields and Torinomachi Festival, No. 101 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.101_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART102 dcterms:created "5th month of 1857" ;
+  lodedo-art:ART102 dcterms:created "5th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "5th month of 1857",
@@ -79,7 +82,7 @@ lodedo:factual_data {
       dcterms:title "Minowa, Kanasugi, Mikawashima, No. 102 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.102_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART103 dcterms:created "2nd month of 1856" ;
+  lodedo-art:ART103 dcterms:created "2nd month of 1856" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -105,7 +108,7 @@ lodedo:factual_data {
       dcterms:title "Senju Great Bridge, No. 103 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.103_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART107 dcterms:created "5th month of 1857" ;
+  lodedo-art:ART107 dcterms:created "5th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "Kacho-e",
@@ -137,7 +140,7 @@ lodedo:factual_data {
       dcterms:title "Fukagawa Susaki and Jumantsubo, No. 107 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.107_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART112 dcterms:created "12th month of 1857" ;
+  lodedo-art:ART112 dcterms:created "12th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -169,7 +172,7 @@ lodedo:factual_data {
       dcterms:title "Atagoshita and Yabu Lane, No. 112 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.112_large_SL1.jpg"^^xsd:anyURI .
 
-  lodedo:ART117 dcterms:created "4th month of 1856" ;
+  lodedo-art:ART117 dcterms:created "4th month of 1856" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "Edo Period, Ansei Era",
@@ -190,7 +193,7 @@ lodedo:factual_data {
       dcterms:title "Hilltop View, Yushima Tenjin Shrine, No. 117 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.117_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART118 dcterms:created "9th month of 1857" ;
+  lodedo-art:ART118 dcterms:created "9th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th century",
           "19thC",
@@ -216,7 +219,7 @@ lodedo:factual_data {
       dcterms:title "New Year's Eve Foxfires at the Changing Tree, Oji, No. 118 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.118_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART12 dcterms:created "10th month of 1858" ;
+  lodedo-art:ART12 dcterms:created "10th month of 1858" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "10th month of 1858",
           "19th Century",
@@ -240,7 +243,7 @@ lodedo:factual_data {
       dcterms:title "Ueno Yamashita, No. 12 in One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.12_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART13 dcterms:created "9th month of 1856" ;
+  lodedo-art:ART13 dcterms:created "9th month of 1856" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -257,7 +260,7 @@ lodedo:factual_data {
       dcterms:title "Shitaya Hirokoji, No. 13 in One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.13_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART2 dcterms:created "1st month of 1857" ;
+  lodedo-art:ART2 dcterms:created "1st month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -280,7 +283,7 @@ lodedo:factual_data {
       dcterms:title "Kasumigaseki, No. 2 in One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.2_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART21 dcterms:created "8th month of 1857" ;
+  lodedo-art:ART21 dcterms:created "8th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -301,7 +304,7 @@ lodedo:factual_data {
       dcterms:title "Mount Atago, Shiba, No. 21 in One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.21_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART30 dcterms:created "11th month of 1857" ;
+  lodedo-art:ART30 dcterms:created "11th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "1857",
           "19th Century",
@@ -344,7 +347,7 @@ lodedo:factual_data {
       dcterms:title "Plum Estate, Kameido (Kameido Umeyashiki), No. 30 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.30_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART39 dcterms:created "8th month of 1857" ;
+  lodedo-art:ART39 dcterms:created "8th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "Hiroshige",
@@ -377,7 +380,7 @@ lodedo:factual_data {
       dcterms:title "Distant View of Kinryuzan Temple and Azuma Bridge (Azumabashi Kinryuzan Enbo), No. 39 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.39_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART46 dcterms:created "10th month of 1857" ;
+  lodedo-art:ART46 dcterms:created "10th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "Edo",
@@ -398,7 +401,7 @@ lodedo:factual_data {
       dcterms:title "Yoroi Ferry, Koami-cho (Yoroi no Watashi Koami-cho), No. 46 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.46_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART48 dcterms:created "5th month of 1857" ;
+  lodedo-art:ART48 dcterms:created "5th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "5th month of 1857",
@@ -428,7 +431,7 @@ lodedo:factual_data {
       dcterms:title "Suido Bridge and Surugadai (Suidobashi Surugadai), No. 48 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.48_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART58 dcterms:created "9th month of 1857" ;
+  lodedo-art:ART58 dcterms:created "9th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "9th month of 1857",
@@ -458,7 +461,7 @@ lodedo:factual_data {
       dcterms:title "Sudden Shower Over Shin-Ohashi Bridge and Atake (Ohashi Atake no Yudachi), No. 58 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.58_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART62 dcterms:created "1st month of 1857" ;
+  lodedo-art:ART62 dcterms:created "1st month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -495,7 +498,7 @@ lodedo:factual_data {
       dcterms:title "Komakata Hall and Azuma Bridge, No. 62 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.62_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART64 dcterms:created "5th month of 1857" ;
+  lodedo-art:ART64 dcterms:created "5th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -531,7 +534,7 @@ lodedo:factual_data {
       dcterms:title "Horikiri Iris Garden (Horikiri no Hanashobu), No. 64 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.64_large_SL1.jpg"^^xsd:anyURI .
 
-  lodedo:ART75 dcterms:created "11th month of 1857" ;
+  lodedo-art:ART75 dcterms:created "11th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -561,7 +564,7 @@ lodedo:factual_data {
       dcterms:title "Dyers' Quarter, Kanda, No. 75 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.75_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART76 dcterms:created "12th month of 1857" ;
+  lodedo-art:ART76 dcterms:created "12th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "12th month of 1857",
           "19th Century",
@@ -596,7 +599,7 @@ lodedo:factual_data {
       dcterms:title "Bamboo Yards, Kyobashi Bridge, No. 76 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.76_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART8 dcterms:created "9th month of 1856" ;
+  lodedo-art:ART8 dcterms:created "9th month of 1856" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -613,7 +616,7 @@ lodedo:factual_data {
       dcterms:title "Suruga-cho, No. 8 in One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.8_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART81 dcterms:created "4th month of 1857" ;
+  lodedo-art:ART81 dcterms:created "4th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -644,7 +647,7 @@ lodedo:factual_data {
       dcterms:title "Ushimachi, Takanawa, No. 81 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.81_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART86 dcterms:created "11th month of 1857" ;
+  lodedo-art:ART86 dcterms:created "11th month of 1857" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "11th month of 1857",
           "19th Century",
@@ -675,7 +678,7 @@ lodedo:factual_data {
       dcterms:title "Naito Shinjuku, Yotsuya, No. 86 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.86_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART89 dcterms:created "7th month of 1856" ;
+  lodedo-art:ART89 dcterms:created "7th month of 1856" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "19thC",
@@ -709,7 +712,7 @@ lodedo:factual_data {
       dcterms:title "Moon Pine, Ueno, No. 89 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.89_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART90 dcterms:created "9th month of 1856" ;
+  lodedo-art:ART90 dcterms:created "9th month of 1856" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "Nature",
@@ -748,7 +751,7 @@ lodedo:factual_data {
       dcterms:title "Night View of Saruwaka-machi (Saruwaka-machi Yoru no Kei), No. 90 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.90_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART98 dcterms:created "8th month of 1858" ;
+  lodedo-art:ART98 dcterms:created "8th month of 1858" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:subject "19th Century",
           "IMLS",
@@ -779,7 +782,7 @@ lodedo:factual_data {
       dcterms:title "Fireworks at Ryogoku (Ryogoku Hanabi), No. 98 from One Hundred Famous Views of Edo" ;
       schema:image "https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size2/30.1478.98_PS1.jpg"^^xsd:anyURI .
 
-  lodedo:ART99 dcterms:created "1856" ;
+  lodedo-art:ART99 dcterms:created "1856" ;
       dcterms:creator "Utagawa Hiroshige (Ando), Japanese, 1797-1858" ;
       dcterms:title "Kinryūsan Temple at Asakusa, No. 99 from One Hundred Famous Views of Edo" ;
       schema:image "https://images.metmuseum.org/CRDImages/as/original/DP121552.jpg"^^xsd:anyURI .
@@ -21802,7 +21805,7 @@ lodedo:factual_data {
 
     hr:night a sim:RealityCounterpart .
 
-    lodedo:ART1 a icon:Artwork .
+    lodedo-art:ART1 a icon:Artwork .
 
     hr:islamic a sim:Context .
 
@@ -21827,7 +21830,7 @@ lodedo:factual_data {
     lodedo:ART46AG1AM7 a icon:ArtisticMotif ;
         icon:hasFactualMeaning lodedo:bird .
 
-    lodedo:ART64 a icon:Artwork .
+    lodedo-art:ART64 a icon:Artwork .
 
     lodedo:ART90AG12AM19 a icon:ArtisticMotif ;
         icon:hasFactualMeaning lodedo:bird .
@@ -21848,7 +21851,7 @@ lodedo:factual_data {
         icon:hasFactualMeaning lodedo:crane ;
         icon:isPartOf lodedo:ART102AG1COMP1 .
 
-    lodedo:ART8 a icon:Artwork .
+    lodedo-art:ART8 a icon:Artwork .
 
     hr:celtic a sim:Context .
 
@@ -21882,17 +21885,17 @@ lodedo:factual_data {
     lodedo:ART48AG12AM3 a icon:ArtisticMotif ;
         icon:hasFactualMeaning lodedo:fish .
 
-    lodedo:ART75 a icon:Artwork .
+    lodedo-art:ART75 a icon:Artwork .
 
-    lodedo:ART30 a icon:Artwork .
+    lodedo-art:ART30 a icon:Artwork .
 
-    lodedo:ART2 a icon:Artwork .
+    lodedo-art:ART2 a icon:Artwork .
 
-    lodedo:ART39 a icon:Artwork .
+    lodedo-art:ART39 a icon:Artwork .
 
     hr:hindu a sim:Context .
 
-    lodedo:ART117 a icon:Artwork .
+    lodedo-art:ART117 a icon:Artwork .
 
     lodedo:ART81AG1AM5 a icon:ArtisticMotif ;
         icon:hasFactualMeaning lodedo:dog ;
@@ -21900,9 +21903,9 @@ lodedo:factual_data {
 
     hr:light a sim:RealityCounterpart .
 
-    lodedo:ART58 a icon:Artwork .
+    lodedo-art:ART58 a icon:Artwork .
 
-    lodedo:ART46 a icon:Artwork .
+    lodedo-art:ART46 a icon:Artwork .
 
     lodedo:ART76AG12AM20 a icon:ArtisticMotif ;
         icon:hasFactualMeaning lodedo:moon .
@@ -21927,15 +21930,15 @@ lodedo:factual_data {
 
     hr:japanese a sim:Context .
 
-    lodedo:ART21 a icon:Artwork .
+    lodedo-art:ART21 a icon:Artwork .
 
     hr:grecoRoman a sim:Context .
 
-    lodedo:ART99 a icon:Artwork .
+    lodedo-art:ART99 a icon:Artwork .
 
-    lodedo:ART102 a icon:Artwork .
+    lodedo-art:ART102 a icon:Artwork .
 
-    lodedo:ART13 a icon:Artwork .
+    lodedo-art:ART13 a icon:Artwork .
 
     lodedo:ART107AG6AM1 a icon:ArtisticMotif ;
         icon:hasFactualMeaning lodedo:eagle .
@@ -21944,39 +21947,39 @@ lodedo:factual_data {
         icon:hasFactualMeaning lodedo:eagle ;
         icon:isPartOf lodedo:ART107AG1COMP1 .
 
-    lodedo:ART86 a icon:Artwork .
+    lodedo-art:ART86 a icon:Artwork .
 
-    lodedo:ART89 a icon:Artwork .
+    lodedo-art:ART89 a icon:Artwork .
 
     hr:heraldic a sim:Context .
 
-    lodedo:ART112 a icon:Artwork .
+    lodedo-art:ART112 a icon:Artwork .
 
-    lodedo:ART98 a icon:Artwork .
+    lodedo-art:ART98 a icon:Artwork .
 
     hr:chinese a sim:Context .
 
-    lodedo:ART12 a icon:Artwork .
+    lodedo-art:ART12 a icon:Artwork .
 
     hr:christian a sim:Context .
 
-    lodedo:ART103 a icon:Artwork .
+    lodedo-art:ART103 a icon:Artwork .
 
-    lodedo:ART48 a icon:Artwork .
+    lodedo-art:ART48 a icon:Artwork .
 
-    lodedo:ART62 a icon:Artwork .
+    lodedo-art:ART62 a icon:Artwork .
 
-    lodedo:ART101 a icon:Artwork .
+    lodedo-art:ART101 a icon:Artwork .
 
-    lodedo:ART107 a icon:Artwork .
+    lodedo-art:ART107 a icon:Artwork .
 
-    lodedo:ART81 a icon:Artwork .
+    lodedo-art:ART81 a icon:Artwork .
 
-    lodedo:ART76 a icon:Artwork .
+    lodedo-art:ART76 a icon:Artwork .
 
-    lodedo:ART118 a icon:Artwork .
+    lodedo-art:ART118 a icon:Artwork .
 
-    lodedo:ART90 a icon:Artwork .
+    lodedo-art:ART90 a icon:Artwork .
 
     hr:generalOrUnknown a sim:Context .
 }

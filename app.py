@@ -31,6 +31,9 @@ prefix sim: <https://w3id.org/simulation/ontology/>
 prefix schema:<http://schema.org/>
 prefix dcterms: <http://purl.org/dc/terms/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix lodedo-conj: <https://w3id.org/lodedo/data/conjectures/>
+prefix lodedo-graph: <https://w3id.org/lodedo/data/graphs/>
+prefix lodedo-art: <https://w3id.org/lodedo/data/artworks/>
 """
 
 def start(artworkID=None):
@@ -49,7 +52,7 @@ def start(artworkID=None):
         sparql_query = prefixes + """
             SELECT DISTINCT *
             WHERE {
-                lodedo:""" + artworkID + """ schema:image ?img_src;
+                lodedo-art:""" + artworkID + """ schema:image ?img_src;
                     dcterms:title ?title ;
                     dcterms:created ?date.
                 }
@@ -72,7 +75,7 @@ def artwork(artworkID):
     artwork_factual_result = start(artworkID)
 
     # SCHOLARS INTERPRETATIONS
-    scholar_ints_query = prefixes + """SELECT ?g ?authorLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; dul:includesAgent ?author.} ?author rdfs:label ?authorLabel}"""
+    scholar_ints_query = prefixes + """SELECT ?g ?authorLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt lodedo-art:""" + artworkID + """; dul:includesAgent ?author.} ?author rdfs:label ?authorLabel}"""
     scholar_ints_result = sparql_api.execute_get_select_query(repository, query=scholar_ints_query)
 
     scholars_ints = {}
@@ -81,7 +84,7 @@ def artwork(artworkID):
 
     # preiconographical interpretations
     preico_interpretations = []
-    preico_query = prefixes + """SELECT ?motifHR ?motifLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; icon:recognizedArtisticMotif ?int} ?int icon:hasFactualMeaning ?motif. ?motif rdfs:label ?motifLabel. OPTIONAL{?motif owl:sameAs ?motifHR}}"""
+    preico_query = prefixes + """SELECT ?motifHR ?motifLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt lodedo-art:""" + artworkID + """; icon:recognizedArtisticMotif ?int} ?int icon:hasFactualMeaning ?motif. ?motif rdfs:label ?motifLabel. OPTIONAL{?motif owl:sameAs ?motifHR}}"""
     preico_result = sparql_api.execute_get_select_query(repository, query=preico_query)
 
     for row in preico_result['results']['bindings']:
@@ -94,7 +97,7 @@ def artwork(artworkID):
 
     # AUTHOMATIC INTERPRETATIONS
     artwork_conj_result = {}
-    artwork_conj_query = prefixes + """SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt lodedo:""" + artworkID + """; icon:recognizedImage ?reconImage. ?reconImage icon:hasSymbol ?symbol.} ?symbol sim:hasContext ?context; sim:hasSimulacrum ?simulacrum. ?context rdfs:label ?contextLabel}"""
+    artwork_conj_query = prefixes + """SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt lodedo-art:""" + artworkID + """; icon:recognizedImage ?reconImage. ?reconImage icon:hasSymbol ?symbol.} ?symbol sim:hasContext ?context; sim:hasSimulacrum ?simulacrum. ?context rdfs:label ?contextLabel}"""
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
 
     auto_ints = {}
@@ -146,7 +149,7 @@ def graph(graphID):
 
     def interpretations_data_builder(graphID, part_query_string):
         result, scholar_int_triples = {}, {}
-        scholar_int_query = prefixes + "SELECT DISTINCT * WHERE {graph lodedo:" + graphID+ " {" + part_query_string
+        scholar_int_query = prefixes + "SELECT DISTINCT * WHERE {graph lodedo-graph:" + graphID+ " {" + part_query_string
         scholar_int_triples = sparql_api.execute_get_select_query(repository, query=scholar_int_query)
 
         for row in scholar_int_triples['results']['bindings']:
@@ -165,15 +168,15 @@ def graph(graphID):
 
         # PREICONOGRAPHICAL INTERPRETATIONS
         ints_part_query_string = """?interpretation icon:recognizedArtisticMotif ?recog.} ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. OPTIONAL {?recog dul:hasQuality ?quality. ?quality rdfs:label ?qualityLabel} OPTIONAL {?recog icon:isPartOf ?composition} } """
-        scholar_ints.update({'preiconographic': interpretations_data_builder(graphID, ints_part_query_string)})
+        scholar_ints.update({'Preiconographical': interpretations_data_builder(graphID, ints_part_query_string)})
 
         #COMPOSITIONS RECOGNITIONS
         comps_part_query_string = """?interpretation icon:recognizedComposition ?composition. } ?composition icon:hasPart ?recog. ?recog icon:hasFactualMeaning ?meaning. ?meaning rdfs:label ?meaningLabel. ?meaning a ?class. ?class rdfs:label ?classLabel. }"""
-        scholar_ints.update({'composition': interpretations_data_builder(graphID, comps_part_query_string)})
+        scholar_ints.update({'Composition': interpretations_data_builder(graphID, comps_part_query_string)})
 
         #ICONOGRAPHICAL INTERPRETATIONS
         icon_part_query_string = """?interpretation icon:recognizedImage ?recog. ?recog ?pred ?meaning . } ?meaning a ?class. ?meaning rdfs:label ?meaningLabel. ?class rdfs:label ?classLabel } """
-        scholar_ints.update({'iconographical':interpretations_data_builder(graphID, icon_part_query_string)})
+        scholar_ints.update({'Iconographical':interpretations_data_builder(graphID, icon_part_query_string)})
 
         # SYMBOLS RECOGNITIONS
         symbol_part_query_string = """?interpretation icon:recognizedImage ?recog. ?recog icon:hasSymbol ?meaning .} ?meaning sim:hasContext ?context . ?meaning sim:hasRealityCounterpart ?realityCounterpart . ?realityCounterpart rdfs:label ?realityCounterpartLabel. ?meaning sim:hasSimulacrum ?simulacrum . ?context rdfs:label ?contextLabel. ?simulacrum rdfs:label ?simulacrumLabel}"""
@@ -182,12 +185,12 @@ def graph(graphID):
         return scholar_ints, symbol_ints
 
     int_metadata_result = {}
-    int_metadata_query = prefixes + "SELECT DISTINCT ?artwork ?agentLabel ?title WHERE {graph lodedo:" + graphID+ " {?interpretation icon:aboutWorkOfArt ?artwork; dul:includesAgent ?agent.} ?agent rdfs:label ?agentLabel. ?artwork dcterms:title ?title}"
+    int_metadata_query = prefixes + "SELECT DISTINCT ?artwork ?agentLabel ?title WHERE {graph lodedo-graph:" + graphID+ " {?interpretation icon:aboutWorkOfArt ?artwork; dul:includesAgent ?agent.} ?agent rdfs:label ?agentLabel. ?artwork dcterms:title ?title}"
     int_metadata_result = sparql_api.execute_get_select_query(repository, query=int_metadata_query)
 
     other_ints_to_compare = {}
     for row in int_metadata_result['results']['bindings']:
-        comp_graphs_query = prefixes + "SELECT DISTINCT ?g ?agentLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt <"+row['artwork']['value']+">; dul:includesAgent ?agent} ?agent rdfs:label ?agentLabel. FILTER(?g != lodedo:"+graphID+")}"
+        comp_graphs_query = prefixes + "SELECT DISTINCT ?g ?agentLabel WHERE {graph ?g {?interpretation icon:aboutWorkOfArt <"+row['artwork']['value']+">; dul:includesAgent ?agent} ?agent rdfs:label ?agentLabel. FILTER(?g != lodedo-graph:"+graphID+")}"
         other_ints_to_compare = sparql_api.execute_get_select_query(repository, query=comp_graphs_query)
 
     scholar_ints, symbol_ints = {}, {}
