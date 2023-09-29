@@ -6,8 +6,8 @@ const yasr = new Yasr(document.getElementById("yasr"));
 yasqe.setValue(`prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>
 prefix icon: <https://w3id.org/icon/ontology/>
 prefix sim: <https://w3id.org/simulation/ontology/>
-prefix lodedo-art: <https://w3id.org/lodedo/data/artworks/>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+prefix lodedo-art: <https://w3id.org/lodedo/artworks/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT DISTINCT ?sch_int ?authorLabel
 WHERE {

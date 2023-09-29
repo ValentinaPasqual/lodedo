@@ -1,10 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix lodedo: <https://w3id.org/lodedo/data/> .
+@prefix lodedo: <https://w3id.org/lodedo/> .
 @prefix schema: <http://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix lodedo-conj: <https://w3id.org/lodedo/data/conjectures/> .
-@prefix lodedo-graph: <https://w3id.org/lodedo/data/graphs/> .
-@prefix lodedo-art: <https://w3id.org/lodedo/data/artworks/> .
+@prefix lodedo-conj: <https://w3id.org/lodedo/conjectures/> .
+@prefix lodedo-graph: <https://w3id.org/lodedo/graphs/> .
+@prefix lodedo-art: <https://w3id.org/lodedo/artworks/> .
 
 lodedo:factual_data {
   lodedo-art:ART1 dcterms:created "5th month of 1856" ;
@@ -21984,369 +21984,369 @@ lodedo:factual_data {
     hr:generalOrUnknown a sim:Context .
 }
 
-GRAPH <https://w3id.org/lodedo/data/GART107SCHOLtredeBichler2010> {
-    <https://w3id.org/lodedo/data/ART107AG1ICG174> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tredeBichler2010> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART107AG1IMG174> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART107AG1AM4> .
+GRAPH <https://w3id.org/lodedo/GART107SCHOLtredeBichler2010> {
+    <https://w3id.org/lodedo/ART107AG1ICG174> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tredeBichler2010> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART107AG1IMG174> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART107AG1AM4> .
 
-    <https://w3id.org/lodedo/data/ART107AG1ICG175> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tredeBichler2010> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART107AG1IMG175> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART107AG1AM5> .
+    <https://w3id.org/lodedo/ART107AG1ICG175> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tredeBichler2010> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART107AG1IMG175> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART107AG1AM5> .
 
-    <https://w3id.org/lodedo/data/ART107AG1PREICO10> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tredeBichler2010> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG1AM5> .
+    <https://w3id.org/lodedo/ART107AG1PREICO10> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tredeBichler2010> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG1AM5> .
 
-    <https://w3id.org/lodedo/data/ART107AG1PREICO2> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tredeBichler2010> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG1AM1> .
+    <https://w3id.org/lodedo/ART107AG1PREICO2> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tredeBichler2010> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG1AM1> .
 
-    <https://w3id.org/lodedo/data/ART107AG1PREICO4> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tredeBichler2010> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG1AM2> .
+    <https://w3id.org/lodedo/ART107AG1PREICO4> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tredeBichler2010> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG1AM2> .
 
-    <https://w3id.org/lodedo/data/ART107AG1PREICO6> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tredeBichler2010> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG1AM3> .
+    <https://w3id.org/lodedo/ART107AG1PREICO6> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tredeBichler2010> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG1AM3> .
 
-    <https://w3id.org/lodedo/data/ART107AG1PREICO8> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tredeBichler2010> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG1AM4> .
+    <https://w3id.org/lodedo/ART107AG1PREICO8> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tredeBichler2010> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG1AM4> .
 
-    <https://w3id.org/lodedo/data/ART107AG1PREICO9> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tredeBichler2010> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedComposition <https://w3id.org/lodedo/data/ART107AG1COMP1> .
+    <https://w3id.org/lodedo/ART107AG1PREICO9> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tredeBichler2010> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedComposition <https://w3id.org/lodedo/ART107AG1COMP1> .
 
-    <https://w3id.org/lodedo/data/ART107AG1IMG174> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/mountTsukuba> .
+    <https://w3id.org/lodedo/ART107AG1IMG174> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/mountTsukuba> .
 
-    <https://w3id.org/lodedo/data/ART107AG1IMG175> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/jumantsubo> .
+    <https://w3id.org/lodedo/ART107AG1IMG175> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/jumantsubo> .
 }
 
-GRAPH <https://w3id.org/lodedo/data/GART81SCHOLtokyoNationalMuseum> {
-    <https://w3id.org/lodedo/data/ART81AG6PREICO1> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART81> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART81AG6AM1> .
+GRAPH <https://w3id.org/lodedo/GART81SCHOLtokyoNationalMuseum> {
+    <https://w3id.org/lodedo/ART81AG6PREICO1> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART81> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART81AG6AM1> .
 
-    <https://w3id.org/lodedo/data/ART81AG6PREICO2> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART81> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART81AG6AM2> .
+    <https://w3id.org/lodedo/ART81AG6PREICO2> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART81> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART81AG6AM2> .
 
-    <https://w3id.org/lodedo/data/ART81AG6PREICO3> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART81> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART81AG6AM3> .
+    <https://w3id.org/lodedo/ART81AG6PREICO3> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART81> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART81AG6AM3> .
 
-    <https://w3id.org/lodedo/data/ART81AG6PREICO4> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART81> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART81AG6AM4> .
+    <https://w3id.org/lodedo/ART81AG6PREICO4> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART81> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART81AG6AM4> .
 
-    <https://w3id.org/lodedo/data/ART81AG6PREICO5> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART81> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART81AG6AM5> .
+    <https://w3id.org/lodedo/ART81AG6PREICO5> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART81> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART81AG6AM5> .
 }
 
-GRAPH <https://w3id.org/lodedo/data/GART112SCHOLbrooklynMuseumCurator> {
-    <https://w3id.org/lodedo/data/ART112AG12ICG1> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART112AG12IMG1> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM1> .
+GRAPH <https://w3id.org/lodedo/GART112SCHOLbrooklynMuseumCurator> {
+    <https://w3id.org/lodedo/ART112AG12ICG1> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART112AG12IMG1> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART112AG12AM1> .
 
-    <https://w3id.org/lodedo/data/ART112AG12ICG2> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART112AG12IMG2> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM2> .
+    <https://w3id.org/lodedo/ART112AG12ICG2> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART112AG12IMG2> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART112AG12AM2> .
 
-    <https://w3id.org/lodedo/data/ART112AG12ICG3> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART112AG12IMG3> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM3> .
+    <https://w3id.org/lodedo/ART112AG12ICG3> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART112AG12IMG3> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART112AG12AM3> .
 
-    <https://w3id.org/lodedo/data/ART112AG12ICG33> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART112AG12IMG33> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM4> .
+    <https://w3id.org/lodedo/ART112AG12ICG33> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART112AG12IMG33> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART112AG12AM4> .
 
-    <https://w3id.org/lodedo/data/ART112AG12PREICO1> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM1> .
+    <https://w3id.org/lodedo/ART112AG12PREICO1> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART112AG12AM1> .
 
-    <https://w3id.org/lodedo/data/ART112AG12PREICO2> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM2> .
+    <https://w3id.org/lodedo/ART112AG12PREICO2> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART112AG12AM2> .
 
-    <https://w3id.org/lodedo/data/ART112AG12PREICO3> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM3> .
+    <https://w3id.org/lodedo/ART112AG12PREICO3> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART112AG12AM3> .
 
-    <https://w3id.org/lodedo/data/ART112AG12PREICO4> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM4> .
+    <https://w3id.org/lodedo/ART112AG12PREICO4> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART112AG12AM4> .
 
-    <https://w3id.org/lodedo/data/ART112AG12PREICO5> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM5> .
+    <https://w3id.org/lodedo/ART112AG12PREICO5> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART112AG12AM5> .
 
-    <https://w3id.org/lodedo/data/ART112AG12PREICO6> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM6> .
+    <https://w3id.org/lodedo/ART112AG12PREICO6> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART112AG12AM6> .
 
-    <https://w3id.org/lodedo/data/ART112AG12PREICO7> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM7> .
+    <https://w3id.org/lodedo/ART112AG12PREICO7> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART112AG12AM7> .
 
-    <https://w3id.org/lodedo/data/ART112AG12PREICO8> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART112> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART112AG12AM8> .
+    <https://w3id.org/lodedo/ART112AG12PREICO8> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART112> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART112AG12AM8> .
 
-    <https://w3id.org/lodedo/data/ART112AG12IMG1> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/atagoshitaDistrict> .
+    <https://w3id.org/lodedo/ART112AG12IMG1> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/atagoshitaDistrict> .
 
-    <https://w3id.org/lodedo/data/ART112AG12IMG2> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/mountAtago> .
+    <https://w3id.org/lodedo/ART112AG12IMG2> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/mountAtago> .
 
-    <https://w3id.org/lodedo/data/ART112AG12IMG3> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/minakuchiMansion> .
+    <https://w3id.org/lodedo/ART112AG12IMG3> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/minakuchiMansion> .
 
-    <https://w3id.org/lodedo/data/ART112AG12IMG33> a icon:Image ;
-        icon:hasSymbol <https://w3id.org/lodedo/data/bamboo-evil> .
+    <https://w3id.org/lodedo/ART112AG12IMG33> a icon:Image ;
+        icon:hasSymbol <https://w3id.org/lodedo/bamboo-evil> .
 }
 
-GRAPH <https://w3id.org/lodedo/data/GART103SCHOLbrooklynMuseumCurator> {
-    <https://w3id.org/lodedo/data/ART103AG12ICG13> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART103AG12IMG13> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM1> .
+GRAPH <https://w3id.org/lodedo/GART103SCHOLbrooklynMuseumCurator> {
+    <https://w3id.org/lodedo/ART103AG12ICG13> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART103AG12IMG13> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART103AG12AM1> .
 
-    <https://w3id.org/lodedo/data/ART103AG12ICG28> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART103AG12IMG28> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM2> .
+    <https://w3id.org/lodedo/ART103AG12ICG28> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART103AG12IMG28> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART103AG12AM2> .
 
-    <https://w3id.org/lodedo/data/ART103AG12ICG29> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART103AG12IMG29> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM4> .
+    <https://w3id.org/lodedo/ART103AG12ICG29> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART103AG12IMG29> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART103AG12AM4> .
 
-    <https://w3id.org/lodedo/data/ART103AG12PREICO1> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM1> .
+    <https://w3id.org/lodedo/ART103AG12PREICO1> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART103AG12AM1> .
 
-    <https://w3id.org/lodedo/data/ART103AG12PREICO2> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM2> .
+    <https://w3id.org/lodedo/ART103AG12PREICO2> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART103AG12AM2> .
 
-    <https://w3id.org/lodedo/data/ART103AG12PREICO3> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM3> .
+    <https://w3id.org/lodedo/ART103AG12PREICO3> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART103AG12AM3> .
 
-    <https://w3id.org/lodedo/data/ART103AG12PREICO4> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM4> .
+    <https://w3id.org/lodedo/ART103AG12PREICO4> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART103AG12AM4> .
 
-    <https://w3id.org/lodedo/data/ART103AG12PREICO5> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM5> .
+    <https://w3id.org/lodedo/ART103AG12PREICO5> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART103AG12AM5> .
 
-    <https://w3id.org/lodedo/data/ART103AG12PREICO6> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM6> .
+    <https://w3id.org/lodedo/ART103AG12PREICO6> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART103AG12AM6> .
 
-    <https://w3id.org/lodedo/data/ART103AG12PREICO7> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM7> .
+    <https://w3id.org/lodedo/ART103AG12PREICO7> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART103AG12AM7> .
 
-    <https://w3id.org/lodedo/data/ART103AG12PREICO8> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/brooklynMuseumCurator> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART103> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART103AG12AM8> .
+    <https://w3id.org/lodedo/ART103AG12PREICO8> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/brooklynMuseumCurator> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART103> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART103AG12AM8> .
 
-    <https://w3id.org/lodedo/data/ART103AG12IMG13> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/senjuGreatBridge> .
+    <https://w3id.org/lodedo/ART103AG12IMG13> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/senjuGreatBridge> .
 
-    <https://w3id.org/lodedo/data/ART103AG12IMG28> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/sumidaRiver> .
+    <https://w3id.org/lodedo/ART103AG12IMG28> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/sumidaRiver> .
 
-    <https://w3id.org/lodedo/data/ART103AG12IMG29> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/mountBuko> .
+    <https://w3id.org/lodedo/ART103AG12IMG29> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/mountBuko> .
 }
 
-GRAPH <https://w3id.org/lodedo/data/GART101SCHOLtokyoNationalMuseum> {
-    <https://w3id.org/lodedo/data/ART101AG6ICG1> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART101AG6IMG1> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM1> .
+GRAPH <https://w3id.org/lodedo/GART101SCHOLtokyoNationalMuseum> {
+    <https://w3id.org/lodedo/ART101AG6ICG1> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART101AG6IMG1> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART101AG6AM1> .
 
-    <https://w3id.org/lodedo/data/ART101AG6ICG4> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART101AG6IMG4> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM3> .
+    <https://w3id.org/lodedo/ART101AG6ICG4> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART101AG6IMG4> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART101AG6AM3> .
 
-    <https://w3id.org/lodedo/data/ART101AG6ICG86> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART101AG6IMG86> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM4> .
+    <https://w3id.org/lodedo/ART101AG6ICG86> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART101AG6IMG86> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART101AG6AM4> .
 
-    <https://w3id.org/lodedo/data/ART101AG6ICG87> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART101AG6IMG87> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM8> .
+    <https://w3id.org/lodedo/ART101AG6ICG87> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART101AG6IMG87> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART101AG6AM8> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO1> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM1> .
+    <https://w3id.org/lodedo/ART101AG6PREICO1> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM1> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO10> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM10> .
+    <https://w3id.org/lodedo/ART101AG6PREICO10> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM10> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO11> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM11> .
+    <https://w3id.org/lodedo/ART101AG6PREICO11> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM11> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO12> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM12> .
+    <https://w3id.org/lodedo/ART101AG6PREICO12> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM12> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO2> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM2> .
+    <https://w3id.org/lodedo/ART101AG6PREICO2> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM2> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO3> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM3> .
+    <https://w3id.org/lodedo/ART101AG6PREICO3> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM3> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO4> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM4> .
+    <https://w3id.org/lodedo/ART101AG6PREICO4> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM4> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO5> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM5> .
+    <https://w3id.org/lodedo/ART101AG6PREICO5> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM5> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO6> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM6> .
+    <https://w3id.org/lodedo/ART101AG6PREICO6> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM6> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO7> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM7> .
+    <https://w3id.org/lodedo/ART101AG6PREICO7> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM7> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO8> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM8> .
+    <https://w3id.org/lodedo/ART101AG6PREICO8> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM8> .
 
-    <https://w3id.org/lodedo/data/ART101AG6PREICO9> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/tokyoNationalMuseum> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART101> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART101AG6AM9> .
+    <https://w3id.org/lodedo/ART101AG6PREICO9> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/tokyoNationalMuseum> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART101> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART101AG6AM9> .
 
-    <https://w3id.org/lodedo/data/ART101AG6IMG1> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/torinomachiPilgrimage> .
+    <https://w3id.org/lodedo/ART101AG6IMG1> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/torinomachiPilgrimage> .
 
-    <https://w3id.org/lodedo/data/ART101AG6IMG4> a icon:Image ;
-        icon:hasSymbol <https://w3id.org/lodedo/data/rake-charm-lucky> .
+    <https://w3id.org/lodedo/ART101AG6IMG4> a icon:Image ;
+        icon:hasSymbol <https://w3id.org/lodedo/rake-charm-lucky> .
 
-    <https://w3id.org/lodedo/data/ART101AG6IMG86> a icon:Image ;
-        icon:hasSymbol <https://w3id.org/lodedo/data/catLookingOutSideOfTheWindow-feelingsOfaCortesanWhoYearnsForTheOutsideWorld> .
+    <https://w3id.org/lodedo/ART101AG6IMG86> a icon:Image ;
+        icon:hasSymbol <https://w3id.org/lodedo/catLookingOutSideOfTheWindow-feelingsOfaCortesanWhoYearnsForTheOutsideWorld> .
 
-    <https://w3id.org/lodedo/data/ART101AG6IMG87> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/mountFuji> .
+    <https://w3id.org/lodedo/ART101AG6IMG87> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/mountFuji> .
 }
 
-GRAPH <https://w3id.org/lodedo/data/GART107SCHOLuniversityOfMichigamLibraryDigitalCollections> {
-    <https://w3id.org/lodedo/data/ART107AG10ICG24> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/universityOfMichigamLibraryDigitalCollections> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART107AG10IMG24> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART107AG10AM1> .
+GRAPH <https://w3id.org/lodedo/GART107SCHOLuniversityOfMichigamLibraryDigitalCollections> {
+    <https://w3id.org/lodedo/ART107AG10ICG24> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/universityOfMichigamLibraryDigitalCollections> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART107AG10IMG24> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART107AG10AM1> .
 
-    <https://w3id.org/lodedo/data/ART107AG10ICG35> a icon:IconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/universityOfMichigamLibraryDigitalCollections> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedImage <https://w3id.org/lodedo/data/ART107AG10IMG35> ;
-        icon:refersToArtisticMotif <https://w3id.org/lodedo/data/ART107AG10AM3> .
+    <https://w3id.org/lodedo/ART107AG10ICG35> a icon:IconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/universityOfMichigamLibraryDigitalCollections> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedImage <https://w3id.org/lodedo/ART107AG10IMG35> ;
+        icon:refersToArtisticMotif <https://w3id.org/lodedo/ART107AG10AM3> .
 
-    <https://w3id.org/lodedo/data/ART107AG10PREICO1> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/universityOfMichigamLibraryDigitalCollections> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG10AM1> .
+    <https://w3id.org/lodedo/ART107AG10PREICO1> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/universityOfMichigamLibraryDigitalCollections> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG10AM1> .
 
-    <https://w3id.org/lodedo/data/ART107AG10PREICO2> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/universityOfMichigamLibraryDigitalCollections> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG10AM2> .
+    <https://w3id.org/lodedo/ART107AG10PREICO2> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/universityOfMichigamLibraryDigitalCollections> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG10AM2> .
 
-    <https://w3id.org/lodedo/data/ART107AG10PREICO3> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/universityOfMichigamLibraryDigitalCollections> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG10AM3> .
+    <https://w3id.org/lodedo/ART107AG10PREICO3> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/universityOfMichigamLibraryDigitalCollections> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG10AM3> .
 
-    <https://w3id.org/lodedo/data/ART107AG10PREICO4> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/universityOfMichigamLibraryDigitalCollections> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG10AM4> .
+    <https://w3id.org/lodedo/ART107AG10PREICO4> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/universityOfMichigamLibraryDigitalCollections> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG10AM4> .
 
-    <https://w3id.org/lodedo/data/ART107AG10PREICO5> a icon:PreiconographicalRecognition ;
-        dul:includesAgent <https://w3id.org/lodedo/data/universityOfMichigamLibraryDigitalCollections> ;
-        icon:aboutWorkOfArt <https://w3id.org/lodedo/data/ART107> ;
-        icon:recognizedArtisticMotif <https://w3id.org/lodedo/data/ART107AG10AM5> .
+    <https://w3id.org/lodedo/ART107AG10PREICO5> a icon:PreiconographicalRecognition ;
+        dul:includesAgent <https://w3id.org/lodedo/universityOfMichigamLibraryDigitalCollections> ;
+        icon:aboutWorkOfArt <https://w3id.org/lodedo/ART107> ;
+        icon:recognizedArtisticMotif <https://w3id.org/lodedo/ART107AG10AM5> .
 
-    <https://w3id.org/lodedo/data/ART107AG10IMG24> a icon:Image ;
-        icon:hasSymbol <https://w3id.org/lodedo/data/kite-hunt> .
+    <https://w3id.org/lodedo/ART107AG10IMG24> a icon:Image ;
+        icon:hasSymbol <https://w3id.org/lodedo/kite-hunt> .
 
-    <https://w3id.org/lodedo/data/ART107AG10IMG35> a icon:Image ;
-        icon:hasPlace <https://w3id.org/lodedo/data/mountTsukaba> .
+    <https://w3id.org/lodedo/ART107AG10IMG35> a icon:Image ;
+        icon:hasPlace <https://w3id.org/lodedo/mountTsukaba> .
 }

@@ -25,14 +25,14 @@ sparql_api = SparqlApi(api_client)
 prefixes = """
 prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>
 prefix icon: <https://w3id.org/icon/ontology/>
-prefix lodedo: <https://w3id.org/lodedo/data/>
+prefix lodedo: <https://w3id.org/lodedo/>
 prefix sim: <https://w3id.org/simulation/ontology/>
 prefix schema:<http://schema.org/>
 prefix dcterms: <http://purl.org/dc/terms/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-prefix lodedo-conj: <https://w3id.org/lodedo/data/conjectures/>
-prefix lodedo-graph: <https://w3id.org/lodedo/data/graphs/>
-prefix lodedo-art: <https://w3id.org/lodedo/data/artworks/>
+prefix lodedo-conj: <https://w3id.org/lodedo/conjectures/>
+prefix lodedo-graph: <https://w3id.org/lodedo/graphs/>
+prefix lodedo-art: <https://w3id.org/lodedo/artworks/>
 """
 
 def start(artworkID=None):

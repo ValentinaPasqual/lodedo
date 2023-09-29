@@ -1,13 +1,13 @@
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix hr: <https://w3id.org/simulation/data/> .
 @prefix icon: <https://w3id.org/icon/ontology/> .
-@prefix lodedo: <https://w3id.org/lodedo/data/> .
+@prefix lodedo: <https://w3id.org/lodedo/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sim: <https://w3id.org/simulation/ontology/> .
-@prefix lodedo-conj: <https://w3id.org/lodedo/data/conjectures/> .
-@prefix lodedo-graph: <https://w3id.org/lodedo/data/graphs/> .
-@prefix lodedo-art: <https://w3id.org/lodedo/data/artworks/> .
+@prefix lodedo-conj: <https://w3id.org/lodedo/conjectures/> .
+@prefix lodedo-graph: <https://w3id.org/lodedo/graphs/> .
+@prefix lodedo-art: <https://w3id.org/lodedo/artworks/> .
 
 CONJ lodedo-conj:GART118AUTOtaoist {
     lodedo:ART118AG4AG0ICG144 a icon:IconographicalRecognition ;

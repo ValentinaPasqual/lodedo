@@ -47,7 +47,7 @@
 
     <div class="container containter-horizontal-accordion mt-5">
       <div id="breadcrumbs" class="text-end badge btn-outline-dark d-2 mb-3">
-        <a href={{ artwork_conj_result.results.bindings[0].artwork.value|replace('https://w3id.org/lodedo/data/', '../')}}>
+        <a href={{ artwork_conj_result.results.bindings[0].artwork.value}}>
           << Go back to the artwork </a>
       </div>
       <div class="container-horizontal-accordion horizontal-accordion">
@@ -64,7 +64,7 @@
                     {% endif %}
                     {% if row.symbolClass %}
                       <p>
-                      <span class="badge bg-warning text-dark">{{row.symbolClass.value|replace('https://w3id.org/simulation/ontology/', '')}}</span>
+                      <span class="badge bg-warning text-dark">{{row.symbolClass.value}}</span>
                         {{row.realityCounterpartLabel.value}}
                       </p>
                     {% endif %}

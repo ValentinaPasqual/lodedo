@@ -46,7 +46,7 @@
     <!-- MAIN CONTENT -->
     <div class="container m-5 p-5">
       <div id="breadcrumbs" class="text-end badge btn-outline-dark d-2 mb-3">
-        <a href={{int_metadata_result.results.bindings[0].artwork.value|replace('https://w3id.org/lodedo/data/', '../../')}}>
+        <a href={{int_metadata_result.results.bindings[0].artwork.value}}>
           << Go back to the artwork </a>
       </div>
       <div class="container">
@@ -67,21 +67,21 @@
                           {% for symb,symb_vals in symbol_ints.items() %}
                             {% if int_vals.meaning == symb_vals.meaning %}
                               <p id={{int_id}} class="fw-bold" style="display:inline">
-                                <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{symb_vals.simulacrumLabel}} symbolising {{symb_vals.realityCounterpartLabel}} in the {{symb_vals.contextLabel}} context
+                                <span class="badge badge-{{int_vals.class}}">{{int_vals.classLabel}}</span> {{symb_vals.simulacrumLabel}} symbolising {{symb_vals.realityCounterpartLabel}} in the {{symb_vals.contextLabel}} context
                               </p>
                             {% endif %}
                           {% endfor %}
                         {% endif %}
                         {% if int_id not in symbol_ints %}
                           <p id={{int_id}} class="fw-bold" style="display:inline">
-                              <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{int_vals.meaningLabel}}
+                              <span class="badge badge-{{int_vals.class}}">{{int_vals.classLabel}}</span> {{int_vals.meaningLabel}}
                           </p>
                         {% endif %}
                         {% if int_vals.quality %}
                           (with quality {{int_vals.qualityLabel}})
                         {% endif %}
                         {% if int_vals.composition %}
-                          (is part of composition {{int_vals.composition|replace('https://w3id.org/lodedo/data/', '')}})
+                          (is part of composition {{int_vals.composition}})
                         {% endif %}
                         </p>
                       {% endfor %}
@@ -98,7 +98,7 @@
               <div class="card-body">
                 <h5 class="card-title fw-bold">{{int.agentLabel.value}}</h5>
                 <p class="card-text">
-                  <a href={{int.g.value|replace('https://w3id.org/lodedo/data/graphs/', '../scholarlyInterpretations/')}} class="btn-outline-dark float-end d-1">>></a>
+                  <a href={{int.g.value}} class="btn-outline-dark float-end d-1">>></a>
                 </p>
               </div>
             </div>

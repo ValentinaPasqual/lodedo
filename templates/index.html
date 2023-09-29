@@ -66,7 +66,7 @@
                             <ul class="scrollable-div p-0 m-0 facet-ul" id=id="ul-{{ facet|replace(':','')|replace(' ','') }}"> {% for value,info in values.items() %} <li class="list-group-item border-end-0 fw-bold">
                                 <label>
                                   <input type="checkbox" name={{ facet }} value={{ value }} {% if selected_facets.get(facet) and value in selected_facets[facet] %}checked{% endif %} onclick="moveToTop(this)">
-                                  {{info.label}} {% if 'class' in info%} <span class="badge badge-{{info.class|replace('https://w3id.org/icon/ontology/', '')}} text-dark">{{info.classLabel}}</span> {% endif %} </label>
+                                  {{info.label}} {% if 'class' in info%} <span class="badge badge-{{info.class}} text-dark">{{info.classLabel}}</span> {% endif %} </label>
                               </li> {% endfor %} </ul>
                           </div>
                         </div>
@@ -101,7 +101,7 @@
                     <img class="img-fluid" src="{{ card.img_src }}" alt="{{ card.img_src }}">
                     <h5 class="fw-bold pt-3">{{card.title}}</h5>
                     <p class="fw-bold">Creation date: {{card.date}}</p>
-                    <a href={{card.item|replace("https://w3id.org/lodedo/data/", "") }} class="btn-outline-dark d-1">View Details</a>
+                    <a href={{card.item}} class="btn-outline-dark d-1">View Details</a>
                   </div>
                 </div>
               </div>
