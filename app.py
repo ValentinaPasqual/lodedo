@@ -17,7 +17,7 @@ app = Flask(__name__, static_folder="assets")
 conf = Configuration()
 conf.host = "http://localhost:7200/"
 api_client = ApiClient(configuration=conf)
-api_client.set_default_header("Content-Type", "application/x-www-form-urlencoded")
+api_client.set_default_header("Content-Type", "application/x-www-form-urlencoded")  
 repository = "LODEdo_endpoint"
 api = RepositoriesApi(api_client)
 sparql_api = SparqlApi(api_client)
@@ -33,7 +33,6 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix lodedo-conj: <https://w3id.org/lodedo/data/conjectures/>
 prefix lodedo-graph: <https://w3id.org/lodedo/data/graphs/>
 prefix lodedo-art: <https://w3id.org/lodedo/data/artworks/>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 """
 
 def start(artworkID=None):

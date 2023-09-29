@@ -308,8 +308,8 @@ div#breadcrumbs a {color:black}
      height: 80vh !important;
 }
 
-.card-body-horizontal-accordion {height: 80vh !important;}
-.containter-horizontal-accordion {height: 80vh !important;}
+.card-body-horizontal-accordion {height: 100vh !important;}
+.containter-horizontal-accordion {height: 100vh !important;}
 
 #contacts a {color:black; background-color: #ffc107}
 footer a {color:black; background-color: #ffc107}
