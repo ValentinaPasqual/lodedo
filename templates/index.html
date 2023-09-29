@@ -6,11 +6,16 @@
     <meta name="description" content="">
     <meta name="author" content="Sartini Bruno, Pasqual Valentina">
     <title>LODEDO catalogue</title>
+    <!-- styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
+    <!-- analytics and cookies -->
+    <script src="js/stats.js"></script>
+    <script src="js/matomo.js"></script>
+    <script src="https://www.unibo.it/++resource++unibo.cookiebanner/unibo-cookies.min.js?v=20"></script>
   </head>
+
   <body>
-    
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -37,7 +42,7 @@
         </div>
       </div>
     </nav>
-    
+
     <!-- MAIN CONTENT -->
     <div class="container-fluid">
       <div class="row flex-nowrap">
@@ -45,10 +50,10 @@
         <div class="col-auto px-0">
           <div id="sidebar" class="collapse collapse-horizontal show sticky-top">
             <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
-              <div class="position-absolute bottom-0 w-100">  
+              <div class="position-absolute bottom-0 w-100">
                 <form method="POST">
-                  <div class="accordion accordion-flush" id="accordionFlushExample"> 
-                    {% for facet, values in facets.items() %} 
+                  <div class="accordion accordion-flush" id="accordionFlushExample">
+                    {% for facet, values in facets.items() %}
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-{{ facet|replace(':','')|replace(' ','') }}">
                           <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ facet|replace(':','')|replace(' ','') }}" aria-expanded="false" aria-controls="flush-collapse{{ facet|replace(':','')|replace(' ','') }}">
@@ -65,8 +70,8 @@
                               </li> {% endfor %} </ul>
                           </div>
                         </div>
-                      </div> 
-                    {% endfor %} 
+                      </div>
+                    {% endfor %}
                     <div class="float-end m-3">
                       <input type="submit" value="Search" class="btn-outline-dark d-1" name="Search">
                       <button type="submit" value="Clear all" class="btn-outline-danger d-1" name="clearAllBtn">Clear all</button>
@@ -77,7 +82,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- CATALOGUE -->
         <main class="col ps-md-2 pt-2" id="catalogue">
           <!-- <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i>Filters</a> -->
@@ -88,8 +93,8 @@
           <div class="row p-5">
             <p class="float-end text-end fw-bold">
               <span class="badge bg-warning text-dark">{{result_cards|length}}</span> results
-            </p> 
-            {% for card in result_cards %} 
+            </p>
+            {% for card in result_cards %}
               <div class="col-md-4">
                 <div class="card mb-4">
                   <div class="card-body mb-3">
@@ -99,16 +104,15 @@
                     <a href={{card.item|replace("https://w3id.org/lodedo/data/", "") }} class="btn-outline-dark d-1">View Details</a>
                   </div>
                 </div>
-              </div> 
+              </div>
             {% endfor %}
           </div>
         </main>
-        
+
       </div>
     </div>
-    
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="assets/script.js"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-73SQ61K2RE"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="assets/script.js"></script>
   </body>
 </html>
