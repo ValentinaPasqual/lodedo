@@ -4,13 +4,11 @@ from graphdb.rdf4j.configuration import Configuration
 from graphdb.rdf4j.rest import ApiException
 import graphdb.rdf4j
 import requests
+
 from rdflib import Graph
 from graphdb.mime_types import RDFTypes
 from graphdb.rdf4j.api.repositories_api import RepositoriesApi
 import os
-import unicodedata
-import codecs
-
 
 # Configure the access controller
 conf = Configuration()
@@ -23,7 +21,7 @@ api_client = ApiClient(configuration=conf)
 api_instance = RepositoryManagementControllerApi(api_client)
 
 # Repository information
-config = "C:/Users/valep/Documents/GitHub/lodedo/graphDB/edo4-config.ttl"
+config = "C:/Users/valep/Documents/GitHub/lodedo/graphDB/LODEdo_endpoint_config.ttl"
 
 try:
     # Attempt to create the new repository via the REST API
