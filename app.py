@@ -17,7 +17,7 @@ app = Flask(__name__, static_folder="assets")
 conf = Configuration()
 conf.host = "http://localhost:7200/"
 api_client = ApiClient(configuration=conf)
-api_client.set_default_header("Content-Type", "application/x-www-form-urlencoded")  # Set the content type
+api_client.set_default_header("Content-Type", "application/x-www-form-urlencoded") 
 repository = "LODEdo_endpoint"
 api = RepositoriesApi(api_client)
 sparql_api = SparqlApi(api_client)
