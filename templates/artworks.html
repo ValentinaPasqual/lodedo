@@ -6,11 +6,16 @@
     <meta name="description" content="">
     <meta name="author" content="Bruno Sartini, Pasqual Valentina">
     <title>LODEdo artwork {{artworkID}}</title>
+    <!-- style and icons -->
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- analytics and cookies -->
+    <script src="../assets/js/stats.js"></script>
+    <script src="../assets/js/matomo.js"></script>
+    <script src="https://www.unibo.it/++resource++unibo.cookiebanner/unibo-cookies.min.js?v=20"></script>
   </head>
-  
+
   <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,7 +43,7 @@
         </div>
       </div>
     </nav>
-    
+
     <!-- MAIN SECTION -->
     <div class="container m-md-5 p-md-5">
       <div class="row">
@@ -70,57 +75,57 @@
           </div>
         </div>
       </div>
-      
+
       <div class="auto-ints pt-5 mt-5">
         <div class="row">
           <div class="col-md-3 yellow-back">
             <h3 class="fw-bolder">
-              <span class="badge bg-warning text-dark">{{preico_interpretations|length}}</span> 
+              <span class="badge bg-warning text-dark">{{preico_interpretations|length}}</span>
               Artistic motifs recognized by scholars for this artwork
             </h3>
           </div>
           <div class="col-md-9">
-            <h6 class="fw-bolder">Discover the symbolic meaning of the artwork in different cultures</h6> 
-              {% for tup in preico_interpretations %} 
-                {% if tup[1] == None %} 
-                  <button class="btn-outline-disabled d-1-disabled preico-filter">{{tup[0]}}</button> 
-                {% else %} 
-                  <button class="btn-outline-dark d-1 preico-filter" data-filter-uri="{{ tup[1] }}">{{tup[0]}}</button> 
-                {% endif %} 
+            <h6 class="fw-bolder">Discover the symbolic meaning of the artwork in different cultures</h6>
+              {% for tup in preico_interpretations %}
+                {% if tup[1] == None %}
+                  <button class="btn-outline-disabled d-1-disabled preico-filter">{{tup[0]}}</button>
+                {% else %}
+                  <button class="btn-outline-dark d-1 preico-filter" data-filter-uri="{{ tup[1] }}">{{tup[0]}}</button>
+                {% endif %}
               {% endfor %}
           </div>
         </div>
-        
+
         <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
-          <h3 class="fw-bolder">Automatically generated interpretations available from <span class="badge bg-warning text-dark">{{auto_ints|length}}</span> contexts for this artwork </h3> 
+          <h3 class="fw-bolder">Automatically generated interpretations available from <span class="badge bg-warning text-dark">{{auto_ints|length}}</span> contexts for this artwork </h3>
             {% for int,context in auto_ints.items() %}
               <div class="col symbol-interpretations">
                 <div class="card symbol-interpretation card-enabled" data-catalog-uris="{{ context[2] }}">
                   <div class="card-body">
-                    <h5 class="card-title fw-bold">{{context[0]}} context</h5> 
-                      {% if context[1] == 1 %} 
+                    <h5 class="card-title fw-bold">{{context[0]}} context</h5>
+                      {% if context[1] == 1 %}
                         <p>
                           <span class="badge bg-warning text-dark">{{context[1]}}</span> artistic motif recognized for this artwork
-                        </p> 
-                        {%else%} 
+                        </p>
+                        {%else%}
                         <p>
                           <span class="badge bg-warning text-dark">{{context[1]}}</span> artistic motifs recognized for this artwork
-                        </p> 
-                      {% endif %} 
+                        </p>
+                      {% endif %}
                       <p class="card-text">
                         <a href={{int|replace('conj-https://w3id.org/lodedo/data/', '../')}} class="btn-outline-dark float-end d-1">>></a>
                       </p>
                     </div>
                   </div>
-                </div> 
+                </div>
               {% endfor %}
             </div>
           </div>
         </div>
-    
+
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
       <script src="../assets/script.js"></script>
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-73SQ61K2RE"></script>
-    
+
   </body>
 </html>
