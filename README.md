@@ -1,7 +1,7 @@
 # LODEdo
 
 **LODedo** is a [Python 3](https://www.python.org/downloads/) web application built in [Flask](https://flask.palletsprojects.com/en/2.3.x/). 
-The project is ongoing and under development.
+The project is ongoing and under development and has been developed by [**Bruno Sartini**](https://www.dkes.fak12.uni-muenchen.de/people/academic_staff/bruno_sartini/index.html) and [**Valentina Pasqual**](https://www.unibo.it/sitoweb/valentina.pasqual2)
 
 ## Quick start
 
