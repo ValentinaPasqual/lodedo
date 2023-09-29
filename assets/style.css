@@ -312,3 +312,5 @@ div#breadcrumbs a {color:black}
 .containter-horizontal-accordion {height: 80vh !important;}
 
 #contacts a {color:black; background-color: #ffc107}
+footer a {color:black; background-color: #ffc107}
+footer {font-size:70%}
