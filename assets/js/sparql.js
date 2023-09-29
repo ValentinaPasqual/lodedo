@@ -3,7 +3,20 @@ const yasqe = new Yasqe(document.getElementById("yasqe"));
 // Set the response in the Yasgui results table
 const yasr = new Yasr(document.getElementById("yasr"));
 // Set the query text
-yasqe.setValue("SELECT DISTINCT ?subject ?predicate ?object WHERE { ?subject ?predicate ?object . }");
+yasqe.setValue(`prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>
+prefix icon: <https://w3id.org/icon/ontology/>
+prefix sim: <https://w3id.org/simulation/ontology/>
+prefix lodedo-art: <https://w3id.org/lodedo/data/artworks/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT DISTINCT ?sch_int ?authorLabel
+WHERE {
+  GRAPH ?sch_int {
+    ?sing_int icon:aboutWorkOfArt lodedo-art:ART118;
+      dul:includesAgent ?author.
+    }
+    ?author rdfs:label ?authorLabel
+}`);
 
 // Get the "play" button element
 var playButton = document.getElementsByClassName("yasqe_queryButton");
