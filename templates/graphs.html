@@ -1,18 +1,18 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Bruno Sartini, Pasqual Valentina">
-  <title>LODEdo conjecture {{conjID}}</title>
-  <link rel="stylesheet" href="../assets/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-
-<body>
-
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Bruno Sartini, Pasqual Valentina">
+    <title>LODEdo conjecture {{conjID}}</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  
+  <body>
+    
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -27,103 +27,84 @@
           </ul>
           <div class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="./">Catalogue</a>
-            </li>
-            <li class="nav-item d-flex">
-              <a class="nav-link fw-bold" href="./assets/contacts.html">Contacts</a>
-            </li>
-          </ul>
-        </div>
+              <li class="nav-item">
+                <a class="nav-link fw-bold" href="./">Catalogue</a>
+              </li>
+              <li class="nav-item d-flex">
+                <a class="nav-link fw-bold" href="./assets/contacts.html">Contacts</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
 
-
-
-
-  <div class="container m-5 p-5">
-
-    <div id="breadcrumbs" class="text-end badge btn-outline-dark d-2 mb-3">
-      <a href={{int_metadata_result.results.bindings[0].artwork.value|replace('https://w3id.org/lodedo/data/', '../../')}}><< Go back to the artwork</a>
-    </div>
-
-    <div class="container">
-
-          <div class="row">
-            <h2 class="align-self-end pb-3 fw-bold">
-                {{int_metadata_result.results.bindings[0].agentLabel.value}} set of interprations about
-                <i>{{int_metadata_result.results.bindings[0].title.value}}</i>
-            </h2>
-            <div class="col-md-8">
-
-              <div class="ints-per-author">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="interpretation-section-container">
-                {% for int_type, ints in scholar_ints.items() %}
-                  {% if ints %}
-                  <div class="p-3" id="interpretation-level-container">
-                  <h5 class="card-subtitle mb-4 fw-bolder"><span class="badge bg-warning text-dark">{{ints|length}}</span> {{int_type}} interpretations</h6>
-                    {% for int_id, int_vals in ints.items() %}
-                    {% if symbol_ints|length > 0 %}
-                      {% for symb,symb_vals in symbol_ints.items() %}
-                        {% if int_vals.meaning == symb_vals.meaning %}
-                        <p id={{int_id}} class="fw-bold" style="display:inline"><span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{symb_vals.simulacrumLabel}} symbolising {{symb_vals.realityCounterpartLabel}} in the {{symb_vals.contextLabel}} context</p>
-                        {% endif %}
+    <!-- MAIN CONTENT -->
+    <div class="container m-5 p-5">
+      <div id="breadcrumbs" class="text-end badge btn-outline-dark d-2 mb-3">
+        <a href={{int_metadata_result.results.bindings[0].artwork.value|replace('https://w3id.org/lodedo/data/', '../../')}}>
+          << Go back to the artwork </a>
+      </div>
+      <div class="container">
+        <div class="row">
+          <h2 class="align-self-end pb-3 fw-bold">
+            {{int_metadata_result.results.bindings[0].agentLabel.value}} set of interprations about <i>{{int_metadata_result.results.bindings[0].title.value}}</i>
+          </h2>
+          <div class="col-md-8">
+            <div class="ints-per-author">
+              <div class="card">
+                <div class="card-body">
+                  <div class="interpretation-section-container"> {% for int_type, ints in scholar_ints.items() %} {% if ints %} <div class="p-3" id="interpretation-level-container">
+                      <h5 class="card-subtitle mb-4 fw-bolder">
+                        <span class="badge bg-warning text-dark">{{ints|length}}</span> {{int_type}} interpretations 
+                      </h5> 
+                      {% for int_id, int_vals in ints.items() %} 
+                        {% if symbol_ints|length > 0 %} 
+                          {% for symb,symb_vals in symbol_ints.items() %} 
+                            {% if int_vals.meaning == symb_vals.meaning %} 
+                              <p id={{int_id}} class="fw-bold" style="display:inline">
+                                <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{symb_vals.simulacrumLabel}} symbolising {{symb_vals.realityCounterpartLabel}} in the {{symb_vals.contextLabel}} context
+                              </p> 
+                            {% endif %} 
+                          {% endfor %} 
+                        {% endif %} 
+                        {% if int_id not in symbol_ints %} 
+                          <p id={{int_id}} class="fw-bold" style="display:inline">
+                              <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{int_vals.meaningLabel}}
+                          </p> 
+                        {% endif %} 
+                        {% if int_vals.quality %} 
+                          (with quality {{int_vals.qualityLabel}}) 
+                        {% endif %} 
+                        {% if int_vals.composition %} 
+                          (is part of composition {{int_vals.composition|replace('https://w3id.org/lodedo/data/', '')}}) 
+                        {% endif %} 
+                        </p> 
                       {% endfor %}
-                      {% endif %}
-                        {% if int_id not in symbol_ints %}
-                        <p id={{int_id}} class="fw-bold" style="display:inline"><span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{int_vals.meaningLabel}}</p>
-                        {% endif %}
-                        {% if int_vals.quality %}
-                          (with quality {{int_vals.qualityLabel}})
-                        {% endif %}
-                      {% if int_vals.composition %}
-                        (is part of composition {{int_vals.composition|replace('https://w3id.org/lodedo/data/', '')}})
-                      {% endif %}
-                    </p>
-                    {% endfor %}
-                  </div>
-                  {% endif %}
-                {% endfor %}
-                </div>
-                </div>
+                    </div> 
+                  {% endif %} 
+                {% endfor %} 
               </div>
-
-              </div>
-          </div>
-          <div class="col-md-4">
-            {% if other_ints_to_compare.results.bindings|length > 0 %}
-            <h3 class="fw-bold pb-3">
-                See other scholarly interpretations about this artwork
-            </h3>
-            {% else %}
-            <h3 class="fw-bold pb-3">No other scholarly interpretations for this artwork</h3>
-            {% endif %}
-            <div class="row row-cols-1 row-cols-md-1 g-4">
-              {% for int in other_ints_to_compare.results.bindings %}
-
-                <div class="col">
-                  <div class="card">
-                     <div class="card-body">
-                       <h5 class="card-title fw-bold">{{int.agentLabel.value}}</h5>
-                    <p class="card-text"><a href={{int.g.value|replace('https://w3id.org/lodedo/data/graphs/', '../scholarlyInterpretations/')}} class="btn-outline-dark float-end d-1">>></a></p>
-                    </div>
-                  </div>
-                </div>
-            {% endfor %}
             </div>
           </div>
         </div>
-
-
-
-
-
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      <script src="../assets/script.js"></script>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-73SQ61K2RE"></script>
-
-</body>
+      </div>
+      <div class="col-md-4"> {% if other_ints_to_compare.results.bindings|length > 0 %} <h3 class="fw-bold pb-3"> See other scholarly interpretations about this artwork </h3> {% else %} <h3 class="fw-bold pb-3">No other scholarly interpretations for this artwork</h3> {% endif %} <div class="row row-cols-1 row-cols-md-1 g-4"> {% for int in other_ints_to_compare.results.bindings %} <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">{{int.agentLabel.value}}</h5>
+                <p class="card-text">
+                  <a href={{int.g.value|replace('https://w3id.org/lodedo/data/graphs/', '../scholarlyInterpretations/')}} class="btn-outline-dark float-end d-1">>></a>
+                </p>
+              </div>
+            </div>
+          </div> {% endfor %} </div>
+      </div>
+    </div>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../assets/script.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-73SQ61K2RE"></script>
+        
+  </body>
 </html>
