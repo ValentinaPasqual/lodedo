@@ -1,58 +1,54 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Sartini Bruno, Pasqual Valentina">
-  <title>LODEDO catalogue</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="./assets/style.css">
-</head>
-<body>
-
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active fw-bolder" aria-current="page" href="#">LODEdo</a>
-          </li>
-        </ul>
-        <div class="d-flex">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Sartini Bruno, Pasqual Valentina">
+    <title>LODEDO catalogue</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style.css">
+  </head>
+  <body>
+    
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="#">Catalogue</a>
-          </li>
-          <li class="nav-item d-flex">
-            <a class="nav-link fw-bold" href="assets/contacts.html">Contacts</a>
-          </li>
-          <li class="nav-item">
-        </ul>
+            <li class="nav-item">
+              <a class="nav-link active fw-bolder" aria-current="page" href="#">LODEdo</a>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link fw-bold" href="#">Catalogue</a>
+              </li>
+              <li class="nav-item d-flex">
+                <a class="nav-link fw-bold" href="assets/contacts.html">Contacts</a>
+              </li>
+              <li class="nav-item">
+            </ul>
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
-  </nav>
-
-<div class="container-fluid">
-
-    <div class="row flex-nowrap">
+    </nav>
+    
+    <!-- MAIN CONTENT -->
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <!-- SIDEBAR WITH FACETS -->
         <div class="col-auto px-0">
-            <div id="sidebar" class="collapse collapse-horizontal show sticky-top">
-
-                <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
-
-                  <div class="position-absolute bottom-0 w-100">
-
-
-                    <form method="POST">
-
-                      <div class="accordion accordion-flush" id="accordionFlushExample">
-                      {% for facet, values in facets.items() %}
+          <div id="sidebar" class="collapse collapse-horizontal show sticky-top">
+            <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+              <div class="position-absolute bottom-0 w-100">  
+                <form method="POST">
+                  <div class="accordion accordion-flush" id="accordionFlushExample"> 
+                    {% for facet, values in facets.items() %} 
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-{{ facet|replace(':','')|replace(' ','') }}">
                           <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ facet|replace(':','')|replace(' ','') }}" aria-expanded="false" aria-controls="flush-collapse{{ facet|replace(':','')|replace(' ','') }}">
@@ -62,62 +58,57 @@
                         <div id="flush-collapse{{ facet|replace(':','')|replace(' ','') }}" class="accordion-collapse collapse" aria-labelledby="flush-{{ facet|replace(':','')|replace(' ','') }}}" data-bs-parent="#accordionFlushExample">
                           <div class="accordion-body">
                             <input type="text" class="search-input form-control me-2" placeholder="Search..." onkeyup="searchFilterFunction(this)">
-                            <ul class="scrollable-div p-0 m-0 facet-ul" id=id="ul-{{ facet|replace(':','')|replace(' ','') }}">
-                                {% for value,info in values.items() %}
-                                    <li class="list-group-item border-end-0 fw-bold">
-                                        <label>
-                                            <input type="checkbox" name={{ facet }} value={{ value }}
-                                                   {% if selected_facets.get(facet) and value in selected_facets[facet] %}checked{% endif %} onclick="moveToTop(this)">
-                                             {{info.label}}
-                                             {% if 'class' in info%}
-                                             <span class="badge badge-{{info.class|replace('https://w3id.org/icon/ontology/', '')}} text-dark">{{info.classLabel}}</span>
-                                             {% endif %}
-                                        </label>
-                                    </li>
-                                {% endfor %}
-                            </ul>
+                            <ul class="scrollable-div p-0 m-0 facet-ul" id=id="ul-{{ facet|replace(':','')|replace(' ','') }}"> {% for value,info in values.items() %} <li class="list-group-item border-end-0 fw-bold">
+                                <label>
+                                  <input type="checkbox" name={{ facet }} value={{ value }} {% if selected_facets.get(facet) and value in selected_facets[facet] %}checked{% endif %} onclick="moveToTop(this)">
+                                  {{info.label}} {% if 'class' in info%} <span class="badge badge-{{info.class|replace('https://w3id.org/icon/ontology/', '')}} text-dark">{{info.classLabel}}</span> {% endif %} </label>
+                              </li> {% endfor %} </ul>
                           </div>
                         </div>
-                      </div>
-                      {% endfor %}
-                      <div class="float-end m-3">
-                          <input type="submit" value="Search" class="btn-outline-dark d-1" name="Search">
-                          <button type="submit" value="Clear all" class="btn-outline-danger d-1" name="clearAllBtn">Clear all</button>
-                        </div>
-                    </div>
-                  </form>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <main class="col ps-md-2 pt-2" id="catalogue">
-            <!-- <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i>Filters</a> -->
-            <div class="page-header pt-3">
-                <h2 class="fw-bold">One Houndred Views of Edo</h2>
-            </div>
-            <p class="lead fw-bold">Browse the collection by their scholarly interpretations</p>
-            <div class="row p-5">
-              <p class="float-end text-end fw-bold"><span class="badge bg-warning text-dark">{{result_cards|length}}</span> results</p>
-                  {% for card in result_cards %}
-                  <div class="col-md-4">
-                      <div class="card mb-4">
-                        <div class="card-body mb-3">
-                        <img class="img-fluid" src="{{ card.img_src }}" alt="{{ card.img_src }}">
-                        <h5 class="fw-bold pt-3">{{card.title}}</h5>
-                        <p class="fw-bold">Creation date: {{card.date}}</p>
-                        <a href={{card.item|replace("https://w3id.org/lodedo/data/", "") }} class="btn-outline-dark d-1">View Details</a>
-                      </div>
+                      </div> 
+                    {% endfor %} 
+                    <div class="float-end m-3">
+                      <input type="submit" value="Search" class="btn-outline-dark d-1" name="Search">
+                      <button type="submit" value="Clear all" class="btn-outline-danger d-1" name="clearAllBtn">Clear all</button>
                     </div>
                   </div>
-                  {% endfor %}
+                </form>
+              </div>
             </div>
+          </div>
+        </div>
+        
+        <!-- CATALOGUE -->
+        <main class="col ps-md-2 pt-2" id="catalogue">
+          <!-- <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i>Filters</a> -->
+          <div class="page-header pt-3">
+            <h2 class="fw-bold">One Houndred Views of Edo</h2>
+          </div>
+          <p class="lead fw-bold">Browse the collection by their scholarly interpretations</p>
+          <div class="row p-5">
+            <p class="float-end text-end fw-bold">
+              <span class="badge bg-warning text-dark">{{result_cards|length}}</span> results
+            </p> 
+            {% for card in result_cards %} 
+              <div class="col-md-4">
+                <div class="card mb-4">
+                  <div class="card-body mb-3">
+                    <img class="img-fluid" src="{{ card.img_src }}" alt="{{ card.img_src }}">
+                    <h5 class="fw-bold pt-3">{{card.title}}</h5>
+                    <p class="fw-bold">Creation date: {{card.date}}</p>
+                    <a href={{card.item|replace("https://w3id.org/lodedo/data/", "") }} class="btn-outline-dark d-1">View Details</a>
+                  </div>
+                </div>
+              </div> 
+            {% endfor %}
+          </div>
         </main>
+        
+      </div>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="assets/script.js"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-73SQ61K2RE"></script>
-
-</body>
+    
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="assets/script.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-73SQ61K2RE"></script>
+  </body>
 </html>
