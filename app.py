@@ -334,5 +334,36 @@ def index():
 
     return render_template("index.html", facets=facets, selected_facets={}, result_cards=result_cards)
 
+# ENDPOINT
+
+@app.route("/sparql", methods=['GET', 'POST'])
+def sparql_gui(active=None):
+	return render_template('sparql.html',active=active)
+
+@app.errorhandler(403)
+def page_not_found(e):
+	# note that we set the 403 status explicitly
+	return render_template('403.html'), 403
+
+@app.errorhandler(500)
+def server_error(e):
+	# note that we set the 403 status explicitly
+	return render_template('500.html'), 500
+
+@app.route('/process_query', methods=['POST'])
+def process_query():
+    data = request.get_json()
+    query = data['string']
+    query_result = sparql_api.execute_get_select_query(repository, query=query)
+
+    if 'select' in query.lower() or 'construct' in query.lower():
+        if isinstance(query_result, str):
+            return render_template('500.html'), 500
+        else:
+            # If the query result is a JSON response, return it as JSON
+            return jsonify(query_result)
+    else:
+        return render_template('403.html'), 403
+
 if __name__ == "__main__":
     app.run(debug = True, port = 8000)
