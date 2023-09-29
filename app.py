@@ -14,7 +14,6 @@ from graphdb.mime_types import RDFTypes
 
 app = Flask(__name__, static_folder="assets")
 
-
 conf = Configuration()
 conf.host = "http://localhost:7200/"
 api_client = ApiClient(configuration=conf)
@@ -49,6 +48,7 @@ def start(artworkID=None):
                 }
         """
     else:
+        # SELECT INFORMATION FOR A SINGLE ARTWORK
         sparql_query = prefixes + """
             SELECT DISTINCT *
             WHERE {
@@ -95,7 +95,7 @@ def artwork(artworkID):
 
     preico_interpretations = list(set(preico_interpretations))
 
-    # AUTHOMATIC INTERPRETATIONS
+    # AUTHOMATIC INTERPRETATIONS (symbols)
     artwork_conj_result = {}
     artwork_conj_query = prefixes + """SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt lodedo-art:""" + artworkID + """; icon:recognizedImage ?reconImage. ?reconImage icon:hasSymbol ?symbol.} ?symbol sim:hasContext ?context; sim:hasSimulacrum ?simulacrum. ?context rdfs:label ?contextLabel}"""
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
