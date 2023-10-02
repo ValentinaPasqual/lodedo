@@ -21,7 +21,7 @@ api_client = ApiClient(configuration=conf)
 api_instance = RepositoryManagementControllerApi(api_client)
 
 # Repository information
-config = "C:/Users/valep/Documents/GitHub/lodedo/graphDB/LODEdo_endpoint_config.ttl"
+config = "graphDB/LODEdo_endpoint_config.ttl"
 
 try:
     # Attempt to create the new repository via the REST API
