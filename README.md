@@ -3,7 +3,7 @@
 **LODedo** is a [Python 3](https://www.python.org/downloads/) web application built in [Flask](https://flask.palletsprojects.com/en/2.3.x/). 
 This is an ongoing project which has been developed by [**Bruno Sartini**](https://www.dkes.fak12.uni-muenchen.de/people/academic_staff/bruno_sartini/index.html) and [**Valentina Pasqual**](https://www.unibo.it/sitoweb/valentina.pasqual2)
 
-## Quick start
+## LOCAL SETUP (Quick start)
 
 The project works with this **requirement**:
 
@@ -32,3 +32,14 @@ python app.py
 ```
 - Open the application in your browser: **http://localhost:8000/**
 
+## DEPLOYMENT
+```
+# start nginx
+service nginx start
+
+# start graphDB instance
+cd /project/lodedo/graphDB/graphdb-10.3.2/bin/ ; /usr/bin/nohup graphdb
+
+# start gunicorn
+cd /project/lodedo/ ; /usr/bin/nohup gunicorn -w 4 -b 0.0.0.0:8080 app:app
+```
