@@ -117,6 +117,11 @@ def artwork(artworkID):
 @app.route('/conjectures/<conjID>')
 def conj(conjID):
 
+    # gets the interpretation set information
+    auto_int_info_query = prefixes + "SELECT ?agent ?agentLabel ?context ?contextLabel WHERE {conj ?g {<"+ artwork_conj_result['results']['bindings'][0]['interpretation']['value'] +"> icon:aboutWorkOfArt ?artwork; icon:recognizedImage ?reconImage; dul:includesAgent ?agent} ?agent rdfs:label ?agentLabel. ?reconImage icon:hasSymbol ?symbol. ?symbol sim:hasContext ?context. ?context rdfs:label ?contextLabel}"
+    auto_int_info_result = sparql_api.execute_get_select_query(repository, query=auto_int_info_query)
+
+
     # gets the set of automatic interpretations
     artwork_conj_result, auto_int_res, motifs_list = {}, {}, []
     artwork_conj_query = prefixes + "SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt ?artwork} FILTER regex(str(?g),\"" + conjID + "\")}"
@@ -142,7 +147,7 @@ def conj(conjID):
 
         motifs_list = list(set(motifs_list))
 
-    return render_template('conjectures.html', conjID=conjID, artwork_conj_result=artwork_conj_result, auto_int_res=auto_int_res, motifs_list=motifs_list)
+    return render_template('conjectures.html', conjID=conjID, auto_int_info_result=auto_int_info_result, artwork_conj_result=artwork_conj_result, auto_int_res=auto_int_res, motifs_list=motifs_list)
 
 @app.route('/scholarlyInterpretations/<graphID>', methods=["GET", "POST"])
 def graph(graphID):
