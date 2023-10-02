@@ -1,5 +1,5 @@
 # ignore all logs from graphdb instance
-/graphDB/graphdb-10.3.2/logs/
+/graphDB/graphdb-10.3.2/logs
 
 # ignore all examples from graphdb instance
-/graphDB/graphdb-10.3.2/examples/
+/graphDB/graphdb-10.3.2/examples
