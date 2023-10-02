@@ -17,7 +17,7 @@ app = Flask(__name__, static_folder="assets")
 conf = Configuration()
 conf.host = "http://localhost:7200/"
 api_client = ApiClient(configuration=conf)
-api_client.set_default_header("Content-Type", "application/x-www-form-urlencoded")  
+api_client.set_default_header("Content-Type", "application/x-www-form-urlencoded")
 repository = "LODEdo_endpoint"
 api = RepositoriesApi(api_client)
 sparql_api = SparqlApi(api_client)
@@ -227,19 +227,19 @@ def index():
             """
 
         if 'icon:recognizedArtisticMotif' in facet:
-            query = prefixes + """SELECT * WHERE {graph ?g { ?subj """ + facet + """ ?motif } ?motif icon:hasFactualMeaning ?obj. ?obj a ?class; rdfs:label ?label. ?class rdfs:label ?classLabel }"""
+            query = prefixes + """SELECT ?obj ?label ?class ?classLabel WHERE {graph ?g { ?subj """ + facet + """ ?motif } ?motif icon:hasFactualMeaning ?obj. ?obj a ?class; rdfs:label ?label. ?class rdfs:label ?classLabel }"""
 
         if "icon:recognizedComposition" in facet:
             query = prefixes + """SELECT DISTINCT ?obj ?label WHERE {graph ?g { ?subj """ + facet + """ ?obj } ?obj rdfs:label ?label }"""
 
         if 'sim:hasRealityCounterpart' in facet:
-            query = prefixes + """SELECT * WHERE {graph ?g {?subj icon:hasSymbol ?symbol } ?symbol sim:preventedRealityCounterpart | sim:hasRealityCounterpart  ?obj. ?obj rdfs:label ?label.}"""
+            query = prefixes + """SELECT ?obj ?label WHERE {graph ?g {?subj icon:hasSymbol ?symbol } ?symbol sim:preventedRealityCounterpart | sim:hasRealityCounterpart  ?obj. ?obj rdfs:label ?label.}"""
 
         if 'sim:hasContext' in facet:
-            query = prefixes + """SELECT DISTINCT * WHERE {graph ?g {?subj icon:hasSymbol ?symbol } ?symbol sim:hasContext ?obj. ?obj rdfs:label ?label}"""
+            query = prefixes + """SELECT DISTINCT ?obj ?label WHERE {graph ?g {?subj icon:hasSymbol ?symbol } ?symbol sim:hasContext ?obj. ?obj rdfs:label ?label}"""
 
         if 'dul:includesAgent' in facet:
-            query = prefixes + """SELECT * WHERE {graph ?g {?subj dul:includesAgent ?obj } ?obj rdfs:label ?label }"""
+            query = prefixes + """SELECT ?obj ?label WHERE {graph ?g {?subj dul:includesAgent ?obj } ?obj rdfs:label ?label }"""
 
         results = sparql_api.execute_get_select_query(repository, query=query)
 
