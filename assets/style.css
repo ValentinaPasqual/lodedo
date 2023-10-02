@@ -268,10 +268,10 @@ div#breadcrumbs a {color:black}
      display: flex;
      width: 100%;
      padding: 0;
-     height: 80vh !important;
+     height: 60vh !important;
 }
  .choice{
-     height: 80vh !important;
+     height: 60vh !important;
      box-sizing: border-box;
      padding: 0;
      overflow: hidden;
@@ -281,11 +281,11 @@ div#breadcrumbs a {color:black}
 }
  .expand{
      width: 65%;
-     height: 80vh !important;
+     height: 60vh !important;
      overflow-y: auto !important;
 }
  .unset{
-      height: 80vh !important;
+      height: 60vh !important;
      width: 16%;
      color: black !important;
      background-color: black !important;
@@ -293,11 +293,11 @@ div#breadcrumbs a {color:black}
  .small{
      width: 5%;
      background-color: black !important;
-     height: 80vh !important;
+     height: 60vh !important;
 }
  .small>div{
      opacity: 0;
-     height: 80vh !important;
+     height: 60vh !important;
 }
  .unset > div > p{
      opacity: 0;
@@ -305,7 +305,7 @@ div#breadcrumbs a {color:black}
  .expand > div {
      transition-delay: 200ms;
      opacity: 1;
-     height: 80vh !important;
+     height: 60vh !important;
 }
 
 .card-body-horizontal-accordion {height: 100vh !important;}

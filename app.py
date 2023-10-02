@@ -117,15 +117,15 @@ def artwork(artworkID):
 @app.route('/conjectures/<conjID>')
 def conj(conjID):
 
-    # gets the interpretation set information
-    auto_int_info_query = prefixes + "SELECT ?agent ?agentLabel ?context ?contextLabel WHERE {conj ?g {<"+ artwork_conj_result['results']['bindings'][0]['interpretation']['value'] +"> icon:aboutWorkOfArt ?artwork; icon:recognizedImage ?reconImage; dul:includesAgent ?agent} ?agent rdfs:label ?agentLabel. ?reconImage icon:hasSymbol ?symbol. ?symbol sim:hasContext ?context. ?context rdfs:label ?contextLabel}"
-    auto_int_info_result = sparql_api.execute_get_select_query(repository, query=auto_int_info_query)
-
-
     # gets the set of automatic interpretations
     artwork_conj_result, auto_int_res, motifs_list = {}, {}, []
     artwork_conj_query = prefixes + "SELECT * WHERE {conj ?g {?interpretation icon:aboutWorkOfArt ?artwork} FILTER regex(str(?g),\"" + conjID + "\")}"
     artwork_conj_result = sparql_api.execute_get_select_query(repository, query=artwork_conj_query)
+
+    # gets the interpretation set information}
+    auto_int_info_result = {}
+    auto_int_info_query = prefixes + "SELECT ?agent ?agentLabel ?context ?contextLabel ?artworkTitle WHERE {conj ?g {<"+ artwork_conj_result['results']['bindings'][0]['interpretation']['value'] +"> icon:aboutWorkOfArt ?artwork; icon:recognizedImage ?reconImage; dul:includesAgent ?agent} ?artwork dcterms:title ?artworkTitle. ?agent rdfs:label ?agentLabel. ?reconImage icon:hasSymbol ?symbol. ?symbol sim:hasContext ?context. ?context rdfs:label ?contextLabel}"
+    auto_int_info_result = sparql_api.execute_get_select_query(repository, query=auto_int_info_query)
 
     # gets the image recognition data
     for row in artwork_conj_result['results']['bindings']:
