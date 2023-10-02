@@ -50,7 +50,10 @@
         <a href={{ artwork_conj_result.results.bindings[0].artwork.value}}>
           << Go back to the artwork </a>
       </div>
-      <div class="container-horizontal-accordion horizontal-accordion">
+      <h2 class="fw-bold">
+        {{auto_int_info_result.results.bindings[0].agentLabel.value}} set of interpretations about <i>{{auto_int_info_result.results.bindings[0].artworkTitle.value}}</i> in the {{auto_int_info_result.results.bindings[0].contextLabel.value}} context
+      </h2>
+      <div class="container-horizontal-accordion horizontal-accordion p-5">
         {% for motif in motifs_list %} <div class="card choice unset bg-white mx-2">
           <div class="card-body card-body-horizontal-accordion">
             <h2 class="card-title mt-0 pb-3">{{motif}}</h2>
@@ -64,7 +67,7 @@
                     {% endif %}
                     {% if row.symbolClass %}
                       <p>
-                      <span class="badge bg-warning text-dark">{{row.symbolClass.value}}</span>
+                      <span class="badge bg-warning text-dark">{{row.symbolClass.value|replace('https://w3id.org/simulation/ontology/', '')}}</span>
                         {{row.realityCounterpartLabel.value}}
                       </p>
                     {% endif %}
