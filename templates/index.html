@@ -66,7 +66,7 @@
                             <ul class="scrollable-div p-0 m-0 facet-ul" id=id="ul-{{ facet|replace(':','')|replace(' ','') }}"> {% for value,info in values.items() %} <li class="list-group-item border-end-0 fw-bold">
                                 <label>
                                   <input type="checkbox" name={{ facet }} value={{ value }} {% if selected_facets.get(facet) and value in selected_facets[facet] %}checked{% endif %} onclick="moveToTop(this)">
-                                  {{info.label}} {% if 'class' in info%} <span class="badge badge-{{info.class}} text-dark">{{info.classLabel}}</span> {% endif %} </label>
+                                  {{info.label}} {% if 'class' in info%} <span class="badge badge-{{info.class|replace('https://w3id.org/icon/ontology/', '')}} text-dark">{{info.classLabel}}</span> {% endif %} </label>
                               </li> {% endfor %} </ul>
                           </div>
                         </div>

@@ -67,14 +67,14 @@
                           {% for symb,symb_vals in symbol_ints.items() %}
                             {% if int_vals.meaning == symb_vals.meaning %}
                               <p id={{int_id}} class="fw-bold" style="display:inline">
-                                <span class="badge badge-{{int_vals.class}}">{{int_vals.classLabel}}</span> {{symb_vals.simulacrumLabel}} symbolising {{symb_vals.realityCounterpartLabel}} in the {{symb_vals.contextLabel}} context
+                                <span class="badge badge-{{int_vals.class}}">{{int_vals.classLabel|replace('https://w3id.org/icon/ontology/', '')}}</span> {{symb_vals.simulacrumLabel}} symbolising {{symb_vals.realityCounterpartLabel}} in the {{symb_vals.contextLabel}} context
                               </p>
                             {% endif %}
                           {% endfor %}
                         {% endif %}
                         {% if int_id not in symbol_ints %}
                           <p id={{int_id}} class="fw-bold" style="display:inline">
-                              <span class="badge badge-{{int_vals.class}}">{{int_vals.classLabel}}</span> {{int_vals.meaningLabel}}
+                              <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{int_vals.meaningLabel}}
                           </p>
                         {% endif %}
                         {% if int_vals.quality %}
