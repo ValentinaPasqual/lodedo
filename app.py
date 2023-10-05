@@ -149,7 +149,7 @@ def conj(conjID):
 
     return render_template('conjectures.html', conjID=conjID, auto_int_info_result=auto_int_info_result, artwork_conj_result=artwork_conj_result, auto_int_res=auto_int_res, motifs_list=motifs_list)
 
-@app.route('/scholarlyInterpretations/<graphID>', methods=["GET", "POST"])
+@app.route('/graphs/<graphID>', methods=["GET", "POST"])
 def graph(graphID):
 
     def interpretations_data_builder(graphID, part_query_string):
