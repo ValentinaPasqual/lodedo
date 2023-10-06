@@ -13,7 +13,7 @@ body  {
 #sidebar {min-width: 20vw; transition: width 0.3s ease-in-out; max-height:90vh !important/* Smooth transition for width */}
 .accordion-body {padding:0px}
 
-.badge-Event {background-color:#97BB30}
+.badge-Event, .badge-Simulation {background-color:#97BB30}
 .badge-Symbol, .badge-NaturalElement {background-color:#00897A}
 .badge-Place, .badge-Action {background-color:#006877}
 .badge-NamedObject {background-color:#2F4858}
