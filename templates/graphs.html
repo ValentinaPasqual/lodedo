@@ -44,66 +44,64 @@
     </nav>
 
     <!-- MAIN CONTENT -->
-    <div class="container m-5 p-5">
+    <div class="m-md-5 p-md-5">
       <div id="breadcrumbs" class="text-end badge btn-outline-dark d-2 mb-3">
         <a href={{int_metadata_result.results.bindings[0].artwork.value}}>
           << Go back to the artwork </a>
       </div>
-      <div class="container">
-        <div class="row">
-          <h2 class="align-self-end pb-3 fw-bold">
-            {{int_metadata_result.results.bindings[0].agentLabel.value}} set of interprations about <i>{{int_metadata_result.results.bindings[0].title.value}}</i>
-          </h2>
-          <div class="col-md-8">
-            <div class="ints-per-author">
-              <div class="card">
-                <div class="card-body">
-                  <div class="interpretation-section-container"> {% for int_type, ints in scholar_ints.items() %} {% if ints %} <div class="p-3" id="interpretation-level-container">
-                      <h5 class="card-subtitle mb-4 fw-bolder">
-                        <span class="badge bg-warning text-dark">{{ints|length}}</span> {{int_type}} interpretations
-                      </h5>
-                      {% for int_id, int_vals in ints.items() %}
-                        {% if symbol_ints|length > 0 %}
-                          {% for symb,symb_vals in symbol_ints.items() %}
-                            {% if int_vals.meaning == symb_vals.meaning %}
-                              <p id={{int_id}} class="fw-bold" style="display:inline">
-                                <span class="badge badge-{{int_vals.class}}">{{int_vals.classLabel|replace('https://w3id.org/icon/ontology/', '')}}</span> {{symb_vals.simulacrumLabel}} symbolising {{symb_vals.realityCounterpartLabel}} in the {{symb_vals.contextLabel}} context
-                              </p>
-                            {% endif %}
-                          {% endfor %}
-                        {% endif %}
-                        {% if int_id not in symbol_ints %}
-                          <p id={{int_id}} class="fw-bold" style="display:inline">
-                              <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{int_vals.meaningLabel}}
-                          </p>
-                        {% endif %}
-                        {% if int_vals.quality %}
-                          (with quality {{int_vals.qualityLabel}})
-                        {% endif %}
-                        {% if int_vals.composition %}
-                          (is part of composition {{int_vals.composition}})
-                        {% endif %}
+      <div class="row m-md-5 p-md-5">
+        <h2 class="align-self-end pb-3 fw-bold">
+          {{int_metadata_result.results.bindings[0].agentLabel.value}} set of interprations about <i>{{int_metadata_result.results.bindings[0].title.value}}</i>
+        </h2>
+        <div class="col-md-8">
+          <div class="ints-per-author">
+            <div class="card">
+              <div class="card-body">
+                <div class="interpretation-section-container"> {% for int_type, ints in scholar_ints.items() %} {% if ints %} <div class="p-3" id="interpretation-level-container">
+                    <h5 class="card-subtitle mb-4 fw-bolder">
+                      <span class="badge bg-warning text-dark">{{ints|length}}</span> {{int_type}} interpretations
+                    </h5>
+                    {% for int_id, int_vals in ints.items() %}
+                      {% if symbol_ints|length > 0 %}
+                        {% for symb,symb_vals in symbol_ints.items() %}
+                          {% if int_vals.meaning == symb_vals.meaning %}
+                            <p id={{int_id}} class="fw-bold" style="display:inline">
+                              <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{symb_vals.simulacrumLabel}} symbolising {{symb_vals.realityCounterpartLabel}} in the {{symb_vals.contextLabel}} context
+                            </p>
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                      {% if int_id not in symbol_ints %}
+                        <p id={{int_id}} class="fw-bold" style="display:inline">
+                            <span class="badge badge-{{int_vals.class|replace('https://w3id.org/icon/ontology/', '')}}">{{int_vals.classLabel}}</span> {{int_vals.meaningLabel}}
                         </p>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
+                      {% endif %}
+                      {% if int_vals.quality %}
+                        (with quality {{int_vals.qualityLabel}})
+                      {% endif %}
+                      {% if int_vals.composition %}
+                        (is part of composition {{int_vals.composition|replace('https://w3id.org/lodedo/', '')}})
+                      {% endif %}
+                      </p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4"> {% if other_ints_to_compare.results.bindings|length > 0 %} <h3 class="fw-bold pb-3"> See other scholarly interpretations about this artwork </h3> {% else %} <h3 class="fw-bold pb-3">No other scholarly interpretations for this artwork</h3> {% endif %} <div class="row row-cols-1 row-cols-md-1 g-4"> {% for int in other_ints_to_compare.results.bindings %} <div class="col">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">{{int.agentLabel.value}}</h5>
-                <p class="card-text">
-                  <a href={{int.g.value}} class="btn-outline-dark float-end d-1">>></a>
-                </p>
-              </div>
+    </div>
+    <div class="col-md-4"> {% if other_ints_to_compare.results.bindings|length > 0 %} <h3 class="fw-bold pb-3"> See other scholarly interpretations about this artwork </h3> {% else %} <h3 class="fw-bold pb-3">No other scholarly interpretations for this artwork</h3> {% endif %} <div class="row row-cols-1 row-cols-md-1 g-4"> {% for int in other_ints_to_compare.results.bindings %} <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">{{int.agentLabel.value}}</h5>
+              <p class="card-text">
+                <a href={{int.g.value}} class="btn-outline-dark float-end d-1">>></a>
+              </p>
             </div>
-          </div> {% endfor %} </div>
-      </div>
+          </div>
+        </div> {% endfor %} </div>
     </div>
   </div>
 </div>
